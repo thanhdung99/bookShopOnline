@@ -1,0 +1,201 @@
+package com.bookstore.service;
+
+import com.bookstore.dao.BookDAO;
+import com.bookstore.dao.CategoryDAO;
+import com.bookstore.entity.Book;
+import com.bookstore.entity.Category;
+import com.bookstore.store.Message;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Date;
+import java.util.List;
+
+public class BookServices {
+
+    private BookDAO bookDAO;
+    private CategoryDAO categoryDAO;
+    private HttpServletRequest request;
+    private HttpServletResponse response;
+
+    public BookServices( HttpServletRequest request, HttpServletResponse response){
+
+        bookDAO = new BookDAO();
+        this.categoryDAO= new CategoryDAO();
+        this.request = request;
+        this.response = response;
+    }
+    public void listBooks() throws ServletException, IOException {
+        List<Book> booksList = bookDAO.listAll();
+
+        request.setAttribute("booksList", booksList);
+        String listPage ="/admin/books/books_list.jsp";
+
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher(listPage);
+        requestDispatcher.forward(request,response);
+    }
+    public void showBookNewForm() throws ServletException, IOException {
+
+        String newBookPage = "/admin/books/book_form.jsp";
+        RequestDispatcher dispatcher = request.getRequestDispatcher(newBookPage);
+        dispatcher.forward(request, response);
+
+    }
+    public void createBook() throws ServletException, IOException {
+        Book book = new Book();
+        readBookFields(book);
+        String title = book.getTitle();
+        Book existBook = bookDAO.findByTitle(title);
+        if (existBook != null){
+            Message message = new Message("Could not create book",
+                    "A book with title \"" +existBook.getTitle() +"\" already exist",
+                    "error");
+            request.setAttribute("message", message);
+            return;
+        }
+        Book createdBook = bookDAO.create(book);
+        if(createdBook.getBookId() > 0){
+            Message message = new Message("Create successful", "Create book successful", "success");
+            request.setAttribute("message", message);
+        }
+
+    }
+    public void readBookFields(Book book) throws ServletException, IOException {
+        Integer categoryId = Integer.parseInt(request.getParameter("category"));
+        Category category = categoryDAO.get(categoryId);
+        String title = request.getParameter("title");
+        String author = request.getParameter("author");
+        String description = request.getParameter("description");
+        String isbn = request.getParameter("isbn");
+        float price = Float.parseFloat(request.getParameter("price"));
+        Date publishDate;
+
+        publishDate = Date.valueOf(request.getParameter("publishDate"));
+
+        book.setTitle(title);
+        book.setCategoryByCategoryId(category);
+        book.setAuthor(author);
+        book.setDescription(description);
+        book.setIsbn(isbn);
+        book.setPublishDate(publishDate);
+        book.setPrice(price);
+        Part part = request.getPart("bookImage");
+        if(part != null && part.getSize() > 0){
+            long size = part.getSize();
+            byte[] imageBytes =new byte[(int) size];
+            InputStream inputStream = part.getInputStream();
+            inputStream.read(imageBytes);
+            inputStream.close();
+            book.setImage(imageBytes);
+        }
+
+    }
+
+    public void editBook() throws ServletException, IOException {
+        Integer bookId = Integer.parseInt(request.getParameter("id"));
+        Book book = bookDAO.get(bookId);
+        if (book != null){
+            request.setAttribute("book", book);
+            String editBookPage = "/admin/books/book_form.jsp";
+            RequestDispatcher dispatcher = request.getRequestDispatcher(editBookPage);
+            dispatcher.forward(request, response);
+        } else {
+            Message message = new Message("Book not found", "Could not find book with ID " + bookId,"error");
+            request.setAttribute("message", message);
+            List<Book> booksList = bookDAO.listAll();
+            request.setAttribute("booksList", booksList);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/books/books_list.jsp");
+            dispatcher.forward(request, response);
+        }
+    }
+
+    public void updateBook() throws ServletException, IOException {
+        int bookId = Integer.parseInt(request.getParameter("bookId"));
+        Book book = bookDAO.get(bookId);
+        Book bookByTitle = bookDAO.findByTitle(request.getParameter("title"));
+        readBookFields(book);
+        if(bookByTitle != null && book.getBookId() != bookByTitle.getBookId()){
+            Message message = new Message("Could not update book",
+                    "A book with title " +bookByTitle.getTitle() +" already exist",
+                    "error");
+
+            request.setAttribute("message", message);
+        }else {
+            bookDAO.update(book);
+            Message message = new Message("Update successful", "Update book successful",
+                    "success");
+            request.setAttribute("message", message);
+        }
+    }
+
+    public void deleteBook() {
+        int bookId = Integer.parseInt(request.getParameter("bookId"));
+        Book book = bookDAO.get(bookId);
+
+        if(book == null){
+            Message message = new Message("Could not delete book", "Could not find book with Id "+
+                    bookId, "error");
+            request.setAttribute("message", message);
+        }else {
+            bookDAO.delete(bookId);
+            Message message = new Message("Delete successful", "Delete book successful", "success");
+            request.setAttribute("message", message);
+        }
+    }
+
+    public void listBooksByCategory() throws ServletException, IOException {
+        int categoryId = Integer.parseInt(request.getParameter("id"));
+        List<Book> booksList = bookDAO.listBooksByCategory(categoryId);
+        Category category = categoryDAO.get(categoryId);
+        if (category == null){
+            Message message = new Message("Cound not find category" ,
+                    "Sorry, the category ID " + categoryId + " is not available.",
+                    "error");
+            request.setAttribute("message", message);
+            request.getRequestDispatcher("/frontend/index.jsp").forward(request, response);
+            return;
+        }
+        request.setAttribute("booksList",booksList);
+        request.setAttribute("category", category);
+
+        String listPage = "/frontend/book_list_by_category.jsp";
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher(listPage);
+        dispatcher.forward(request, response);
+    }
+
+    public void viewBookDetail() throws ServletException, IOException {
+        int bookId = Integer.parseInt(request.getParameter("id"));
+        Book book = bookDAO.get(bookId);
+        String destPage = "/frontend/book_detail.jsp";
+        if (book != null){
+            request.setAttribute("book",book);
+        }else {
+            destPage = "/frontend/index.jsp";
+            Message message = new Message("Could not find book",
+                    "Sorry, the book with ID " + bookId + " is not available.",
+                    "error");
+            request.setAttribute("message", message);
+        }
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher(destPage);
+        dispatcher.forward(request, response);
+    }
+
+    public void search() {
+        String keyword = request.getParameter("keyword");
+        List<Book> result = null;
+        if(keyword.equals("")){
+            result = bookDAO.listAll();
+        } else {
+            result = bookDAO.search(keyword);
+        }
+        request.setAttribute("result", result);
+    }
+}
+
