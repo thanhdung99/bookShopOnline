@@ -4,6 +4,7 @@ import com.bookstore.dao.BookDAO;
 import com.bookstore.dao.CategoryDAO;
 import com.bookstore.entity.Book;
 import com.bookstore.entity.Category;
+import com.bookstore.entity.Customer;
 import com.bookstore.store.Message;
 
 import javax.servlet.RequestDispatcher;
@@ -150,7 +151,7 @@ public class BookServices {
 
     public void listBooksByCategory() throws ServletException, IOException {
         int categoryId = Integer.parseInt(request.getParameter("id"));
-        List<Book> booksList = bookDAO.listBooksByCategory(categoryId);
+        int page = Integer.parseInt(request.getParameter("page"));
         Category category = categoryDAO.get(categoryId);
         if (category == null){
             Message message = new Message("Cound not find category" ,
@@ -160,10 +161,22 @@ public class BookServices {
             request.getRequestDispatcher("/frontend/index.jsp").forward(request, response);
             return;
         }
+        int limit = 3;
+        List<Book> booksList = bookDAO.listBooksByCategory(categoryId, page, limit);
+        int numOfBook = (int) bookDAO.countByCategory(categoryId);
+        int numOfPages = 0;
+        if(numOfBook != 0){
+            numOfPages = numOfBook/limit;
+        }
+        if(numOfBook % limit != 0){
+            numOfPages ++;
+        }
         request.setAttribute("booksList",booksList);
         request.setAttribute("category", category);
+        request.setAttribute("numOfPages", numOfPages);
+        request.setAttribute("page", page);
 
-        String listPage = "/frontend/book_list_by_category.jsp";
+        String listPage = "/frontend/book/book_list_by_category.jsp";
 
         RequestDispatcher dispatcher = request.getRequestDispatcher(listPage);
         dispatcher.forward(request, response);
@@ -172,7 +185,15 @@ public class BookServices {
     public void viewBookDetail() throws ServletException, IOException {
         int bookId = Integer.parseInt(request.getParameter("id"));
         Book book = bookDAO.get(bookId);
-        String destPage = "/frontend/book_detail.jsp";
+        String destPage = "/frontend/book/book_detail.jsp";
+
+        Customer customer = (Customer) request.getSession().getAttribute("loggedCustomer");
+        if(customer != null){
+            request.setAttribute("submitReviewLink", "/submit_review");
+        } else {
+            request.setAttribute("submitReviewLink", "/write_review?id="+bookId);
+        }
+
         if (book != null){
             request.setAttribute("book",book);
         }else {
@@ -187,15 +208,35 @@ public class BookServices {
         dispatcher.forward(request, response);
     }
 
-    public void search() {
-        String keyword = request.getParameter("keyword");
+    public void search() throws ServletException, IOException {
+        String keyword = request.getParameter("q");
+        int page = Integer.parseInt(request.getParameter("page"));
         List<Book> result = null;
+        int limit = 4;
+        int numOfBook = 0;
         if(keyword.equals("")){
             result = bookDAO.listAll();
+            numOfBook = (int) bookDAO.count();
         } else {
-            result = bookDAO.search(keyword);
+            result = bookDAO.search(keyword,page, limit);
+            numOfBook = (int) bookDAO.countByKeyword(keyword);
         }
+
+        int numOfPages = 0;
+        if(numOfBook != 0){
+            numOfPages = numOfBook/limit;
+        }
+        if(numOfBook % limit != 0){
+            numOfPages ++;
+        }
+        request.setAttribute("numOfPages", numOfPages);
+        request.setAttribute("q",keyword);
+        request.setAttribute("page", page);
         request.setAttribute("result", result);
+
+        String destPage = "/frontend/book/search_result.jsp";
+        RequestDispatcher dispatcher = request.getRequestDispatcher(destPage);
+        dispatcher.forward(request, response);
     }
 }
 

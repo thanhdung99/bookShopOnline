@@ -88,6 +88,15 @@ public class JpaDAO<E> {
         entityManager.close();
         return result;
     }
+    public List<E> findWithNamedQuery(String queryName, String paramName, Object paramValue, int page, int limit){
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        Query query = entityManager.createNamedQuery(queryName);
+        query.setParameter(paramName, paramValue);
+
+        List<E> result = query.setFirstResult((page - 1) * limit).setMaxResults(limit).getResultList();
+        entityManager.close();
+        return result;
+    }
 
 
 

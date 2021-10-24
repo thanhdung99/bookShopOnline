@@ -21,7 +21,7 @@
             <i class="fas fa-users"></i>
             &nbsp;Customers
         </a>
-        <a class="nav-link">
+        <a class="nav-link" href="/admin/list_reviews">
             <i class="far fa-comment-dots"></i>
             &nbsp;Reviews
         </a>

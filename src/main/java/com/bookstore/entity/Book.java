@@ -3,9 +3,7 @@ package com.bookstore.entity;
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Timestamp;
-import java.util.Arrays;
-import java.util.Base64;
-import java.util.Collection;
+import java.util.*;
 
 @Entity
 @NamedQueries({
@@ -13,16 +11,20 @@ import java.util.Collection;
                 query="SELECT b FROM Book b"),
         @NamedQuery(name="Book.countAll",
                 query="SELECT COUNT(b) FROM Book b "),
-        @NamedQuery(name="Book.countByCategory",
-                query="SELECT COUNT(b) FROM Book b WHERE b.categoryByCategoryId.categoryId = :categoryId"),
         @NamedQuery(name="Book.findByTitle",
                 query="SELECT b FROM Book b WHERE b.title = :title"),
         @NamedQuery(name="Book.search",
                 query="SELECT b FROM Book b WHERE b.title LIKE  CONCAT('%',:keyword,'%') " +
                         "OR b.author LIKE CONCAT('%',:keyword,'%')"),
+        @NamedQuery(name="Book.countByKeyword",
+                query="SELECT COUNT(b) FROM Book b WHERE b.title LIKE  CONCAT('%',:keyword,'%') " +
+                        "OR b.author LIKE CONCAT('%',:keyword,'%')"),
         @NamedQuery(name="Book.findByCategory",
                 query="SELECT b FROM Book b JOIN " +
-                        "Category c ON b.categoryByCategoryId.categoryId = c.categoryId AND c.categoryId = :categoryId"),
+                        "Category c ON b.categoryByCategoryId.categoryId = c.categoryId AND c.categoryId = :categoryId " +
+                        "ORDER BY b.bookId DESC"),
+        @NamedQuery(name="Book.countByCategory",
+                query="SELECT COUNT(b) FROM Book b WHERE b.categoryByCategoryId.categoryId = :categoryId"),
         @NamedQuery(name="Book.listNew",
                 query="SELECT b FROM Book b ORDER BY b.publishDate DESC "),
 })
@@ -33,9 +35,13 @@ public class Book {
     private String description;
     private String isbn;
     private byte[] image;
+    private int[] ratingPercentArr;
+    private int[] ratingArr;
     private double price;
     private Date publishDate;
     private String base64Image;
+    private float averageRating;
+    private String ratingStars;
     private Timestamp lastUpdateTime;
     private int categoryId;
     private Category categoryByCategoryId;
@@ -202,9 +208,16 @@ public class Book {
         this.orderDetailsByBookId = orderDetailsByBookId;
     }
 
-    @OneToMany(mappedBy = "bookByBookId")
+    @OneToMany(mappedBy = "bookByBookId", fetch = FetchType.EAGER)
     public Collection<Review> getReviewsByBookId() {
-        return reviewsByBookId;
+        TreeSet<Review> sortedReviews = new TreeSet<>(new Comparator<Review>() {
+            @Override
+            public int compare(Review review1, Review review2) {
+                return review2.getReviewTime().compareTo(review1.getReviewTime());
+            }
+        });
+        sortedReviews.addAll(reviewsByBookId);
+        return sortedReviews;
     }
 
     public void setReviewsByBookId(Collection<Review> reviewsByBookId) {
@@ -217,5 +230,75 @@ public class Book {
     @Transient
     public void setBase64Image(String base64Image) {
         this.base64Image = base64Image;
+    }
+    @Transient
+    public void setAverageRating(){
+        float averageRating = 0.0f;
+        float sum = 0.0f;
+
+        if (reviewsByBookId.isEmpty()){
+            this.averageRating = 0;
+        }else {
+            for (Review review:reviewsByBookId){
+                sum += review.getRating();
+            }
+            averageRating = sum/reviewsByBookId.size();
+            this.averageRating = averageRating;
+        }
+    }
+    @Transient
+    public float getAverageRating(){
+        return this.averageRating;
+    }
+    @Transient
+    public String getRatingString(float averageRating){
+        String result = "";
+        int numberStarOn = (int) averageRating;
+        for (int i = 1; i <= numberStarOn; i++ ){
+            result += "on,";
+        }
+        int next = numberStarOn + 1;
+        if (averageRating > numberStarOn){
+            result += "half,";
+            next ++;
+        }
+        for (int j = next; j <= 5; j++ ){
+            result += "off,";
+        }
+        return result.substring(0, result.length() - 1);
+    }
+    @Transient
+    public void setRatingStars(){
+        float averageRating = getAverageRating();
+        ratingStars = getRatingString(averageRating);
+    }
+    @Transient
+    public String getRatingStars(){
+        return ratingStars;
+    }
+    @Transient
+    public void setRatingPercentArr(){
+        this.ratingPercentArr = new int[] {0, 0, 0, 0, 0};
+        int[] ratingArr = new int[] {0, 0, 0, 0, 0};
+        for (Review review: reviewsByBookId) {
+            review.setStars();
+            ratingArr[5 - review.getRating()] += 1;
+        }
+        this.ratingArr = ratingArr;
+        for (int i = 0; i < ratingArr.length; i++){
+            if(ratingArr[i] != 0){
+                this.ratingPercentArr[i] = (ratingArr[i] * 100) / this.reviewsByBookId.size();
+            }else{
+                this.ratingPercentArr[i] = 0;
+            }
+        }
+    }
+    @Transient
+    public int[] getRatingArr(){
+        return this.ratingArr;
+    }
+    @Transient
+    public int[] getRatingPercentArr(){
+        return this.ratingPercentArr;
     }
 }

@@ -16,7 +16,7 @@
                                aria-haspopup="true" aria-expanded="false">
                                 Welcome, <c:out value="${sessionScope.userEmail}"/>
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="/admin/logout">Logout</a>
                                 <a class="dropdown-item" href="#">Another action</a>
                             </div>

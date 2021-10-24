@@ -11,7 +11,9 @@ import java.util.Collection;
         @NamedQuery(name="Customer.countAll",
                 query="SELECT COUNT(c) FROM Customer c "),
         @NamedQuery(name="Customer.findByEmail",
-                query="SELECT c FROM Customer c WHERE c.email = :email")
+                query="SELECT c FROM Customer c WHERE c.email = :email"),
+        @NamedQuery(name = "Customer.checkLogin",
+                query="SELECT c FROM Customer c WHERE c.email = :email AND c.password = :password")
 })
 public class Customer {
     private int customerId;
@@ -59,7 +61,7 @@ public class Customer {
     }
 
     @Basic
-    @Column(name = "address", nullable = false, length = 128)
+    @Column(name = "address", nullable = true, length = 128)
     public String getAddress() {
         return address;
     }
@@ -69,7 +71,7 @@ public class Customer {
     }
 
     @Basic
-    @Column(name = "city", nullable = false, length = 32)
+    @Column(name = "city", nullable = true, length = 32)
     public String getCity() {
         return city;
     }
@@ -79,7 +81,7 @@ public class Customer {
     }
 
     @Basic
-    @Column(name = "country", nullable = false, length = 64)
+    @Column(name = "country", nullable = true, length = 64)
     public String getCountry() {
         return country;
     }
@@ -89,7 +91,7 @@ public class Customer {
     }
 
     @Basic
-    @Column(name = "phone", nullable = false, length = 15)
+    @Column(name = "phone", nullable = true, length = 15)
     public String getPhone() {
         return phone;
     }
@@ -99,7 +101,7 @@ public class Customer {
     }
 
     @Basic
-    @Column(name = "zipcode", nullable = false, length = 24)
+    @Column(name = "zipcode", nullable = true, length = 24)
     public String getZipcode() {
         return zipcode;
     }

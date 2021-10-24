@@ -56,7 +56,15 @@
                         <label for="bookImage">Book Image</label>
                         <input type="file" class="my-2" id="bookImage" name="bookImage"
                                aria-describedby="bookImageHelp"  />
-                        <img id="thumbnail" src="data:image/jpg;base64,${book.base64Image}" onerror="this.src='/images/placeholder.jpeg'" alt="Image preview" style="height: 200px;width: auto;"/>
+                        <c:if test="${book.bookId != null}">
+                            <img id="thumbnail" src="data:image/jpg;base64,${book.base64Image}"
+                                 onerror="this.src='https://aimint.org/ap/wp-content/uploads/sites/18/2016/04/image-placeholder-vertical.jpg'"
+                                 alt="Image preview" style="height: 200px;width: auto;"/>
+                        </c:if>
+                        <c:if test="${book.bookId == null}">
+                            <img id="thumbnail" src="https://aimint.org/ap/wp-content/uploads/sites/18/2016/04/image-placeholder-vertical.jpg"
+                                 alt="Image preview" style="height: 200px;width: auto;"/>
+                        </c:if>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="publishDate">Publish Date</label>

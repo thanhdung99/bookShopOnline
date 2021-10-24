@@ -1,15 +1,15 @@
 package com.bookstore.service;
 
 import com.bookstore.dao.CustomerDAO;
-import com.bookstore.entity.Category;
+import com.bookstore.dao.HashGenerator;
 import com.bookstore.entity.Customer;
-import com.bookstore.entity.Users;
 import com.bookstore.store.Message;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -38,9 +38,17 @@ public class CustomerServices {
         String city = request.getParameter("city");
         String zipcode = request.getParameter("zipcode");
         String country = request.getParameter("country");
+        String email = request.getParameter("email");
+        if(email != null && !email.equals("")){
+            customer.setEmail(email);
+        }
+
+        if (password != null && !password.isEmpty()) {
+            String encryptedPassword = HashGenerator.generateMD5(password);
+            customer.setPassword(encryptedPassword);
+        }
 
         customer.setFullName(fullName);
-        customer.setPassword(password);
         customer.setPhone(phone);
         customer.setAddress(address);
         customer.setCity(city);
@@ -49,11 +57,12 @@ public class CustomerServices {
     }
     public void createCustomer() throws ServletException, IOException {
         String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        String fullName = request.getParameter("fullName");
         Customer existCustomer = customerDAO.findByEmail(email);
         Customer customer = new Customer();
         if(existCustomer != null){
             Message message = new Message("Could not create customer", "A customer with email " +email +" already exist","error");
-            readCustomerFields(customer);
 
             request.setAttribute("message", message);
             request.setAttribute("customer", customer);
@@ -63,11 +72,35 @@ public class CustomerServices {
             requestDispatcher.forward(request,response);
         }else {
             customer.setEmail(email);
-            readCustomerFields(customer);
+            customer.setFullName(fullName);
+            customer.setPassword(password);
             customerDAO.create(customer);
-
             Message message = new Message("Create successful", "Create customer successful", "success");
             request.setAttribute("message", message);
+        }
+    }
+    public void registerCustomer() throws ServletException, IOException {
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        String fullName = request.getParameter("fullName");
+        Customer existCustomer = customerDAO.findByEmail(email);
+        Customer customer = new Customer();
+        readCustomerFields(customer);
+        if(existCustomer != null){
+            Message message = new Message("Could not register", "A customer with email " +email +" already exist","error");
+            request.setAttribute("message", message);
+            request.setAttribute("customer", customer);
+            showLogin();
+        }else {
+            customer.setEmail(email);
+            customer.setFullName(fullName);
+            customer.setPassword(password);
+            customerDAO.create(customer);
+            Message message = new Message("Register successful", "Register new account successful", "success");
+            request.setAttribute("message", message);
+            String loginPage = "/frontend/index.jsp";
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher(loginPage);
+            requestDispatcher.forward(request,response);
         }
     }
 
@@ -105,7 +138,6 @@ public class CustomerServices {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher(createUserPage);
             requestDispatcher.forward(request,response);
 
-
         }else {
             customerDAO.update(customer);
             Message message = new Message("Update successful", "Update customer successful", "success");
@@ -114,5 +146,58 @@ public class CustomerServices {
 
     }
 
+    public void deleteCustomer() {
+        int customerId = Integer.parseInt(request.getParameter("customerId"));
+        Customer customer = customerDAO.get(customerId);
+        if(customer == null){
+            Message message = new Message("Could not delete customer", "Could not find customer", "error");
+            request.setAttribute("message", message);
+        }else{
+            customerDAO.delete(customerId);
+            Message message = new Message("Delete successful", "Delete customer successful", "success");
+            request.setAttribute("message", message);
+        }
+    }
 
+    public void showLogin() throws ServletException, IOException {
+        String loginPage = "/frontend/customer/register_form.jsp";
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher(loginPage);
+        requestDispatcher.forward(request,response);
+    }
+
+    public void doLogin() throws ServletException, IOException {
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        Customer customer = customerDAO.checkLogin(email, password);
+
+        if(customer != null){
+            Message message = new Message("Login successful", "User is authenticated", "success");
+            request.setAttribute("message", message);
+
+            HttpSession session = request.getSession();
+            session.setAttribute("loggedCustomer", customer);
+            Object objRedirectURL = session.getAttribute("redirectURL");
+
+
+            if (objRedirectURL != null) {
+                String redirectPage = (String) objRedirectURL;
+                session.removeAttribute("redirectURL");
+                response.sendRedirect(redirectPage);
+            } else {
+                String redirectPage = "/frontend/index.jsp";
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher(redirectPage);
+                requestDispatcher.forward(request,response);
+            }
+        }else {
+            Message message = new Message("Login fail", "Please enter email and password is registered", "error");
+            request.setAttribute("message", message);
+            showLogin();
+        }
+    }
+
+    public void  updateCustomerProfile() {
+        Customer customer = (Customer) request.getSession().getAttribute("loggedCustomer");
+        readCustomerFields(customer);
+        customerDAO.update(customer);
+    }
 }

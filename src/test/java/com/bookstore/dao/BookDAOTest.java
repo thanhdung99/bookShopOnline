@@ -79,6 +79,13 @@ class BookDAOTest {
         Book book = bookDAO.findByTitle(title);
         assertNotNull(book);
     }
+    @Test
+    public void testSetRatingPercentArr(){
+        Integer bookId = 24;
+        Book book = bookDAO.get(bookId);
+        book.setRatingPercentArr();
+        assertEquals(book.getRatingPercentArr()[3], 50);
+    }
 
 
     @AfterEach

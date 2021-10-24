@@ -32,7 +32,8 @@ public class CommonFilter implements Filter {
             List<Category> categoriesList = categoryDAO.listAll();
             request.setAttribute("categoriesList", categoriesList);
         }
-
         chain.doFilter(request, response);
+
+
     }
 }

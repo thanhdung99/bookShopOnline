@@ -15,17 +15,11 @@ class CustomerDAOTest {
         customerDAO = new CustomerDAO();
     }
     @Test
-    @Disabled
     public void testCreateCustomer(){
         Customer customer = new Customer();
-        customer.setEmail("phichh16@gmail.com");
-        customer.setFullName("dunghuynh");
-        customer.setCity("HCM");
-        customer.setCountry("VN");
-        customer.setAddress("1 Vo Van Ngan");
+        customer.setEmail("phichh16fdsf@gmail.com");
+        customer.setFullName("dunghuynh2");
         customer.setPassword("thanhdung99");
-        customer.setPhone("1234567890");
-        customer.setZipcode("90000");
         Customer savedCustomer = customerDAO.create(customer);
         assertTrue(savedCustomer.getCustomerId() > 0);
     }
@@ -51,6 +45,20 @@ class CustomerDAOTest {
         int customerId = 1;
         customerDAO.delete(customerId);
         Customer customer = customerDAO.get(customerId);
+        assertNull(customer);
+    }
+    @Test
+    public void testCheckLogin(){
+        String email ="phichh16@gmail.com";
+        String password = "thanhdung99";
+        Customer customer = customerDAO.checkLogin(email, password);
+        assertNotNull(customer);
+    }
+    @Test
+    public void testCheckLoginFail(){
+        String email ="phichh16@gmail.com";
+        String password = "thfdsafanhdung99";
+        Customer customer = customerDAO.checkLogin(email, password);
         assertNull(customer);
     }
 

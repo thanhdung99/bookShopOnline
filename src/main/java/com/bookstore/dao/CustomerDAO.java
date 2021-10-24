@@ -7,7 +7,9 @@ import com.bookstore.entity.Users;
 import java.sql.Date;
 
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer>{
 
@@ -51,5 +53,19 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
             return listResults.get(0);
         }
         return null;
+    }
+    public Customer checkLogin(String email, String password){
+        Map<String, Object> parameters = new HashMap<>();
+        String encryptedPassword = HashGenerator.generateMD5(password);
+        parameters.put("email", email);
+        parameters.put("password", encryptedPassword);
+        List<Customer> customersList = super.findWithNamedQuery("Customer.checkLogin",parameters);
+        if (customersList.size() == 1)
+        {
+            return customersList.get(0);
+        }
+        else {
+            return null;
+        }
     }
 }

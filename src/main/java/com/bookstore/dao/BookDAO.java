@@ -25,7 +25,11 @@ public class BookDAO extends JpaDAO<Book> implements GenericDAO<Book>{
 
     @Override
     public Book get(Object bookId) {
-        return super.find(Book.class, bookId);
+        Book book = super.find(Book.class, bookId);
+        book.setAverageRating();
+        book.setRatingStars();
+        book.setRatingPercentArr();
+        return book;
     }
 
     @Override
@@ -43,6 +47,10 @@ public class BookDAO extends JpaDAO<Book> implements GenericDAO<Book>{
         return super.countWithNamedQuery("Book.countAll");
     }
 
+    public long countByKeyword(String keyword){
+        return super.countWithNamedQuery("Book.countByKeyword","keyword", keyword);
+    }
+
     public long countByCategory(int categoryId){
         return super.countWithNamedQuery("Book.countByCategory","categoryId",categoryId);
     }
@@ -55,17 +63,16 @@ public class BookDAO extends JpaDAO<Book> implements GenericDAO<Book>{
         return null;
     }
 
-    public List<Book> search(String keyword){
-        return super.findWithNamedQuery("Book.search","keyword",keyword);
+    public List<Book> search(String keyword, int page, int limit){
+        return super.findWithNamedQuery("Book.search","keyword",keyword, page, limit);
     }
 
     public List<Book> listNewBooks(){
         return super.findWithNamedQuery("Book.listNew",0, 4);
     }
 
-    public List<Book> listBooksByCategory(int categoryId) {
-        return super.findWithNamedQuery("Book.findByCategory", "categoryId", categoryId);
+    public List<Book> listBooksByCategory(int categoryId, int page, int limit) {
+        return super.findWithNamedQuery("Book.findByCategory", "categoryId", categoryId, page, limit);
     }
-
 
 }

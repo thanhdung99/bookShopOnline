@@ -1,10 +1,7 @@
 package com.bookstore.controller.frontend;
 
-import com.bookstore.controller.BaseServlet;
 import com.bookstore.dao.BookDAO;
-import com.bookstore.dao.CategoryDAO;
 import com.bookstore.entity.Book;
-import com.bookstore.entity.Category;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -13,7 +10,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet(name = "HomeServlet", value = "")
-public class HomeServlet extends BaseServlet {
+public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

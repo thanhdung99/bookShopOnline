@@ -4,6 +4,16 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name="Review.findAll",
+                query="SELECT r FROM Review r ORDER BY r.reviewTime DESC "),
+        @NamedQuery(name="Review.countAll",
+                query="SELECT COUNT(r) FROM Review r "),
+        @NamedQuery(name="Review.findByCustomerAndBook",
+                query="SELECT r FROM Review r " +
+                        "WHERE r.customerByCustomerId.customerId = :customerId " +
+                        "AND r.bookByBookId.bookId = :bookId")
+})
 public class Review {
     private int reviewId;
     private int bookId;
@@ -11,6 +21,7 @@ public class Review {
     private int rating;
     private String headline;
     private String comment;
+    private String stars;
     private Timestamp reviewTime;
     private Book bookByBookId;
     private Customer customerByCustomerId;
@@ -116,7 +127,7 @@ public class Review {
         return result;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "book_id", referencedColumnName = "book_id", nullable = false)
     public Book getBookByBookId() {
         return bookByBookId;
@@ -126,7 +137,7 @@ public class Review {
         this.bookByBookId = bookByBookId;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id", nullable = false)
     public Customer getCustomerByCustomerId() {
         return customerByCustomerId;
@@ -134,5 +145,25 @@ public class Review {
 
     public void setCustomerByCustomerId(Customer customerByCustomerId) {
         this.customerByCustomerId = customerByCustomerId;
+    }
+    @Transient
+    public String getStarsRating(){
+        String result = "";
+        int numberStarOn = this.rating;
+        for (int i = 1; i <= numberStarOn; i++ ){
+            result += "on,";
+        }
+        for (int j = numberStarOn + 1; j <= 5; j++ ){
+            result += "off,";
+        }
+        return result.substring(0, result.length() - 1);
+    }
+    @Transient
+    public void setStars(){
+        this.stars = getStarsRating();
+    }
+    @Transient
+    public String getStars(){
+        return this.stars;
     }
 }

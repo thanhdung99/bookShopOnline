@@ -6,8 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Login </title>
   <jsp:include page="/import.jsp"/>
-  <link href="/css/global.css" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/login.css"/>
+  <link href="/css/global.css" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" href="/css/login.css" type="text/css"/>
 </head>
 <body>
   <div class="container-fluid d-flex align-items-center min-vh-100 py-3 py-md-0 bg-light">
@@ -15,7 +15,7 @@
       <div class="card login-card">
         <div class="row no-gutters">
           <div class="col-md-5">
-            <img src="/images/login.jpeg" alt="login" class="login-card-img">
+            <img src="https://i2.pickpik.com/photos/379/449/110/books-library-literature-learning-thumb.jpg" alt="login" class="login-card-img">
           </div>
           <div class="col-md-7">
             <div class="card-body">
