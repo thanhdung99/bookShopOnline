@@ -32,8 +32,6 @@
 <%--                        <a href="#" class="social mx-3"><i class="fab fa-google-plus-g"></i></a>--%>
 <%--                        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>--%>
 <%--                    </div>--%>
-
-
                 </form>
             </div>
             <div class="form-container sign-in-container">
