@@ -19,6 +19,14 @@ import java.util.*;
         @NamedQuery(name="Book.countByKeyword",
                 query="SELECT COUNT(b) FROM Book b WHERE b.title LIKE  CONCAT('%',:keyword,'%') " +
                         "OR b.author LIKE CONCAT('%',:keyword,'%')"),
+        @NamedQuery(name="Book.searchWithCategory",
+                query="SELECT b FROM Book b WHERE b.categoryByCategoryId.categoryId = :categoryId AND " +
+                        "(b.title LIKE  CONCAT('%',:keyword,'%') " +
+                        "OR b.author LIKE CONCAT('%',:keyword,'%'))"),
+        @NamedQuery(name="Book.countByKeywordAndCategory",
+                query="SELECT COUNT(b) FROM Book b WHERE b.categoryByCategoryId.categoryId = :categoryId AND " +
+                        "(b.title LIKE  CONCAT('%',:keyword,'%') " +
+                        "OR b.author LIKE CONCAT('%',:keyword,'%'))"),
         @NamedQuery(name="Book.findByCategory",
                 query="SELECT b FROM Book b JOIN " +
                         "Category c ON b.categoryByCategoryId.categoryId = c.categoryId AND c.categoryId = :categoryId " +

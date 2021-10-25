@@ -7,7 +7,7 @@ import java.util.Collection;
 @Entity
 @NamedQueries({
         @NamedQuery(name="Category.findAll",
-                query="SELECT c FROM Category c"),
+                query="SELECT c FROM Category c ORDER BY c.categoryId ASC "),
         @NamedQuery(name="Category.findByName",
                 query="SELECT c FROM Category c WHERE c.name = :name"),
         @NamedQuery(name="Category.countAll",

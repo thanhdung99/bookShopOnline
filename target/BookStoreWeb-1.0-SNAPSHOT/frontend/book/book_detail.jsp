@@ -16,7 +16,7 @@
 
 <body>
 
-<c:import url="/components/Header.jsp"/>
+<%@include file="/components/Header.jsp"%>
 
 <section class="site-adversite space-top-3">
 </section>
@@ -294,7 +294,7 @@
     </div>
 </section>
 
-<c:import url="/components/Footer.jsp"/>
+<%@include file="/components/Footer.jsp"%>
 
 <script src="/assets/js/components/hs.counter.js"></script>
 <jsp:include page="/importLib.jsp" />

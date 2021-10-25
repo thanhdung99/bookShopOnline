@@ -2,6 +2,7 @@ package com.bookstore.service;
 
 import com.bookstore.dao.BookDAO;
 import com.bookstore.dao.CategoryDAO;
+import com.bookstore.dao.ReviewDAO;
 import com.bookstore.entity.Book;
 import com.bookstore.entity.Category;
 import com.bookstore.entity.Customer;
@@ -16,17 +17,21 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Date;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class BookServices {
 
     private BookDAO bookDAO;
     private CategoryDAO categoryDAO;
+    private ReviewDAO reviewDAO;
     private HttpServletRequest request;
     private HttpServletResponse response;
 
     public BookServices( HttpServletRequest request, HttpServletResponse response){
 
         bookDAO = new BookDAO();
+        reviewDAO = new ReviewDAO();
         this.categoryDAO= new CategoryDAO();
         this.request = request;
         this.response = response;
@@ -143,9 +148,21 @@ public class BookServices {
                     bookId, "error");
             request.setAttribute("message", message);
         }else {
-            bookDAO.delete(bookId);
-            Message message = new Message("Delete successful", "Delete book successful", "success");
-            request.setAttribute("message", message);
+            if(reviewDAO.findByBook(bookId).size() > 0){
+                Message message = new Message("Delete failure", "Could not delete book (ID: " + bookId
+                        + " ) because it currently contains some reviews", "error");
+                request.setAttribute("message", message);
+            } else if (book.getOrderDetailsByBookId().size() > 0){
+                Message message = new Message("Delete failure", "Could not delete book (ID: " + bookId
+                        + " ) because it currently contains some orders", "error");
+                request.setAttribute("message", message);
+            }
+            else {
+                bookDAO.delete(bookId);
+                Message message = new Message("Delete successful", "Delete book successful", "success");
+                request.setAttribute("message", message);
+            }
+
         }
     }
 
@@ -211,15 +228,33 @@ public class BookServices {
     public void search() throws ServletException, IOException {
         String keyword = request.getParameter("q");
         int page = Integer.parseInt(request.getParameter("page"));
+        String category = request.getParameter("category");
         List<Book> result = null;
         int limit = 4;
         int numOfBook = 0;
+
         if(keyword.equals("")){
-            result = bookDAO.listAll();
-            numOfBook = (int) bookDAO.count();
+            if(category != null && category != ""){
+                int categoryId = Integer.parseInt(request.getParameter("category"));
+                result = bookDAO.listBooksByCategory(categoryId, page, limit);
+                numOfBook = (int) bookDAO.countByCategory(categoryId);
+                request.setAttribute("category", category);
+            }else {
+                result = bookDAO.listAll(page, limit);
+                numOfBook = (int) bookDAO.count();
+            }
         } else {
-            result = bookDAO.search(keyword,page, limit);
-            numOfBook = (int) bookDAO.countByKeyword(keyword);
+            if(category != null && category != ""){
+                int categoryId = Integer.parseInt(request.getParameter("category"));
+                result = bookDAO.search(keyword, categoryId, page, limit);
+                numOfBook = (int) bookDAO.countByKeywordAndCategory(keyword, categoryId);
+                request.setAttribute("category", category);
+            }else {
+                result = bookDAO.search(keyword, page, limit);
+                numOfBook = (int) bookDAO.countByKeyword(keyword);
+                request.setAttribute("category", "");
+            }
+
         }
 
         int numOfPages = 0;
@@ -230,6 +265,8 @@ public class BookServices {
             numOfPages ++;
         }
         request.setAttribute("numOfPages", numOfPages);
+        request.setAttribute("limit", limit);
+        request.setAttribute("numOfBook", numOfBook);
         request.setAttribute("q",keyword);
         request.setAttribute("page", page);
         request.setAttribute("result", result);

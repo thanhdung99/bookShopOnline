@@ -12,7 +12,13 @@ import java.sql.Timestamp;
         @NamedQuery(name="Review.findByCustomerAndBook",
                 query="SELECT r FROM Review r " +
                         "WHERE r.customerByCustomerId.customerId = :customerId " +
-                        "AND r.bookByBookId.bookId = :bookId")
+                        "AND r.bookByBookId.bookId = :bookId"),
+        @NamedQuery(name="Review.findByBook",
+                query="SELECT r FROM Review r " +
+                        "WHERE r.bookByBookId.bookId = :bookId"),
+        @NamedQuery(name="Review.findByCustomer",
+                query="SELECT r FROM Review r " +
+                        "WHERE r.customerByCustomerId.customerId = :customerId"),
 })
 public class Review {
     private int reviewId;

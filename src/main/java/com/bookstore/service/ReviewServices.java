@@ -59,4 +59,8 @@ public class ReviewServices {
 
         response.sendRedirect("/write_review?id="+bookId);
     }
+
+    public void deleteReview() {
+
+    }
 }

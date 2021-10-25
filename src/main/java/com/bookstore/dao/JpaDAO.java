@@ -70,15 +70,25 @@ public class JpaDAO<E> {
         return result;
     }
 
-    public List<E> findWithNamedQuery(String queryName, int firstResult, int maxR){
+    public List<E> findWithNamedQuery(String queryName, int page, int limit){
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Query query = entityManager.createNamedQuery(queryName);
-        query.setFirstResult(0);
-        query.setMaxResults(4);
-        List<E> result = query.getResultList();
+        List<E> result = query.setFirstResult((page - 1) * limit).setMaxResults(limit).getResultList();
         entityManager.close();
         return result;
     }
+    public List<E> findWithNamedQuery(String queryName, Map<String, Object> parameters, int page, int limit){
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        Query query = entityManager.createNamedQuery(queryName);
+        Set<Entry<String, Object>> setParameters = parameters.entrySet();
+        for (Entry<String, Object> entry: setParameters){
+            query.setParameter(entry.getKey(), entry.getValue());
+        }
+        List<E> result = query.setFirstResult((page - 1) * limit).setMaxResults(limit).getResultList();
+        entityManager.close();
+        return result;
+    }
+
 
     public List<E> findWithNamedQuery(String queryName, String paramName, Object paramValue){
         EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -97,7 +107,6 @@ public class JpaDAO<E> {
         entityManager.close();
         return result;
     }
-
 
 
     public List<E> findWithNamedQuery(String queryName, Map<String, Object> parameters){
@@ -122,6 +131,17 @@ public class JpaDAO<E> {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Query query = entityManager.createNamedQuery(queryName);
         query.setParameter(paramName, paramValue);
+        long result = (long) query.getSingleResult();
+        entityManager.close();
+        return result;
+    }
+    public long countWithNamedQuery(String queryName, Map<String, Object> parameters){
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        Query query = entityManager.createNamedQuery(queryName);
+        Set<Entry<String, Object>> setParameters = parameters.entrySet();
+        for (Entry<String, Object> entry: setParameters){
+            query.setParameter(entry.getKey(), entry.getValue());
+        }
         long result = (long) query.getSingleResult();
         entityManager.close();
         return result;

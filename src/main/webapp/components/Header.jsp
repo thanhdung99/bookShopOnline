@@ -145,151 +145,19 @@
                    aria-labelledby="basicsHeadingOne" data-parent="#basicsAccordion">
                 <div class="card-body p-0">
                   <ul class="list-unstyled vertical-menu position-relative mb-0">
-                    <li>
-                      <a id="basicDropdownHoverInvoker1"
-                         class="text-dark dropdown-nav-link dropdown-toggle d-flex align-items-center border-bottom"
-                         href="javascript:;" role="button"
-                         aria-controls="basicDropdownHover1" aria-haspopup="true"
-                         aria-expanded="false" data-unfold-event="hover"
-                         data-unfold-target="#basicDropdownHover1"
-                         data-unfold-type="css-animation" data-unfold-duration="200"
-                         data-unfold-delay="50" data-unfold-hide-on-scroll="true"
-                         data-unfold-animation-in="fadeIn"
-                         data-unfold-animation-out="fadeOut">
-                        <div class="width-30 mr-2 text-lh-sm">
-                          <i class="fas fa-baseball-ball text-gray-450 font-size-5"></i>
-                        </div>
-                        <div class="mr-auto">Sports</div>
-                      </a>
-                      <div id="basicDropdownHover1"
-                           class="px-5 py-3 dropdown-menu dropdown-unfold top-0 right-auto left-100 bottom-0 mt-0 rounded-0"
-                           style="width: 700px;" aria-labelledby="basicDropdownHoverInvoker1">
-                        <div class="row bg-white">
-                          <div class="col-4">
-                            <ul class="menu list-unstyled">
-                              <li><a href="#"
-                                     class=" d-block link-black-100 py-3 font-size-3 font-weight-medium">Categories</a>
-                              </li>
-                              <li><a href="#"
-                                     class=" d-block link-black-100 py-1">Arts &amp;
-                                Photography</a></li>
-                              <li><a href="#"
-                                     class=" d-block link-black-100 py-1">Biographies
-                                &amp; Memoirs</a></li>
-                              <li><a href="#"
-                                     class=" d-block link-black-100 py-1">Business
-                                &amp; Money</a></li>
-                              <li><a href="#"
-                                     class=" d-block link-black-100 py-1">Calendars</a>
-                              </li>
-                              <li><a href="#"
-                                     class=" d-block link-black-100 py-1">Children's
-                                Books</a></li>
-                              <li><a href="#"
-                                     class=" d-block link-black-100 py-1">Christian
-                                Books &amp; Bibles</a></li>
-                              <li><a href="#"
-                                     class=" d-block link-black-100 py-1">Cookbooks,
-                                Food &amp; Wine</a></li>
-                              <li><a href="#"
-                                     class=" d-block link-black-100 py-1">Romance</a>
-                              </li>
-                              <li><a href="#"
-                                     class=" d-block link-black-100 py-1">Science
-                                &amp; Math</a></li>
-                              <li><a href="#"
-                                     class=" d-block link-black-100 py-1">Self-Help</a>
-                              </li>
-                              <li><a href="#"
-                                     class=" d-block link-black-100 py-1">Sports
-                                &amp; Outdoors</a></li>
-                              <li><a href="#"
-                                     class=" d-block link-black-100 py-1">Travel</a>
-                              </li>
-                            </ul>
-                          </div>
-                          <div class="col-4">
-                            <ul class="menu list-unstyled">
-                              <li><a href="#"
-                                     class=" d-block link-black-100 py-3 font-size-3 font-weight-medium">Top
-                                Authors</a></li>
-                              <li><a href="#" class=" d-block link-black-100 py-1">J.
-                                K. Rowling</a></li>
-                              <li><a href="#"
-                                     class=" d-block link-black-100 py-1">Roald
-                                Dahl</a></li>
-                              <li><a href="#"
-                                     class=" d-block link-black-100 py-1">Julia
-                                Donaldson</a></li>
-                              <li><a href="#"
-                                     class=" d-block link-black-100 py-1">Stephen
-                                King</a></li>
-                              <li><a href="#"
-                                     class=" d-block link-black-100 py-1">David
-                                Walliams</a></li>
-                              <li><a href="#" class=" d-block link-black-100 py-1">Dr.
-                                Seuss</a></li>
-                              <li><a href="#"
-                                     class=" d-block link-black-100 py-1">Andy
-                                Griffiths</a></li>
-                              <li><a href="#"
-                                     class=" d-block link-black-100 py-1">James
-                                Patterson</a></li>
-                              <li><a href="#"
-                                     class=" d-block link-black-100 py-1">Sarah J.
-                                Maas</a></li>
-                              <li><a href="#"
-                                     class=" d-block link-black-100 py-1">Enid
-                                Blyton</a></li>
-                              <li><a href="#"
-                                     class=" d-block link-black-100 py-1">John
-                                Green</a></li>
-                              <li><a href="#"
-                                     class=" d-block link-black-100 py-1">Brandon
-                                Sanderson</a></li>
-                            </ul>
-                          </div>
-
-
-                        </div> <!--End row-->
-                      </div>
-                    </li> <!--End list items-->
-
-                    <li>
-                      <a
-                              class="text-dark dropdown-nav-link dropdown-toggle d-flex align-items-center border-bottom"
-                              href="javascript:;" role="button"
-                              aria-controls="" aria-haspopup="true"
-                              aria-expanded="false" data-unfold-event="hover"
-                              data-unfold-target="#"
-                              data-unfold-type="css-animation" data-unfold-duration="200"
-                              data-unfold-delay="50" data-unfold-hide-on-scroll="true"
-                              data-unfold-animation-in="fadeIn"
-                              data-unfold-animation-out="fadeOut">
-                        <div class="width-30 mr-2 text-lh-sm">
-                          <i class="fas fa-pizza-slice  font-size-5"></i>
-                        </div>
-                        <div class="mr-auto">Art</div>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" class="dropdown-nav-link dropdown-toggle text-dark d-flex align-items-center       border-bottom">
-                        <div class="width-30 mr-2 text-lh-sm">
-                          <i class="fas fa-history  font-size-5"></i>
-                        </div>
-                        <div class="mr-auto">History</div>
-
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" class="dropdown-nav-link dropdown-toggle text-dark d-flex align-items-center       border-bottom">
-                        <div class="width-30 mr-2 text-lh-sm">
-                          <i class="fas fa-hospital  font-size-5"></i>
-                        </div>
-                        <div class="mr-auto">Hospital</div>
-
-                      </a>
-                    </li>
+                    <c:set var="count" value="0"/>
+                    <c:forEach items="${categoriesList}" var="category">
+                      <c:if test="${count < 7 }">
+                        <li>
+                          <a href="/view_category?id=${category.categoryId}&page=1"
+                             class="dropdown-nav-link dropdown-toggle text-dark d-flex align-items-center border-bottom">
+                            <div class="width-30 mr-2 text-lh-sm"></div>
+                            <div class="mr-auto">${category.name}</div>
+                          </a>
+                        </li>
+                        <c:set var="count" value="${count + 1}"/>
+                      </c:if>
+                    </c:forEach>
 
                   </ul>
                 </div>
@@ -300,21 +168,22 @@
 
           <div
                   class="site-search ml-xl-0 ml-md-auto w-r-100 flex-grow-1 mr-md-5 mt-2 mt-md-0 py-2 py-md-0">
-            <form class="form-inline my-2 my-xl-0">
+            <form class="form-inline my-2 my-xl-0" method="get" action="/search">
               <div class="input-group w-100">
                 <div class="input-group-prepend d-none d-xl-block z-index-2">
                   <select
                           class="d-none d-lg-block custom-select pr-7 pl-4 rounded-0 height-5 shadow-none text-dark"
-                          id="inputGroupSelect01">
+                          id="inputGroupSelect01" name="category">
                     <option selected>All Categories</option>
-                    <option value="1">Available</option>
-                    <option value="2">Coupon</option>
-                    <option value="3">Free Ship</option>
+                    <c:forEach items="${categoriesList}" var="category">
+                      <option value="${category.categoryId}">${category.name}</option>
+                    </c:forEach>
                   </select>
                 </div>
+                <input type="hidden" name="page" value="1" />
                 <input type="text" class="form-control border-right-0 px-3"
                        placeholder="Search for books by keyword"
-                       aria-label="Amount (to the nearest dollar)">
+                       aria-label="Amount (to the nearest dollar)" name="q">
                 <div class="input-group-append border-left">
                   <button class="btn btn-dark px-3 rounded-0 py-2" type="submit"><i
                           class="mx-1 fas fa-search "></i></button>
@@ -323,22 +192,19 @@
             </form>
           </div>
           <ul class="d-none d-md-flex nav align-self-center">
-            <li class="nav-item"><a href="#" class="nav-link text-dark"><i
-                    class="fas fa-heart font-size-10"></i></a></li>
-            <li class="nav-item">
 
-              <a id="sidebarNavToggler" href="javascript:;" role="button" class="nav-link text-dark"
-                 aria-controls="sidebarContent" aria-haspopup="true" aria-expanded="false"
-                 data-unfold-event="click" data-unfold-hide-on-scroll="false"
-                 data-unfold-target="#sidebarContent" data-unfold-type="css-animation"
-                 data-unfold-overlay='{
+            <a id="sidebarNavToggler" href="javascript:;" role="button" class="nav-link text-dark"
+               aria-controls="sidebarContent" aria-haspopup="true" aria-expanded="false"
+               data-unfold-event="click" data-unfold-hide-on-scroll="false"
+               data-unfold-target="#sidebarContent" data-unfold-type="css-animation"
+               data-unfold-overlay='{
                                         "className": "u-sidebar-bg-overlay",
                                         "background": "rgba(0, 0, 0, .7)",
                                         "animationSpeed": 500
                                     }' data-unfold-animation-in="fadeInRight" data-unfold-animation-out="fadeOutRight"
-                 data-unfold-duration="500">
-                <i class="fas fa-user-alt font-size-10"></i>
-              </a>
+               data-unfold-duration="500">
+              <i class="fas fa-user-alt font-size-10"></i>
+            </a>
 
             </li>
             <li class="nav-item">
@@ -359,8 +225,10 @@
                 <i class="text-gray-400 fas fa-shopping-bag font-size-10"></i>
                 <span class="d-none d-xl-inline h6 mb-0 ml-1">$40.93</span>
               </a>
-
             </li>
+            <li class="nav-item"><a href="#" class="nav-link text-dark"><i
+                    class="fas fa-sign-out-alt font-size-10"></i></a></li>
+            <li class="nav-item">
           </ul>
         </div>
       </div>

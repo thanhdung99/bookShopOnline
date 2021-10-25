@@ -15,7 +15,7 @@
 
 </head>
 <body>
-<c:import url="/components/Header.jsp"/>
+<%@include file="/components/Header.jsp"%>
 
 <section class="site-search-key">
     <div class="container">
@@ -111,7 +111,7 @@
                                                 <div class="text-uppercase font-size-1 mb-1 text-truncate"><a href="#">Paperback</a></div>
                                                 <h2 class="ecommerce-loop-product__title product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark">
                                                     <a href="#">
-                                                        ${book.title}
+                                                            ${book.title}
                                                     </a>
                                                 </h2>
                                                 <div class="font-size-2  mb-1 text-truncate"><a href="#" class="text-gray-700">${book.author}</a></div>
@@ -165,7 +165,7 @@
                         <c:if test="${page != numOfPages && numOfPages != 0}">
                             <li class="flex-shrink-0 flex-md-shrink-1 page-item active">
                                 <a class="page-link" href="/view_category?id=${category.categoryId}&page=${page + 1}">
-                                        Next
+                                    Next
                                 </a>
                             </li>
                         </c:if>
@@ -179,7 +179,7 @@
 </section>
 <!--End main section search-->
 
-<c:import url="/components/Footer.jsp"/>
+<%@include file="/components/Footer.jsp"%>
 
 <jsp:include page="/importLib.jsp"/>
 

@@ -4,7 +4,9 @@ import com.bookstore.entity.Book;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class BookDAO extends JpaDAO<Book> implements GenericDAO<Book>{
@@ -41,6 +43,9 @@ public class BookDAO extends JpaDAO<Book> implements GenericDAO<Book>{
     public List<Book> listAll() {
         return super.findWithNamedQuery("Book.findAll");
     }
+    public List<Book> listAll(int page, int limit) {
+        return super.findWithNamedQuery("Book.findAll", page, limit);
+    }
 
     @Override
     public long count() {
@@ -49,6 +54,12 @@ public class BookDAO extends JpaDAO<Book> implements GenericDAO<Book>{
 
     public long countByKeyword(String keyword){
         return super.countWithNamedQuery("Book.countByKeyword","keyword", keyword);
+    }
+    public long countByKeywordAndCategory(String keyword, int categoryId){
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("keyword",keyword);
+        parameters.put("categoryId",categoryId);
+        return super.countWithNamedQuery("Book.countByKeywordAndCategory", parameters);
     }
 
     public long countByCategory(int categoryId){
@@ -66,9 +77,15 @@ public class BookDAO extends JpaDAO<Book> implements GenericDAO<Book>{
     public List<Book> search(String keyword, int page, int limit){
         return super.findWithNamedQuery("Book.search","keyword",keyword, page, limit);
     }
+    public List<Book> search(String keyword, int categoryId, int page, int limit){
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("keyword",keyword);
+        parameters.put("categoryId",categoryId);
+        return super.findWithNamedQuery("Book.searchWithCategory", parameters, page, limit);
+    }
 
     public List<Book> listNewBooks(){
-        return super.findWithNamedQuery("Book.listNew",0, 4);
+        return super.findWithNamedQuery("Book.listNew",1, 4);
     }
 
     public List<Book> listBooksByCategory(int categoryId, int page, int limit) {

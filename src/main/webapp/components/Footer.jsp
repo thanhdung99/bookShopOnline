@@ -88,30 +88,16 @@
                             <h4 class="font-size-3 font-weight-medium mb-2 mb-xl-5 pb-xl-1 text-white">Categories
                             </h4>
                             <ul class="list-unstyled mb-0">
-                                <li class="h-white pb-2">
-                                    <a class="font-size-2 text-gray-450 widgets-hover transition-3d-hover"
-                                       href="#">Action</a>
-                                </li>
-                                <li class="h-white py-2">
-                                    <a class="font-size-2 text-gray-450 widgets-hover transition-3d-hover"
-                                       href="#">Comedy</a>
-                                </li>
-                                <li class="h-white py-2">
-                                    <a class="font-size-2 text-gray-450 widgets-hover transition-3d-hover"
-                                       href="#">Drama</a>
-                                </li>
-                                <li class="h-white py-2">
-                                    <a class="font-size-2 text-gray-450 widgets-hover transition-3d-hover"
-                                       href="#">Horror</a>
-                                </li>
-                                <li class="h-white py-2">
-                                    <a class="font-size-2 text-gray-450 widgets-hover transition-3d-hover"
-                                       href="#">Kids</a>
-                                </li>
-                                <li class="h-white pt-2">
-                                    <a class="font-size-2 text-gray-450 widgets-hover transition-3d-hover"
-                                       href="#">Romantic Comedy</a>
-                                </li>
+                                <c:set var="count" value="0"/>
+                                <c:forEach items="${categoriesList}" var="category">
+                                    <c:if test="${count < 7 }">
+                                        <li class="h-white pt-2">
+                                            <a class="font-size-2 text-gray-450 widgets-hover transition-3d-hover"
+                                               href="#">${category.name}</a>
+                                        </li>
+                                        <c:set var="count" value="${count + 1}"/>
+                                    </c:if>
+                                </c:forEach>
                             </ul>
                         </div>
                     </div>

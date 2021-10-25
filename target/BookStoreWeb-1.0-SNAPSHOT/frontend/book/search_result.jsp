@@ -4,7 +4,7 @@
 
 <head>
 
-    <title>Categories Search</title>
+    <title>Search Result</title>
 
 
     <meta charset="utf-8">
@@ -15,7 +15,7 @@
 
 </head>
 <body>
-<c:import url="/components/Header.jsp"/>
+<%@include file="/components/Header.jsp"%>
 
 <section class="site-search-key">
     <div class="container">
@@ -29,7 +29,14 @@
             </div>
             <div class="shop-control-bar d-lg-flex justify-content-between align-items-center mb-5 text-center text-md-left ml-5 col-lg-9">
                 <div class="shop-control-bar__left mb-4 m-lg-0 pl-10">
-                    <p class="ecommerce-result-count m-0">Showing 5 Results</p>
+                    <p class="ecommerce-result-count m-0">
+                        <c:if test="${numOfBook < limit }">
+                            Showing ${numOfBook} in ${numOfBook} results
+                        </c:if>
+                        <c:if test="${numOfBook >= limit }">
+                            Showing ${limit} in ${numOfBook} results
+                        </c:if>
+                    </p>
                 </div>
                 <div class="shop-control-bar__right d-md-flex align-items-center">
                     <form class="ecommerce-ordering mb-4 m-md-0" method="get">
@@ -77,7 +84,7 @@
                             <ul class="product-categories">
                                 <c:forEach items="${categoriesList}" var="category">
                                     <li class="cat-item cat-item-69 cat-parent">
-                                        <a href="/view_category?id=${category.categoryId}&page=1">${category.name}</a>
+                                        <a href="/search?category=${category.categoryId}&q=${q}&page=1">${category.name}</a>
                                     </li>
                                 </c:forEach>
                             </ul>
@@ -116,7 +123,7 @@
                                                     <a href="#" class="text-gray-700">${book.author}</a>
                                                 </div>
                                                 <p class="font-size-2 mb-2 crop-text-2">
-                                                    ${book.description}
+                                                        ${book.description}
                                                 </p>
                                                 <div class="price d-flex align-items-center font-weight-medium font-size-3">
                                                     <span class="ecommerce-Price-amount amount"><span class="ecommerce-Price-currencySymbol">$</span>${book.price}</span>
@@ -148,7 +155,7 @@
                     <ul class="pagination pagination__custom justify-content-md-center flex-nowrap flex-md-wrap overflow-auto overflow-md-visble">
                         <c:if test="${page != 1}">
                             <li class="flex-shrink-0 flex-md-shrink-1 page-item">
-                                <a class="page-link" href="/search?q=${q}&page=${page - 1}">
+                                <a class="page-link" href="/search?category=${category}&q=${q}&page=${page - 1}">
                                     Previous
                                 </a>
                             </li>
@@ -156,14 +163,14 @@
                         <c:forEach var="i" begin="1" end="${numOfPages}">
                             <c:if test="${page == i}">
                                 <li class="flex-shrink-0 flex-md-shrink-1 page-item active">
-                                    <a class="page-link" href="/search?q=${q}&page=${i}">
+                                    <a class="page-link" href="/search?category=${category}&q=${q}&page=${i}">
                                             ${i}
                                     </a>
                                 </li>
                             </c:if>
                             <c:if test="${page != i}">
                                 <li class="flex-shrink-0 flex-md-shrink-1 page-item ">
-                                    <a class="page-link" href="/search?q=${q}&page=${i}">
+                                    <a class="page-link" href="/search?category=${category}&q=${q}&page=${i}">
                                             ${i}
                                     </a>
                                 </li>
@@ -171,7 +178,7 @@
                         </c:forEach>
                         <c:if test="${page != numOfPages && numOfPages != 0}">
                             <li class="flex-shrink-0 flex-md-shrink-1 page-item active">
-                                <a class="page-link" href="/search?q=${q}&page=${page + 1}">
+                                <a class="page-link" href="/search?category=${category}&q=${q}&page=${page + 1}">
                                     Next
                                 </a>
                             </li>
@@ -186,7 +193,7 @@
 </section>
 <!--End Result search-->
 
-<c:import url="/components/Footer.jsp"/>
+<%@include file="/components/Footer.jsp"%>
 
 <jsp:include page="/importLib.jsp"/>
 

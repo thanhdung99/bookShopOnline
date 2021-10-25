@@ -13,7 +13,7 @@
 
 </head>
 <body>
-<c:import url="/components/Header.jsp"/>
+<%@include file="/components/Header.jsp"%>
 
 <c:import url="/frontend/SectionHomePage/SectionCarousel.jsp"/>
 <c:import url="/frontend/SectionHomePage/SectionMostPoupular.jsp"/>
