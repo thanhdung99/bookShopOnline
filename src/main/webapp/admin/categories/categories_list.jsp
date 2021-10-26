@@ -53,7 +53,7 @@
                                                     <button type="button"  class="btn btn-primary btn-sm">Edit <i class="far fa-edit"></i></button>
                                                 </a>
                                                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                                        onclick="deleteUser(${category.categoryId}, '${category.name}')" data-target="#exampleModal">
+                                                        onclick="deleteCategory(${category.categoryId}, '${category.name}')" data-target="#exampleModal">
                                                     Delete
                                                     <i class="far fa-trash-alt"></i>
                                                 </button>
@@ -69,7 +69,7 @@
             </div>
         </div>
         <script type="text/javascript">
-            function deleteUser(id, name) {
+            function deleteCategory(id, name) {
                 document.getElementById("url").action = "/admin/delete_category"
 
                 const categoryId = document.getElementById("id")

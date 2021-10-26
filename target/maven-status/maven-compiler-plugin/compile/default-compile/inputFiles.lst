@@ -41,6 +41,7 @@
 /Users/dungmacbook/Desktop/bookShopOnline/src/main/java/com/bookstore/controller/admin/category/DeleteCategoryServlet.java
 /Users/dungmacbook/Desktop/bookShopOnline/src/main/java/com/bookstore/dao/CustomerDAO.java
 /Users/dungmacbook/Desktop/bookShopOnline/src/main/java/com/bookstore/entity/Review.java
+/Users/dungmacbook/Desktop/bookShopOnline/src/main/java/com/bookstore/controller/admin/review/DeleteReviewServlet.java
 /Users/dungmacbook/Desktop/bookShopOnline/src/main/java/com/bookstore/controller/frontend/customer/CustomerLogoutServlet.java
 /Users/dungmacbook/Desktop/bookShopOnline/src/main/java/com/bookstore/controller/admin/AdminLogoutServlet.java
 /Users/dungmacbook/Desktop/bookShopOnline/src/main/java/com/bookstore/dao/UserDAO.java

@@ -160,11 +160,13 @@ public class CustomerServices {
                 Message message = new Message("Delete failure", "Could not delete customer (ID: " + customerId
                         + " ) because it currently contains some reviews", "error");
                 request.setAttribute("message", message);
-            }else if (customer.getBookOrdersByCustomerId().size() > 0){
-                Message message = new Message("Delete failure", "Could not delete customer (ID: " + customerId
-                        + " ) because it currently contains some orders", "error");
-                request.setAttribute("message", message);
-            } else {
+            }
+//            else if (customer.getBookOrdersByCustomerId().size() > 0){
+//                Message message = new Message("Delete failure", "Could not delete customer (ID: " + customerId
+//                        + " ) because it currently contains some orders", "error");
+//                request.setAttribute("message", message);
+//            }
+            else {
                 customerDAO.delete(customerId);
                 Message message = new Message("Delete successful", "Delete customer successful", "success");
                 request.setAttribute("message", message);

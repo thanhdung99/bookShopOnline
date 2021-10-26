@@ -62,7 +62,7 @@
                                             <button type="button"  class="btn btn-primary btn-sm">Edit <i class="fas fa-customer-cog"></i></button>
                                         </a>
                                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                                onclick="deleteUser(${customer.customerId}, '${customer.email}')" data-target="#exampleModal">
+                                                onclick="deleteCustomer(${customer.customerId}, '${customer.email}')" data-target="#exampleModal">
                                             Delete
                                             <i class="fas fa-customer-times"></i>
                                         </button>
@@ -78,7 +78,7 @@
     </div>
 </div>
 <script type="text/javascript">
-    function deleteUser(id, email) {
+    function deleteCustomer(id, email) {
         document.getElementById("url").action = "/admin/delete_customer"
 
         const customerId = document.getElementById("id")

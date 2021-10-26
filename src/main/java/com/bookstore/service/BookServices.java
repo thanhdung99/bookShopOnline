@@ -152,11 +152,12 @@ public class BookServices {
                 Message message = new Message("Delete failure", "Could not delete book (ID: " + bookId
                         + " ) because it currently contains some reviews", "error");
                 request.setAttribute("message", message);
-            } else if (book.getOrderDetailsByBookId().size() > 0){
-                Message message = new Message("Delete failure", "Could not delete book (ID: " + bookId
-                        + " ) because it currently contains some orders", "error");
-                request.setAttribute("message", message);
             }
+//            else if (book.getOrderDetailsByBookId().size() > 0){
+//                Message message = new Message("Delete failure", "Could not delete book (ID: " + bookId
+//                        + " ) because it currently contains some orders", "error");
+//                request.setAttribute("message", message);
+//            }
             else {
                 bookDAO.delete(bookId);
                 Message message = new Message("Delete successful", "Delete book successful", "success");

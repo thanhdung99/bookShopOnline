@@ -5,6 +5,8 @@ import com.bookstore.dao.ReviewDAO;
 import com.bookstore.entity.Book;
 import com.bookstore.entity.Customer;
 import com.bookstore.entity.Review;
+import com.bookstore.entity.Users;
+import com.bookstore.store.Message;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -61,6 +63,16 @@ public class ReviewServices {
     }
 
     public void deleteReview() {
+        int reviewId = Integer.parseInt(request.getParameter("reviewId"));
+        Review review = reviewDAO.get(reviewId);
+        if(review == null){
+            Message message = new Message("Could not delete review", "Could not find review", "error");
+            request.setAttribute("message", message);
+        }else{
+            reviewDAO.delete(reviewId);
+            Message message = new Message("Delete successful", "Delete review successful", "success");
+            request.setAttribute("message", message);
+        }
 
     }
 }

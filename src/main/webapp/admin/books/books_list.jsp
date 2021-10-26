@@ -68,7 +68,7 @@
                                             <button type="button"  class="btn btn-primary btn-sm">Edit <i class="far fa-edit"></i></button>
                                         </a>
                                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                                onclick="deleteUser(${book.bookId}, '${book.title}')" data-target="#exampleModal">
+                                                onclick="deleteBook(${book.bookId}, '${book.title}')" data-target="#exampleModal">
                                             Delete
                                             <i class="far fa-trash-alt"></i>
                                         </button>
@@ -84,7 +84,7 @@
     </div>
 </div>
 <script type="text/javascript">
-    function deleteUser(id, bookTitle) {
+    function deleteBook(id, bookTitle) {
         document.getElementById("url").action = "/admin/delete_book"
 
         const bookId = document.getElementById("id")
