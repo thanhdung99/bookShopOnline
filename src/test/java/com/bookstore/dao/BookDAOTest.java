@@ -24,14 +24,13 @@ class BookDAOTest {
     @Test
     public void testCreateBook(){
         Book book = new Book();
-        Category category = new Category("Java");
-        category.setCategoryId(1);
-        book.setCategoryByCategoryId(category);
+        book.setCategoryId(1);
         book.setTitle("Adventures of Sherlock Holmes");
         book.setAuthor("Sir Arthur Conan Doyle");
         book.setDescription("Presenting 12 tales starring the legendary British detective Sherlock Holmes, this 1892 book is Arthur Conan Doyle's first short-story collection. The mystery compilation includes some of Holmes's finest cases with his dutiful sidekick, Doctor Watson, most notably \"A Scandal in Bohemia,\" in which Holmes matches wits with the crafty former lover of a European king. Also featured is \"The Adventure of the Red-Headed League,\" a study in misdirection that unfolds to become a much larger scheme. The stories, initially published in the Strand Magazine, are essential reading for Holmes fans.\n");
         book.setIsbn("0123456789");
         book.setPrice(38.78f);
+        bookDAO.create(book);
     }
     @Test public void testGetBook(){
         Integer bookId = 24;

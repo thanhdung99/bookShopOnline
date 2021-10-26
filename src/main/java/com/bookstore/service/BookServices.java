@@ -202,6 +202,7 @@ public class BookServices {
     public void viewBookDetail() throws ServletException, IOException {
         int bookId = Integer.parseInt(request.getParameter("id"));
         Book book = bookDAO.get(bookId);
+        book.setSortedReviews();
         String destPage = "/frontend/book/book_detail.jsp";
 
         Customer customer = (Customer) request.getSession().getAttribute("loggedCustomer");

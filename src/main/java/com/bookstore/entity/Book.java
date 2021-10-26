@@ -218,6 +218,14 @@ public class Book {
 
     @OneToMany(mappedBy = "bookByBookId", fetch = FetchType.EAGER)
     public Collection<Review> getReviewsByBookId() {
+        return reviewsByBookId;
+    }
+
+    public void setReviewsByBookId(Collection<Review> reviewsByBookId) {
+        this.reviewsByBookId = reviewsByBookId;
+    }
+
+    public void setSortedReviews(){
         TreeSet<Review> sortedReviews = new TreeSet<>(new Comparator<Review>() {
             @Override
             public int compare(Review review1, Review review2) {
@@ -225,12 +233,9 @@ public class Book {
             }
         });
         sortedReviews.addAll(reviewsByBookId);
-        return sortedReviews;
+        this.reviewsByBookId = sortedReviews;
     }
 
-    public void setReviewsByBookId(Collection<Review> reviewsByBookId) {
-        this.reviewsByBookId = reviewsByBookId;
-    }
     @Transient
     public String getBase64Image() {
         return base64Image = Base64.getEncoder().encodeToString(this.image);

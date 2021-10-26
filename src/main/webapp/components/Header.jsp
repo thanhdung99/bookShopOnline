@@ -13,7 +13,7 @@
       <div class="container py-3">
         <div class="d-flex align-items-center position-relative flex-wrap">
           <div class="site-branding pr-md-7 mx-auto mx-md-0">
-            <a href="#" class="d-block mb-1">
+            <a href="/" class="d-block mb-1">
               Logo
             </a>
           </div>
@@ -174,7 +174,7 @@
                   <select
                           class="d-none d-lg-block custom-select pr-7 pl-4 rounded-0 height-5 shadow-none text-dark"
                           id="inputGroupSelect01" name="category">
-                    <option selected>All Categories</option>
+                    <option value="" selected>All Categories</option>
                     <c:forEach items="${categoriesList}" var="category">
                       <option value="${category.categoryId}">${category.name}</option>
                     </c:forEach>
