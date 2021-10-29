@@ -216,4 +216,10 @@ public class CustomerServices {
         readCustomerFields(customer);
         customerDAO.update(customer);
     }
+
+    public void showCustomerProfile() throws ServletException, IOException {
+        String profilePage = "/frontend/customer/profile.jsp";
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher(profilePage);
+        requestDispatcher.forward(request,response);
+    }
 }
