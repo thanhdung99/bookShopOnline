@@ -29,7 +29,7 @@
                             <input type="file" name="avatar" class="avatar-upload position-absolute">
                         </div> -->
                         <div class="mt-3 text-left">
-                            <h3 class="text-center pb-2">User Name</h3>
+                            <h3 class="text-center pb-2">${loggedCustomer.fullName}</h3>
                             <i class="text-center">Manage your information for more security</i>
                             <hr>
                             <a href="#basic-info" class="p-2 rounded btn text-left">
@@ -85,7 +85,7 @@
                                     <h5>Full Name</h5>
                                 </div>
                                 <div class="col-md-8 text-secondary">
-                                    User Name
+                                    ${loggedCustomer.fullName}
                                 </div>
                             </div>
                             <hr>
@@ -94,7 +94,7 @@
                                     <h5>Email</h5>
                                 </div>
                                 <div class="col-md-8 text-secondary">
-                                    user@email.com
+                                    ${loggedCustomer.email}
                                 </div>
                             </div>
                         </div>
@@ -107,7 +107,7 @@
                                     <h5>Phone</h5>
                                 </div>
                                 <div class="col-md-8 text-secondary">
-                                    0123456789
+                                    ${loggedCustomer.phone}
                                 </div>
                             </div>
                             <hr>
@@ -116,7 +116,7 @@
                                     <h5>Address</h5>
                                 </div>
                                 <div class="col-md-8 text-secondary">
-                                    User Address
+                                    ${loggedCustomer.address}
                                 </div>
                             </div>
                         </div>
@@ -129,7 +129,7 @@
                                     <h5>City</h5>
                                 </div>
                                 <div class="col-md-8 text-secondary">
-                                    City Name
+                                    ${loggedCustomer.city}
                                 </div>
                             </div>
                             <hr>
@@ -138,7 +138,7 @@
                                     <h5>ZIP Code</h5>
                                 </div>
                                 <div class="col-md-8 text-secondary">
-                                    88888
+                                    ${loggedCustomer.zipcode}
                                 </div>
                             </div>
                             <hr>
@@ -147,7 +147,7 @@
                                     <h5>Country</h5>
                                 </div>
                                 <div class="col-md-8 text-secondary">
-                                    Country Name
+                                    ${loggedCustomer.country}
                                 </div>
                             </div>
                         </div>
@@ -222,7 +222,7 @@
                                     <h5 class="mb-0">Full Name</h5>
                                 </div>
                                 <input type="text" class="col-md-8 text-secondary form-control js__input-info"
-                                       placeholder="User Name">
+                                       name="fullName" value="${loggedCustomer.fullName}" placeholder="User Name">
                             </div>
                             <hr>
                             <div class="row align-items-center">
@@ -231,7 +231,7 @@
                                 </div>
                                 <input type="email" class="col-md-8 text-secondary form-control js__input-info"
                                        id="exampleInputEmail1" aria-describedby="emailHelp"
-                                       placeholder="Enter email">
+                                       name="email" value="${loggedCustomer.email}" placeholder="Enter email">
                             </div>
                         </div>
                     </div> <!-- / .Basic info-->
@@ -243,7 +243,7 @@
                                     <h5 class="mb-0">Phone</h5>
                                 </div>
                                 <input type="text" class="col-md-8 text-secondary form-control js__input-info"
-                                       placeholder="Contact number">
+                                       name="phone" value="${loggedCustomer.phone}"  placeholder="Contact number">
                             </div>
                             <hr>
                             <div class="row align-items-center">
@@ -251,7 +251,7 @@
                                     <h5 class="mb-0">Address</h5>
                                 </div>
                                 <input type="text" class="col-md-8 text-secondary form-control js__input-info"
-                                       placeholder="Address">
+                                       name="address" value="${loggedCustomer.address}" placeholder="Address">
                             </div>
                         </div>
                     </div> <!-- / .Contact info-->
@@ -263,7 +263,7 @@
                                     <h5 class="mb-0">City</h5>
                                 </div>
                                 <input type="text" class="col-md-8 text-secondary form-control js__input-info"
-                                       placeholder="City">
+                                       name="city" value="${loggedCustomer.city}" placeholder="City">
                             </div>
                             <hr>
                             <div class="row align-items-center">
@@ -271,7 +271,7 @@
                                     <h5 class="mb-0">ZIP Code</h5>
                                 </div>
                                 <input type="text" class="col-md-8 text-secondary form-control js__input-info"
-                                       placeholder="88888">
+                                       name="zipcode" value="${loggedCustomer.zipcode}" placeholder="88888">
                             </div>
                             <hr>
                             <div class="row align-items-center">
@@ -279,7 +279,7 @@
                                     <h5 class="mb-0">Country</h5>
                                 </div>
                                 <input type="text" class="col-md-8 text-secondary form-control js__input-info"
-                                       placeholder="Country">
+                                       name="country" value="${loggedCustomer.country}" placeholder="Country">
                             </div>
                         </div>
                     </div> <!-- / .Delivery info-->
