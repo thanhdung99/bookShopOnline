@@ -3,11 +3,7 @@
 const inputInfo = document.querySelectorAll(".js__input-info");
 const inputPass = document.querySelectorAll(".js__input-pass");
 // Reset input function
-function resetInput(inputFields) {
-    inputFields.forEach(inputField => {
-        inputField.value = ""; // .or load default data from database
-    });
-};
+
 
 // Information as view page
 const profileView = document.querySelector(".js__profile-view");
@@ -36,8 +32,7 @@ cancelBtn.addEventListener("click", () => {
     profileView.classList.remove("d-none");
     profileEdit.classList.add("d-none");
     passwordEdit.classList.add("d-none");
-    resetInput(inputInfo);
-    resetInput(inputPass);
+
 });
 updateBtn.addEventListener("click", () => {
     //Handle receive form data...
@@ -53,8 +48,6 @@ cancelPassBtn.addEventListener("click", () => {
     profileView.classList.remove("d-none");
     profileEdit.classList.add("d-none");
     passwordEdit.classList.add("d-none");
-    resetInput(inputInfo);
-    resetInput(inputPass);
 });
 updatePassBtn.addEventListener("click", () => {
     //Handle receive form data...

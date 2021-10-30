@@ -211,15 +211,38 @@ public class CustomerServices {
         }
     }
 
+    public void showCustomerProfile() throws ServletException, IOException {
+        String profilePage = "/frontend/customer/profile.jsp";
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher(profilePage);
+        requestDispatcher.forward(request,response);
+    }
+
     public void  updateCustomerProfile() {
         Customer customer = (Customer) request.getSession().getAttribute("loggedCustomer");
         readCustomerFields(customer);
         customerDAO.update(customer);
     }
 
-    public void showCustomerProfile() throws ServletException, IOException {
-        String profilePage = "/frontend/customer/profile.jsp";
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher(profilePage);
-        requestDispatcher.forward(request,response);
+    public void changeCustomerPassword() {
+        Customer customer = (Customer) request.getSession().getAttribute("loggedCustomer");
+
+        String currentPassword = request.getParameter("currentPassword");
+        String newPassword = request.getParameter("newPassword");
+        String confirmPassword = request.getParameter("confirmPassword");
+        String email = customer.getEmail();
+
+        if(confirmPassword != newPassword){
+            Message message = new Message("Change profile", "Please enter your current password", "error");
+            request.setAttribute("message", message);
+        } else {
+            customer = customerDAO.checkLogin(email, currentPassword);
+            Message message = new Message("Change profile", "Please check your current password", "error");
+            request.setAttribute("message", message);
+            if(customer!= null){
+                customerDAO.changePassword(customer, newPassword);
+                message = new Message("Change profile ", "Change password successful", "success");
+                request.setAttribute("message", message);
+            }
+        }
     }
 }

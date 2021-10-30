@@ -31,8 +31,7 @@ public class CustomerLoginFilter implements Filter {
 
         String requestURL = httpServletRequest.getRequestURI().toString();
         boolean isLoggedIn = session != null && session.getAttribute("loggedCustomer") != null;
-        System.out.println("path: " +path);
-        System.out.println("isLoggedIn: " +isLoggedIn);
+
 
         if (!isLoggedIn && isLoginRequired(requestURL)){
             String queryString = httpServletRequest.getQueryString();
@@ -40,7 +39,9 @@ public class CustomerLoginFilter implements Filter {
             if (queryString != null){
                 redirectURL = redirectURL.concat("?").concat(queryString);
             }
-
+            if(session == null){
+                httpServletRequest.getSession(true);
+            }
             session.setAttribute("redirectURL", redirectURL);
 
             String loginPage = "/frontend/customer/register_form.jsp";

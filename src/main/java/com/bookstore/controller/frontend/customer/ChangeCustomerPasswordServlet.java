@@ -7,13 +7,14 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "UpdateCustomerProfileServlet", value = "/update_profile")
-public class UpdateCustomerProfileServlet extends HttpServlet {
+@WebServlet(name = "ChangeCustomerPasswordServlet", value = "/change_password")
+public class ChangeCustomerPasswordServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         CustomerServices customerServices = new CustomerServices(request, response);
-        customerServices.updateCustomerProfile();
+        customerServices.changeCustomerPassword();
         customerServices.showCustomerProfile();
+
     }
 }

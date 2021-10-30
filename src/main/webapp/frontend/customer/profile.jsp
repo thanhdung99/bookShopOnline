@@ -55,7 +55,7 @@
                                     <path
                                             d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z" />
                                 </svg> Payment Info</a>
-                            <a href="#password-edit" class="p-2 rounded btn text-left js__btn-password" onclick="resetInput(inputInfo)">
+                            <a href="#password-edit" class="p-2 rounded btn text-left js__btn-password" >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                      fill="currentColor" class="bi bi-shield-lock" viewBox="0 0 16 20">
                                     <path
@@ -63,7 +63,7 @@
                                     <path
                                             d="M9.5 6.5a1.5 1.5 0 0 1-1 1.415l.385 1.99a.5.5 0 0 1-.491.595h-.788a.5.5 0 0 1-.49-.595l.384-1.99a1.5 1.5 0 1 1 2-1.415z" />
                                 </svg> Change Password</a>
-                            <a class="p-2 rounded btn text-left js__btn-edit" onclick="resetInput(inputPass)">
+                            <a class="p-2 rounded btn text-left js__btn-edit" >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                      fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 20">
                                     <path
@@ -153,7 +153,7 @@
                         </div>
                     </div> <!-- / .Delivery info-->
                 </div>
-                <form class="js__password-edit d-none">
+                <form class="js__password-edit d-none" action="change_password" method="post">
                     <div id="password-edit" class="card mb-3 content">
                         <h3 class="m-3 pt-3">Password</h3>
                         <div class="card-body ml-2">
@@ -164,7 +164,7 @@
                                 <div class="input-group col-md-8 text-secondary p-0">
                                     <input type="password" id="js__currPass" class="form-control js__input-pass"
                                            placeholder="Current password" aria-label="Newpass"
-                                           aria-describedby="basic-addon1">
+                                           name="currentPassword" aria-describedby="basic-addon1">
                                     <div class="input-group-prepend">
                                                 <span class="input-group-text js__toggle-pass" id="basic-addon1">
                                                     <i class="fal fa-eye fa-eye-slash"></i>
@@ -180,7 +180,7 @@
                                 <div class="input-group col-md-8 text-secondary p-0">
                                     <input type="password" id="js__newPass" class="form-control js__input-pass"
                                            placeholder="New password" aria-label="Newpass"
-                                           aria-describedby="basic-addon2">
+                                           name="newPassword" aria-describedby="basic-addon2">
                                     <div class="input-group-prepend">
                                                 <span class="input-group-text js__toggle-pass" id="basic-addon2">
                                                     <i class="fal fa-eye fa-eye-slash"></i>
@@ -196,7 +196,7 @@
                                 <div class="input-group col-md-8 text-secondary p-0">
                                     <input type="password" id="js__confirmPass" class="form-control js__input-pass"
                                            placeholder="Confirm password" aria-label="Confirmpass"
-                                           aria-describedby="basic-addon3">
+                                           name="confirmPassword" aria-describedby="basic-addon3">
                                     <div class="input-group-prepend">
                                                 <span class="input-group-text js__toggle-pass" id="basic-addon3">
                                                     <i class="fal fa-eye fa-eye-slash"></i>
@@ -207,13 +207,13 @@
                         </div>
                     </div> <!-- / .Password-->
                     <div class="text-center">
-                        <button type="button"
+                        <button type="submit"
                                 class="btn btn-danger btn-xl mr-4 js__btn-update-pass">Update</button>
                         <button type="button"
                                 class="btn btn-outline-danger btn-xl ml-4 js__btn-cancel-pass">Cancel</button>
                     </div>
                 </form>
-                <form class="js__profile-edit d-none">
+                <form class="js__profile-edit d-none" action="/update_profile" method="post">
                     <div class="card mb-3 content">
                         <h3 class="m-3 pt-3">Basic Info</h3>
                         <div class="card-body ml-2">
@@ -284,7 +284,7 @@
                         </div>
                     </div> <!-- / .Delivery info-->
                     <div class="text-center">
-                        <button type="button" class="btn btn-danger btn-xl mr-4 js__btn-update">Update</button>
+                        <button type="submit" class="btn btn-danger btn-xl mr-4 js__btn-update">Update</button>
                         <button type="button"
                                 class="btn btn-outline-danger btn-xl ml-4 js__btn-cancel">Cancel</button>
                     </div>

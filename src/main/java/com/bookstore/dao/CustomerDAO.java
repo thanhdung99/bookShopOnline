@@ -68,4 +68,9 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
             return null;
         }
     }
+    public Customer changePassword(Customer customer, String newPassword){
+        String encryptedPassword = HashGenerator.generateMD5(newPassword);
+        customer.setPassword(encryptedPassword);
+        return super.update(customer);
+    }
 }
