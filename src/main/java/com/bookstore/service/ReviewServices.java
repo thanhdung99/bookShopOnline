@@ -35,11 +35,6 @@ public class ReviewServices {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher(listPage);
         requestDispatcher.forward(request,response);
     }
-    public void showReviewForm() throws ServletException, IOException {
-        String newBookPage = "/admin/books/book_form.jsp";
-        RequestDispatcher dispatcher = request.getRequestDispatcher(newBookPage);
-        dispatcher.forward(request, response);
-    }
 
     public void submitReview() throws ServletException, IOException {
         Integer bookId = Integer.parseInt(request.getParameter("bookId"));
@@ -59,10 +54,13 @@ public class ReviewServices {
         newReview.setCustomerByCustomerId(customer);
         reviewDAO.create(newReview);
 
+        Message message = new Message("Thank you", "Your review has been posted. Thank you!", "success");
+        request.setAttribute("message", message);
+
         response.sendRedirect("/write_review?id="+bookId);
     }
 
-    public void deleteReview() {
+    public void deleteReview() throws ServletException, IOException {
         int reviewId = Integer.parseInt(request.getParameter("reviewId"));
         Review review = reviewDAO.get(reviewId);
         if(review == null){

@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -62,36 +63,15 @@
                             </div><!--Short description-->
 
                             <div class="price font-weight-medium font-size-5">
-                                        <span class="ecommerce-Price-amount amount">
-                                            <span class="ecommerce-Price-currencySymbol">$</span>${book.price}
-                                        </span>
+                                <span class="ecommerce-Price-amount amount">
+                                    <fmt:formatNumber value="${book.price}" type="currency"/>
+                                </span>
                             </div>
 
                             <div class="">
-                                <form class="cart d-md-flex align-items-center" method="#" enctype="multipart/form-data" action="#">
-                                    <div class="quantity mb-4 mb-md-0 d-flex align-items-center">
-                                        <!-- Quantity -->
-                                        <div class="border px-3 width-120">
-                                            <div class="js-quantity">
-                                                <div class="d-flex align-items-center">
-                                                    <label class="screen-reader-text sr-only">Quantity</label>
-                                                    <a class="js-minus text-dark" href="javascript:;">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="10px" height="1px">
-                                                            <path fill-rule="evenodd" fill="rgb(22, 22, 25)" d="M-0.000,-0.000 L10.000,-0.000 L10.000,1.000 L-0.000,1.000 L-0.000,-0.000 Z"></path>
-                                                        </svg>
-                                                    </a>
-                                                    <input type="number" class="input-text qty text js-result form-control text-center border-0" step="1" min="1" max="100" name="quantity" value="1" title="Qty">
-                                                    <a class="js-plus text-dark" href="javascript:;">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="10px" height="10px">
-                                                            <path fill-rule="evenodd" fill="rgb(22, 22, 25)" d="M10.000,5.000 L6.000,5.000 L6.000,10.000 L5.000,10.000 L5.000,5.000 L-0.000,5.000 L-0.000,4.000 L5.000,4.000 L5.000,-0.000 L6.000,-0.000 L6.000,4.000 L10.000,4.000 L10.000,5.000 Z"></path>
-                                                        </svg>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End Quantity -->
-                                    </div>
-                                    <button type="submit" name="add-to-cart" value="7145" class="btn btn-dark border-0 rounded-0 p-3 btn-block ml-md-4 font-size-3">Add to cart</button>
+                                <form class="cart d-md-flex align-items-center" method="get"  action="/add_to_cart">
+                                    <input type="hidden" name="book_id" value="${book.bookId}"/>
+                                    <button type="submit"  class="btn btn-dark border-0 rounded-0 p-3 btn-block ml-md-4 font-size-3">Add to cart</button>
                                 </form>
                             </div>
                         </div><!--ENd Content Product-->
@@ -293,7 +273,9 @@
         </div><!--End nav-->
     </div>
 </section>
-
+<c:if test="${message != null}">
+    <jsp:include page="/frontend/toast.jsp"/>
+</c:if>
 <%@include file="/components/Footer.jsp"%>
 
 <script src="/assets/js/components/hs.counter.js"></script>

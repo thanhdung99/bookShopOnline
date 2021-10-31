@@ -23,13 +23,6 @@
         <div class="row m-1">
             <h2>Manage Customer</h2>
         </div>
-        <div class="row d-flex mb-3">
-            <div class="pl-4">
-                <a href="/admin/create_customer">
-                    <button type="submit" class="btn btn-primary"> <i class="fas fa-plus"></i> Create new customer</button>
-                </a>
-            </div>
-        </div>
         <div class="row px-4">
             <div class="card shadow p-0 mb-5 bg-white rounded">
                 <div class="full-height">
@@ -58,9 +51,6 @@
                                     <th>${customer.country}</th>
                                     <th>${customer.registerDate}</th>
                                     <th>
-                                        <a href="/admin/edit_customer?id=${customer.customerId}">
-                                            <button type="button"  class="btn btn-primary btn-sm">Edit <i class="fas fa-customer-cog"></i></button>
-                                        </a>
                                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
                                                 onclick="deleteCustomer(${customer.customerId}, '${customer.email}')" data-target="#exampleModal">
                                             Delete

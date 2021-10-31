@@ -6,7 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<fmt:setLocale value="en_US"/>
+<c:set var="cart" value="${sessionScope['cart']}"/>
 <header id="site-header" class="site-header__v4">
   <div class="masthead">
     <div class="bg-white">
@@ -221,9 +222,21 @@
                  data-unfold-duration="500">
 
                                     <span
-                                            class="position-absolute bg-dark width-16 height-16 rounded-circle d-flex align-items-center justify-content-center text-white font-size-n9 left-0">3</span>
+                                            class="position-absolute bg-dark width-16 height-16 rounded-circle
+                                            d-flex align-items-center justify-content-center text-white font-size-n9 left-0">
+                                      <c:if test="${cart == null or cart.totalItems == 0}">
+                                        0
+                                      </c:if>
+                                      <c:if test="${cart != null and cart.totalItems > 0}">
+                                        ${cart.totalItems}
+                                      </c:if>
+                                    </span>
                 <i class="text-gray-400 fas fa-shopping-bag font-size-10"></i>
-                <span class="d-none d-xl-inline h6 mb-0 ml-1">$40.93</span>
+                <span class="d-none d-xl-inline h6 mb-0 ml-1">
+                  <c:if test="${cart != null and cart.totalItems > 0}">
+                    <fmt:formatNumber value="${cart.totalAmount}" type="currency"/>
+                  </c:if>
+                </span>
               </a>
             </li>
             <li class="nav-item"><a href="#" class="nav-link text-dark"><i

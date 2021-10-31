@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +17,7 @@
 
 </head>
 <body>
-<c:import url="/components/Header.jsp"/>
+<%@include file="/components/Header.jsp"%>
 
 <div class="container">
     <div class="main">
@@ -180,7 +181,7 @@
                                 <div class="input-group col-md-8 text-secondary p-0">
                                     <input type="password" id="js__newPass" class="form-control js__input-pass"
                                            placeholder="New password" aria-label="Newpass"
-                                           name="newPassword" aria-describedby="basic-addon2">
+                                           name="newPassword" aria-describedby="basic-addon2" value=""/>
                                     <div class="input-group-prepend">
                                                 <span class="input-group-text js__toggle-pass" id="basic-addon2">
                                                     <i class="fal fa-eye fa-eye-slash"></i>
@@ -196,7 +197,7 @@
                                 <div class="input-group col-md-8 text-secondary p-0">
                                     <input type="password" id="js__confirmPass" class="form-control js__input-pass"
                                            placeholder="Confirm password" aria-label="Confirmpass"
-                                           name="confirmPassword" aria-describedby="basic-addon3">
+                                           name="confirmPassword" aria-describedby="basic-addon3" value=""/>
                                     <div class="input-group-prepend">
                                                 <span class="input-group-text js__toggle-pass" id="basic-addon3">
                                                     <i class="fal fa-eye fa-eye-slash"></i>
@@ -294,8 +295,11 @@
     </div>
 </div>
 
-<c:import url="/components/Footer.jsp"/>
+<c:if test="${message != null}">
+    <jsp:include page="/frontend/toast.jsp"/>
+</c:if>
 
+<c:import url="/components/Footer.jsp"/>
 <script src="/js/profile.js"></script>
 <jsp:include page="/importLib.jsp"/>
 

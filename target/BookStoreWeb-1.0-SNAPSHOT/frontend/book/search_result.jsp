@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -126,14 +127,16 @@
                                                         ${book.description}
                                                 </p>
                                                 <div class="price d-flex align-items-center font-weight-medium font-size-3">
-                                                    <span class="ecommerce-Price-amount amount"><span class="ecommerce-Price-currencySymbol">$</span>${book.price}</span>
+                                                    <span class="ecommerce-Price-amount amount"><fmt:formatNumber value="${book.price}" type="currency"/></span>
                                                 </div>
                                             </div>
 
 
 
                                             <div class="col-md-auto d-flex align-items-center">
-                                                <a href="#" class="text-uppercase text-dark h-dark font-weight-medium mr-4 " data-toggle="tooltip" data-placement="right" title="" data-original-title="ADD TO CART">
+                                                <a href="/add_to_cart?book_id=${book.bookId}"
+                                                   class="text-uppercase text-dark h-dark font-weight-medium mr-4 "
+                                                   data-toggle="tooltip" data-placement="right" title="" data-original-title="ADD TO CART">
                                                     <span class="product-add-cart">ADD TO CART</span>
                                                     <span class="product-add-cart-icon font-size-4">
                                                         <i class="fas fa-shopping-bag "></i>

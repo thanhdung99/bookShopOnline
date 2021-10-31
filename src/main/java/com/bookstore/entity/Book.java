@@ -56,6 +56,14 @@ public class Book {
     private Collection<OrderDetail> orderDetailsByBookId;
     private Collection<Review> reviewsByBookId;
 
+    public Book(int bookId) {
+        this.bookId = bookId;
+    }
+
+    public Book() {
+    }
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "book_id", nullable = false)
@@ -256,7 +264,7 @@ public class Book {
                 sum += review.getRating();
             }
             averageRating = sum/reviewsByBookId.size();
-            this.averageRating = averageRating;
+            this.averageRating = (float) Math.round(averageRating * 100) / 100;
         }
     }
     @Transient

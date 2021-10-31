@@ -231,18 +231,18 @@ public class CustomerServices {
         String confirmPassword = request.getParameter("confirmPassword");
         String email = customer.getEmail();
 
-        if(confirmPassword != newPassword){
-            Message message = new Message("Change profile", "Please enter your current password", "error");
-            request.setAttribute("message", message);
-        } else {
+        if(confirmPassword.equals(newPassword)){
             customer = customerDAO.checkLogin(email, currentPassword);
-            Message message = new Message("Change profile", "Please check your current password", "error");
+            Message message = new Message("Change password", "Please check your current password", "error");
             request.setAttribute("message", message);
             if(customer!= null){
                 customerDAO.changePassword(customer, newPassword);
-                message = new Message("Change profile ", "Change password successful", "success");
+                message = new Message("Change password ", "Change password successful", "success");
                 request.setAttribute("message", message);
             }
+        } else {
+            Message message = new Message("Change password", "Confirm password does not match new password" , "error");
+            request.setAttribute("message", message);
         }
     }
 }

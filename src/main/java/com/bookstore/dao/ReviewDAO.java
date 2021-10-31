@@ -29,7 +29,7 @@ public class ReviewDAO extends JpaDAO<Review> implements GenericDAO<Review> {
 
     @Override
     public Review get(Object reviewId) {
-        return super.find(Review.class,reviewId);
+        return super.find(Review.class, reviewId);
     }
 
     @Override
