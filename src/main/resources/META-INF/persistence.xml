@@ -13,6 +13,7 @@
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.use_sql_comments" value="true"/>
             <property name="hibernate.connection.url" value="jdbc:mysql://us-cdbr-east-04.cleardb.com/heroku_ec9ed2c56cdea69"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
             

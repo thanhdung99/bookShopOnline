@@ -1,0 +1,465 @@
+2021-Nov-01 19:31:37 PM [main] DEBUG org.hibernate.SQL - 
+    /* insert com.bookstore.entity.BookOrder
+        */ insert 
+        into
+            book_order
+            (customer_id, order_date, recipient_method, recipient_name, recipient_phone, shipping_address, status, total) 
+        values
+            (?, ?, ?, ?, ?, ?, ?, ?)
+2021-Nov-01 19:31:37 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [1] as [INTEGER] - [9]
+2021-Nov-01 19:31:37 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [2] as [TIMESTAMP] - [2021-11-01 19:31:37.222]
+2021-Nov-01 19:31:37 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [3] as [VARCHAR] - [Cash on Delivery ]
+2021-Nov-01 19:31:37 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [4] as [VARCHAR] - [Huynh Thanh Dung]
+2021-Nov-01 19:31:37 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [5] as [VARCHAR] - [1234567890]
+2021-Nov-01 19:31:37 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [6] as [VARCHAR] - [123 Tran Phu]
+2021-Nov-01 19:31:37 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [7] as [VARCHAR] - [Processing]
+2021-Nov-01 19:31:37 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [8] as [DOUBLE] - [0.0]
+2021-Nov-01 19:31:38 PM [main] DEBUG org.hibernate.SQL - 
+    /* insert com.bookstore.entity.OrderDetail
+        */ insert 
+        into
+            order_detail
+            (book_id, order_id, quantity, subtotal) 
+        values
+            (?, ?, ?, ?)
+2021-Nov-01 19:31:38 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [1] as [INTEGER] - [25]
+2021-Nov-01 19:31:38 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [2] as [INTEGER] - [295]
+2021-Nov-01 19:31:38 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [3] as [INTEGER] - [1]
+2021-Nov-01 19:31:38 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [4] as [DOUBLE] - [1.399999976158142]
+2021-Nov-01 19:31:38 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [5] as [INTEGER] - [0]
+2021-Nov-01 19:34:32 PM [main] DEBUG org.hibernate.SQL - 
+    /* insert com.bookstore.entity.BookOrder
+        */ insert 
+        into
+            book_order
+            (customer_id, order_date, recipient_method, recipient_name, recipient_phone, shipping_address, status, total) 
+        values
+            (?, ?, ?, ?, ?, ?, ?, ?)
+2021-Nov-01 19:34:32 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [1] as [INTEGER] - [9]
+2021-Nov-01 19:34:32 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [2] as [TIMESTAMP] - [2021-11-01 19:34:31.973]
+2021-Nov-01 19:34:32 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [3] as [VARCHAR] - [Cash on Delivery ]
+2021-Nov-01 19:34:32 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [4] as [VARCHAR] - [Huynh Thanh Dung]
+2021-Nov-01 19:34:32 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [5] as [VARCHAR] - [1234567890]
+2021-Nov-01 19:34:32 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [6] as [VARCHAR] - [123 Tran Phu]
+2021-Nov-01 19:34:32 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [7] as [VARCHAR] - [Processing]
+2021-Nov-01 19:34:32 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [8] as [DOUBLE] - [1.399999976158142]
+2021-Nov-01 19:34:32 PM [main] DEBUG org.hibernate.SQL - 
+    /* insert com.bookstore.entity.OrderDetail
+        */ insert 
+        into
+            order_detail
+            (book_id, order_id, quantity, subtotal) 
+        values
+            (?, ?, ?, ?)
+2021-Nov-01 19:34:32 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [1] as [INTEGER] - [25]
+2021-Nov-01 19:34:32 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [2] as [INTEGER] - [305]
+2021-Nov-01 19:34:32 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [3] as [INTEGER] - [1]
+2021-Nov-01 19:34:32 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [4] as [DOUBLE] - [1.399999976158142]
+2021-Nov-01 19:34:32 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [5] as [INTEGER] - [0]
+2021-Nov-01 19:41:52 PM [main] DEBUG org.hibernate.SQL - 
+    /* insert com.bookstore.entity.BookOrder
+        */ insert 
+        into
+            book_order
+            (customer_id, order_date, recipient_method, recipient_name, recipient_phone, shipping_address, status, total) 
+        values
+            (?, ?, ?, ?, ?, ?, ?, ?)
+2021-Nov-01 19:41:52 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [1] as [INTEGER] - [9]
+2021-Nov-01 19:41:52 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [2] as [TIMESTAMP] - [2021-11-01 19:41:51.772]
+2021-Nov-01 19:41:52 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [3] as [VARCHAR] - [Cash on Delivery ]
+2021-Nov-01 19:41:52 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [4] as [VARCHAR] - [Huynh Thanh Dung]
+2021-Nov-01 19:41:52 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [5] as [VARCHAR] - [1234567890]
+2021-Nov-01 19:41:52 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [6] as [VARCHAR] - [123 Tran Phu]
+2021-Nov-01 19:41:52 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [7] as [VARCHAR] - [Processing]
+2021-Nov-01 19:41:52 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [8] as [DOUBLE] - [1.399999976158142]
+2021-Nov-01 19:41:52 PM [main] DEBUG org.hibernate.SQL - 
+    /* insert com.bookstore.entity.OrderDetail
+        */ insert 
+        into
+            order_detail
+            (book_id, bookOrderByOrderId_order_id, quantity, subtotal, order_id) 
+        values
+            (?, ?, ?, ?, ?)
+2021-Nov-01 19:41:52 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [1] as [INTEGER] - [25]
+2021-Nov-01 19:41:52 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [2] as [INTEGER] - [315]
+2021-Nov-01 19:41:52 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [3] as [INTEGER] - [1]
+2021-Nov-01 19:41:52 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [4] as [DOUBLE] - [1.399999976158142]
+2021-Nov-01 19:41:52 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [5] as [INTEGER] - [0]
+2021-Nov-01 19:41:52 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [6] as [INTEGER] - [0]
+2021-Nov-01 19:42:56 PM [main] DEBUG org.hibernate.SQL - 
+    /* insert com.bookstore.entity.BookOrder
+        */ insert 
+        into
+            book_order
+            (customer_id, order_date, recipient_method, recipient_name, recipient_phone, shipping_address, status, total) 
+        values
+            (?, ?, ?, ?, ?, ?, ?, ?)
+2021-Nov-01 19:42:56 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [1] as [INTEGER] - [9]
+2021-Nov-01 19:42:56 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [2] as [TIMESTAMP] - [2021-11-01 19:42:55.888]
+2021-Nov-01 19:42:56 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [3] as [VARCHAR] - [Cash on Delivery ]
+2021-Nov-01 19:42:56 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [4] as [VARCHAR] - [Huynh Thanh Dung]
+2021-Nov-01 19:42:56 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [5] as [VARCHAR] - [1234567890]
+2021-Nov-01 19:42:56 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [6] as [VARCHAR] - [123 Tran Phu]
+2021-Nov-01 19:42:56 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [7] as [VARCHAR] - [Processing]
+2021-Nov-01 19:42:56 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [8] as [DOUBLE] - [1.399999976158142]
+2021-Nov-01 19:42:56 PM [main] DEBUG org.hibernate.SQL - 
+    /* insert com.bookstore.entity.OrderDetail
+        */ insert 
+        into
+            order_detail
+            (book_id, order_id, quantity, subtotal) 
+        values
+            (?, ?, ?, ?)
+2021-Nov-01 19:42:56 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [1] as [INTEGER] - [25]
+2021-Nov-01 19:42:56 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [2] as [INTEGER] - [325]
+2021-Nov-01 19:42:56 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [3] as [INTEGER] - [1]
+2021-Nov-01 19:42:56 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [4] as [DOUBLE] - [1.399999976158142]
+2021-Nov-01 19:42:56 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [5] as [INTEGER] - [0]
+2021-Nov-01 19:50:38 PM [main] DEBUG org.hibernate.SQL - 
+    /* insert com.bookstore.entity.BookOrder
+        */ insert 
+        into
+            book_order
+            (customer_id, order_date, recipient_method, recipient_name, recipient_phone, shipping_address, status, total) 
+        values
+            (?, ?, ?, ?, ?, ?, ?, ?)
+2021-Nov-01 19:50:38 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [1] as [INTEGER] - [9]
+2021-Nov-01 19:50:38 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [2] as [TIMESTAMP] - [2021-11-01 19:50:37.526]
+2021-Nov-01 19:50:38 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [3] as [VARCHAR] - [Cash on Delivery ]
+2021-Nov-01 19:50:38 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [4] as [VARCHAR] - [Huynh Thanh Dung]
+2021-Nov-01 19:50:38 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [5] as [VARCHAR] - [1234567890]
+2021-Nov-01 19:50:38 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [6] as [VARCHAR] - [123 Tran Phu]
+2021-Nov-01 19:50:38 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [7] as [VARCHAR] - [Processing]
+2021-Nov-01 19:50:38 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [8] as [DOUBLE] - [1.399999976158142]
+2021-Nov-01 19:50:38 PM [main] DEBUG org.hibernate.SQL - 
+    /* insert com.bookstore.entity.OrderDetail
+        */ insert 
+        into
+            order_detail
+            (book_id, quantity, subtotal, order_id) 
+        values
+            (?, ?, ?, ?)
+2021-Nov-01 19:50:38 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [1] as [INTEGER] - [25]
+2021-Nov-01 19:50:38 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [2] as [INTEGER] - [1]
+2021-Nov-01 19:50:38 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [3] as [DOUBLE] - [1.399999976158142]
+2021-Nov-01 19:50:38 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [4] as [INTEGER] - [0]
+2021-Nov-01 19:50:38 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [5] as [INTEGER] - [0]
+2021-Nov-01 19:51:11 PM [main] DEBUG org.hibernate.SQL - 
+    /* insert com.bookstore.entity.BookOrder
+        */ insert 
+        into
+            book_order
+            (customer_id, order_date, recipient_method, recipient_name, recipient_phone, shipping_address, status, total) 
+        values
+            (?, ?, ?, ?, ?, ?, ?, ?)
+2021-Nov-01 19:51:11 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [1] as [INTEGER] - [9]
+2021-Nov-01 19:51:11 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [2] as [TIMESTAMP] - [2021-11-01 19:51:11.12]
+2021-Nov-01 19:51:11 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [3] as [VARCHAR] - [Cash on Delivery ]
+2021-Nov-01 19:51:11 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [4] as [VARCHAR] - [Huynh Thanh Dung]
+2021-Nov-01 19:51:11 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [5] as [VARCHAR] - [1234567890]
+2021-Nov-01 19:51:11 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [6] as [VARCHAR] - [123 Tran Phu]
+2021-Nov-01 19:51:11 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [7] as [VARCHAR] - [Processing]
+2021-Nov-01 19:51:11 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [8] as [DOUBLE] - [1.399999976158142]
+2021-Nov-01 19:51:12 PM [main] DEBUG org.hibernate.SQL - 
+    /* insert com.bookstore.entity.OrderDetail
+        */ insert 
+        into
+            order_detail
+            (book_id, quantity, subtotal, order_id) 
+        values
+            (?, ?, ?, ?)
+2021-Nov-01 19:51:12 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [1] as [INTEGER] - [25]
+2021-Nov-01 19:51:12 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [2] as [INTEGER] - [1]
+2021-Nov-01 19:51:12 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [3] as [DOUBLE] - [1.399999976158142]
+2021-Nov-01 19:51:12 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [4] as [INTEGER] - [0]
+2021-Nov-01 19:51:12 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [5] as [INTEGER] - [0]
+2021-Nov-01 19:51:39 PM [main] DEBUG org.hibernate.SQL - 
+    /* insert com.bookstore.entity.BookOrder
+        */ insert 
+        into
+            book_order
+            (customer_id, order_date, recipient_method, recipient_name, recipient_phone, shipping_address, status, total) 
+        values
+            (?, ?, ?, ?, ?, ?, ?, ?)
+2021-Nov-01 19:51:39 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [1] as [INTEGER] - [9]
+2021-Nov-01 19:51:39 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [2] as [TIMESTAMP] - [2021-11-01 19:51:39.105]
+2021-Nov-01 19:51:39 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [3] as [VARCHAR] - [Cash on Delivery ]
+2021-Nov-01 19:51:39 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [4] as [VARCHAR] - [Huynh Thanh Dung]
+2021-Nov-01 19:51:39 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [5] as [VARCHAR] - [1234567890]
+2021-Nov-01 19:51:39 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [6] as [VARCHAR] - [123 Tran Phu]
+2021-Nov-01 19:51:39 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [7] as [VARCHAR] - [Processing]
+2021-Nov-01 19:51:39 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [8] as [DOUBLE] - [1.399999976158142]
+2021-Nov-01 19:51:40 PM [main] DEBUG org.hibernate.SQL - 
+    /* insert com.bookstore.entity.OrderDetail
+        */ insert 
+        into
+            order_detail
+            (book_id, order_id, quantity, subtotal) 
+        values
+            (?, ?, ?, ?)
+2021-Nov-01 19:51:40 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [1] as [INTEGER] - [25]
+2021-Nov-01 19:51:40 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [2] as [INTEGER] - [355]
+2021-Nov-01 19:51:40 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [3] as [INTEGER] - [1]
+2021-Nov-01 19:51:40 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [4] as [DOUBLE] - [1.399999976158142]
+2021-Nov-01 19:51:40 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [5] as [INTEGER] - [0]
+2021-Nov-01 19:52:28 PM [main] DEBUG org.hibernate.SQL - 
+    /* insert com.bookstore.entity.BookOrder
+        */ insert 
+        into
+            book_order
+            (customer_id, order_date, recipient_method, recipient_name, recipient_phone, shipping_address, status, total) 
+        values
+            (?, ?, ?, ?, ?, ?, ?, ?)
+2021-Nov-01 19:52:28 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [1] as [INTEGER] - [9]
+2021-Nov-01 19:52:28 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [2] as [TIMESTAMP] - [2021-11-01 19:52:27.759]
+2021-Nov-01 19:52:28 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [3] as [VARCHAR] - [Cash on Delivery ]
+2021-Nov-01 19:52:28 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [4] as [VARCHAR] - [Huynh Thanh Dung]
+2021-Nov-01 19:52:28 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [5] as [VARCHAR] - [1234567890]
+2021-Nov-01 19:52:28 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [6] as [VARCHAR] - [123 Tran Phu]
+2021-Nov-01 19:52:28 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [7] as [VARCHAR] - [Processing]
+2021-Nov-01 19:52:28 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [8] as [DOUBLE] - [1.399999976158142]
+2021-Nov-01 19:52:28 PM [main] DEBUG org.hibernate.SQL - 
+    /* insert com.bookstore.entity.OrderDetail
+        */ insert 
+        into
+            order_detail
+            (book_id, order_id, quantity, subtotal) 
+        values
+            (?, ?, ?, ?)
+2021-Nov-01 19:52:28 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [1] as [INTEGER] - [25]
+2021-Nov-01 19:52:28 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [2] as [INTEGER] - [365]
+2021-Nov-01 19:52:28 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [3] as [INTEGER] - [1]
+2021-Nov-01 19:52:28 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [4] as [DOUBLE] - [1.399999976158142]
+2021-Nov-01 19:52:28 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [5] as [INTEGER] - [0]
+2021-Nov-01 19:52:54 PM [main] DEBUG org.hibernate.SQL - 
+    /* insert com.bookstore.entity.BookOrder
+        */ insert 
+        into
+            book_order
+            (customer_id, order_date, recipient_method, recipient_name, recipient_phone, shipping_address, status, total) 
+        values
+            (?, ?, ?, ?, ?, ?, ?, ?)
+2021-Nov-01 19:52:54 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [1] as [INTEGER] - [9]
+2021-Nov-01 19:52:54 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [2] as [TIMESTAMP] - [2021-11-01 19:52:54.134]
+2021-Nov-01 19:52:54 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [3] as [VARCHAR] - [Cash on Delivery ]
+2021-Nov-01 19:52:54 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [4] as [VARCHAR] - [Huynh Thanh Dung]
+2021-Nov-01 19:52:54 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [5] as [VARCHAR] - [1234567890]
+2021-Nov-01 19:52:54 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [6] as [VARCHAR] - [123 Tran Phu]
+2021-Nov-01 19:52:54 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [7] as [VARCHAR] - [Processing]
+2021-Nov-01 19:52:54 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [8] as [DOUBLE] - [1.399999976158142]
+2021-Nov-01 19:52:55 PM [main] DEBUG org.hibernate.SQL - 
+    /* insert com.bookstore.entity.OrderDetail
+        */ insert 
+        into
+            order_detail
+            (book_id, order_id, quantity, subtotal) 
+        values
+            (?, ?, ?, ?)
+2021-Nov-01 19:52:55 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [1] as [INTEGER] - [25]
+2021-Nov-01 19:52:55 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [2] as [INTEGER] - [375]
+2021-Nov-01 19:52:55 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [3] as [INTEGER] - [1]
+2021-Nov-01 19:52:55 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [4] as [DOUBLE] - [1.399999976158142]
+2021-Nov-01 19:52:55 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [5] as [INTEGER] - [100]
+2021-Nov-01 19:54:26 PM [main] DEBUG org.hibernate.SQL - 
+    /* insert com.bookstore.entity.BookOrder
+        */ insert 
+        into
+            book_order
+            (customer_id, order_date, recipient_method, recipient_name, recipient_phone, shipping_address, status, total) 
+        values
+            (?, ?, ?, ?, ?, ?, ?, ?)
+2021-Nov-01 19:54:26 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [1] as [INTEGER] - [9]
+2021-Nov-01 19:54:26 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [2] as [TIMESTAMP] - [2021-11-01 19:54:26.086]
+2021-Nov-01 19:54:26 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [3] as [VARCHAR] - [Cash on Delivery ]
+2021-Nov-01 19:54:26 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [4] as [VARCHAR] - [Huynh Thanh Dung]
+2021-Nov-01 19:54:26 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [5] as [VARCHAR] - [1234567890]
+2021-Nov-01 19:54:26 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [6] as [VARCHAR] - [123 Tran Phu]
+2021-Nov-01 19:54:26 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [7] as [VARCHAR] - [Processing]
+2021-Nov-01 19:54:26 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [8] as [DOUBLE] - [1.399999976158142]
+2021-Nov-01 19:54:27 PM [main] DEBUG org.hibernate.SQL - 
+    /* insert com.bookstore.entity.OrderDetail
+        */ insert 
+        into
+            order_detail
+            (book_id, order_id, quantity, subtotal) 
+        values
+            (?, ?, ?, ?)
+2021-Nov-01 19:54:27 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [1] as [INTEGER] - [25]
+2021-Nov-01 19:54:27 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [2] as [INTEGER] - [385]
+2021-Nov-01 19:54:27 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [3] as [INTEGER] - [1]
+2021-Nov-01 19:54:27 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [4] as [DOUBLE] - [1.399999976158142]
+2021-Nov-01 19:54:27 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [5] as [INTEGER] - [0]
+2021-Nov-01 20:10:13 PM [main] DEBUG org.hibernate.SQL - 
+    /* insert com.bookstore.entity.BookOrder
+        */ insert 
+        into
+            book_order
+            (customer_id, order_date, recipient_method, recipient_name, recipient_phone, shipping_address, status, total) 
+        values
+            (?, ?, ?, ?, ?, ?, ?, ?)
+2021-Nov-01 20:10:13 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [1] as [INTEGER] - [9]
+2021-Nov-01 20:10:13 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [2] as [TIMESTAMP] - [2021-11-01 20:10:12.723]
+2021-Nov-01 20:10:13 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [3] as [VARCHAR] - [Cash on Delivery ]
+2021-Nov-01 20:10:13 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [4] as [VARCHAR] - [Huynh Thanh Dung]
+2021-Nov-01 20:10:13 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [5] as [VARCHAR] - [1234567890]
+2021-Nov-01 20:10:13 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [6] as [VARCHAR] - [123 Tran Phu]
+2021-Nov-01 20:10:13 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [7] as [VARCHAR] - [Processing]
+2021-Nov-01 20:10:13 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [8] as [DOUBLE] - [1.399999976158142]
+2021-Nov-01 20:10:13 PM [main] DEBUG org.hibernate.SQL - 
+    /* insert com.bookstore.entity.OrderDetail
+        */ insert 
+        into
+            order_detail
+            (book_id, order_id, quantity, subtotal) 
+        values
+            (?, ?, ?, ?)
+2021-Nov-01 20:10:13 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [1] as [INTEGER] - [25]
+2021-Nov-01 20:10:13 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [2] as [INTEGER] - [395]
+2021-Nov-01 20:10:13 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [3] as [INTEGER] - [1]
+2021-Nov-01 20:10:13 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [4] as [DOUBLE] - [1.399999976158142]
+2021-Nov-01 20:10:13 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [5] as [INTEGER] - [100]
+2021-Nov-01 20:33:32 PM [main] DEBUG org.hibernate.SQL - 
+    /* insert com.bookstore.entity.BookOrder
+        */ insert 
+        into
+            book_order
+            (customer_id, order_date, recipient_method, recipient_name, recipient_phone, shipping_address, status, total) 
+        values
+            (?, ?, ?, ?, ?, ?, ?, ?)
+2021-Nov-01 20:33:32 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [1] as [INTEGER] - [9]
+2021-Nov-01 20:33:32 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [2] as [TIMESTAMP] - [2021-11-01 20:33:32.347]
+2021-Nov-01 20:33:33 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [3] as [VARCHAR] - [Cash on Delivery ]
+2021-Nov-01 20:33:33 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [4] as [VARCHAR] - [Huynh Thanh Dung]
+2021-Nov-01 20:33:33 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [5] as [VARCHAR] - [1234567890]
+2021-Nov-01 20:33:33 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [6] as [VARCHAR] - [123 Tran Phu]
+2021-Nov-01 20:33:33 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [7] as [VARCHAR] - [Processing]
+2021-Nov-01 20:33:33 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [8] as [DOUBLE] - [1.399999976158142]
+2021-Nov-01 20:33:33 PM [main] DEBUG org.hibernate.SQL - 
+    /* insert com.bookstore.entity.OrderDetail
+        */ insert 
+        into
+            order_detail
+            (book_id, order_id, quantity, subtotal) 
+        values
+            (?, ?, ?, ?)
+2021-Nov-01 20:33:33 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [1] as [INTEGER] - [25]
+2021-Nov-01 20:33:33 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [2] as [INTEGER] - [405]
+2021-Nov-01 20:33:33 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [3] as [INTEGER] - [1]
+2021-Nov-01 20:33:33 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [4] as [DOUBLE] - [1.399999976158142]
+2021-Nov-01 20:33:33 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [5] as [INTEGER] - [100]
+2021-Nov-01 20:34:40 PM [main] DEBUG org.hibernate.SQL - 
+    /* insert com.bookstore.entity.BookOrder
+        */ insert 
+        into
+            book_order
+            (customer_id, order_date, recipient_method, recipient_name, recipient_phone, shipping_address, status, total) 
+        values
+            (?, ?, ?, ?, ?, ?, ?, ?)
+2021-Nov-01 20:34:40 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [1] as [INTEGER] - [9]
+2021-Nov-01 20:34:40 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [2] as [TIMESTAMP] - [2021-11-01 20:34:39.793]
+2021-Nov-01 20:34:40 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [3] as [VARCHAR] - [Cash on Delivery ]
+2021-Nov-01 20:34:40 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [4] as [VARCHAR] - [Huynh Thanh Dung]
+2021-Nov-01 20:34:40 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [5] as [VARCHAR] - [1234567890]
+2021-Nov-01 20:34:40 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [6] as [VARCHAR] - [123 Tran Phu]
+2021-Nov-01 20:34:40 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [7] as [VARCHAR] - [Processing]
+2021-Nov-01 20:34:40 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [8] as [DOUBLE] - [1.399999976158142]
+2021-Nov-01 20:34:40 PM [main] DEBUG org.hibernate.SQL - 
+    /* insert com.bookstore.entity.OrderDetail
+        */ insert 
+        into
+            order_detail
+            (book_id, order_id, quantity, subtotal) 
+        values
+            (?, ?, ?, ?)
+2021-Nov-01 20:34:40 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [1] as [INTEGER] - [25]
+2021-Nov-01 20:34:40 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [2] as [INTEGER] - [415]
+2021-Nov-01 20:34:40 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [3] as [INTEGER] - [1]
+2021-Nov-01 20:34:40 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [4] as [DOUBLE] - [1.399999976158142]
+2021-Nov-01 20:34:40 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [5] as [INTEGER] - [100]
+2021-Nov-01 20:42:42 PM [main] DEBUG org.hibernate.SQL - 
+    /* insert com.bookstore.entity.BookOrder
+        */ insert 
+        into
+            book_order
+            (customer_id, order_date, recipient_method, recipient_name, recipient_phone, shipping_address, status, total) 
+        values
+            (?, ?, ?, ?, ?, ?, ?, ?)
+2021-Nov-01 20:42:42 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [1] as [INTEGER] - [9]
+2021-Nov-01 20:42:42 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [2] as [TIMESTAMP] - [2021-11-01 20:42:41.516]
+2021-Nov-01 20:42:42 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [3] as [VARCHAR] - [Cash on Delivery ]
+2021-Nov-01 20:42:42 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [4] as [VARCHAR] - [Huynh Thanh Dung]
+2021-Nov-01 20:42:42 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [5] as [VARCHAR] - [1234567890]
+2021-Nov-01 20:42:42 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [6] as [VARCHAR] - [123 Tran Phu]
+2021-Nov-01 20:42:42 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [7] as [VARCHAR] - [Processing]
+2021-Nov-01 20:42:42 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [8] as [DOUBLE] - [1.399999976158142]
+2021-Nov-01 20:42:42 PM [main] DEBUG org.hibernate.SQL - 
+    /* insert com.bookstore.entity.OrderDetail
+        */ insert 
+        into
+            order_detail
+            (book_id, order_id, quantity, subtotal) 
+        values
+            (?, ?, ?, ?)
+2021-Nov-01 20:42:42 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [1] as [INTEGER] - [25]
+2021-Nov-01 20:42:42 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [2] as [INTEGER] - [425]
+2021-Nov-01 20:42:42 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [3] as [INTEGER] - [1]
+2021-Nov-01 20:42:42 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [4] as [DOUBLE] - [1.399999976158142]
+2021-Nov-01 20:42:42 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [5] as [INTEGER] - [0]
+2021-Nov-01 21:05:17 PM [main] DEBUG org.hibernate.SQL - 
+    /* insert com.bookstore.entity.BookOrder
+        */ insert 
+        into
+            book_order
+            (customer_id, order_date, recipient_method, recipient_name, recipient_phone, shipping_address, status, total) 
+        values
+            (?, ?, ?, ?, ?, ?, ?, ?)
+2021-Nov-01 21:05:17 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [1] as [INTEGER] - [9]
+2021-Nov-01 21:05:18 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [2] as [TIMESTAMP] - [2021-11-01 21:05:17.359]
+2021-Nov-01 21:05:18 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [3] as [VARCHAR] - [Cash on Delivery ]
+2021-Nov-01 21:05:18 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [4] as [VARCHAR] - [Huynh Thanh Dung]
+2021-Nov-01 21:05:18 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [5] as [VARCHAR] - [1234567890]
+2021-Nov-01 21:05:18 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [6] as [VARCHAR] - [123 Tran Phu]
+2021-Nov-01 21:05:18 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [7] as [VARCHAR] - [Processing]
+2021-Nov-01 21:05:18 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [8] as [DOUBLE] - [1.399999976158142]
+2021-Nov-01 21:05:18 PM [main] DEBUG org.hibernate.SQL - 
+    /* insert com.bookstore.entity.OrderDetail
+        */ insert 
+        into
+            order_detail
+            (book_id, order_id, quantity, subtotal) 
+        values
+            (?, ?, ?, ?)
+2021-Nov-01 21:05:18 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [1] as [INTEGER] - [25]
+2021-Nov-01 21:05:18 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [2] as [INTEGER] - [435]
+2021-Nov-01 21:05:18 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [3] as [INTEGER] - [1]
+2021-Nov-01 21:05:18 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [4] as [DOUBLE] - [1.399999976158142]
+2021-Nov-01 21:05:18 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [5] as [INTEGER] - [0]
+2021-Nov-01 22:22:29 PM [main] DEBUG org.hibernate.SQL - 
+    /* insert com.bookstore.entity.BookOrder
+        */ insert 
+        into
+            book_order
+            (customer_id, order_date, recipient_method, recipient_name, recipient_phone, shipping_address, status, total) 
+        values
+            (?, ?, ?, ?, ?, ?, ?, ?)
+2021-Nov-01 22:22:29 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [1] as [INTEGER] - [9]
+2021-Nov-01 22:22:29 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [2] as [TIMESTAMP] - [2021-11-01 22:22:28.505]
+2021-Nov-01 22:22:29 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [3] as [VARCHAR] - [Cash on Delivery ]
+2021-Nov-01 22:22:29 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [4] as [VARCHAR] - [Huynh Thanh Dung]
+2021-Nov-01 22:22:29 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [5] as [VARCHAR] - [1234567890]
+2021-Nov-01 22:22:29 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [6] as [VARCHAR] - [123 Tran Phu]
+2021-Nov-01 22:22:29 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [7] as [VARCHAR] - [Processing]
+2021-Nov-01 22:22:29 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [8] as [DOUBLE] - [1.399999976158142]
+2021-Nov-01 22:22:29 PM [main] DEBUG org.hibernate.SQL - 
+    /* insert com.bookstore.entity.OrderDetail
+        */ insert 
+        into
+            order_detail
+            (book_id, order_id, quantity, subtotal) 
+        values
+            (?, ?, ?, ?)
+2021-Nov-01 22:22:29 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [1] as [INTEGER] - [25]
+2021-Nov-01 22:22:29 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [2] as [INTEGER] - [445]
+2021-Nov-01 22:22:29 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [3] as [INTEGER] - [1]
+2021-Nov-01 22:22:29 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [4] as [DOUBLE] - [1.399999976158142]
+2021-Nov-01 22:22:29 PM [main] TRACE org.hibernate.type.descriptor.sql.BasicBinder - binding parameter [5] as [INTEGER] - [0]

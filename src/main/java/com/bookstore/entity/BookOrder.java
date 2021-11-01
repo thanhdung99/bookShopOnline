@@ -3,6 +3,7 @@ package com.bookstore.entity;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 @Table(name = "book_order", schema = "bookstoredb", catalog = "")
@@ -110,46 +111,6 @@ public class BookOrder {
         this.status = status;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        BookOrder bookOrder = (BookOrder) o;
-
-        if (orderId != bookOrder.orderId) return false;
-        if (customerId != bookOrder.customerId) return false;
-        if (Double.compare(bookOrder.total, total) != 0) return false;
-        if (orderDate != null ? !orderDate.equals(bookOrder.orderDate) : bookOrder.orderDate != null) return false;
-        if (shippingAddress != null ? !shippingAddress.equals(bookOrder.shippingAddress) : bookOrder.shippingAddress != null)
-            return false;
-        if (recipientName != null ? !recipientName.equals(bookOrder.recipientName) : bookOrder.recipientName != null)
-            return false;
-        if (recipientPhone != null ? !recipientPhone.equals(bookOrder.recipientPhone) : bookOrder.recipientPhone != null)
-            return false;
-        if (recipientMethod != null ? !recipientMethod.equals(bookOrder.recipientMethod) : bookOrder.recipientMethod != null)
-            return false;
-        if (status != null ? !status.equals(bookOrder.status) : bookOrder.status != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result;
-        long temp;
-        result = orderId;
-        result = 31 * result + customerId;
-        result = 31 * result + (orderDate != null ? orderDate.hashCode() : 0);
-        result = 31 * result + (shippingAddress != null ? shippingAddress.hashCode() : 0);
-        result = 31 * result + (recipientName != null ? recipientName.hashCode() : 0);
-        result = 31 * result + (recipientPhone != null ? recipientPhone.hashCode() : 0);
-        result = 31 * result + (recipientMethod != null ? recipientMethod.hashCode() : 0);
-        temp = Double.doubleToLongBits(total);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        return result;
-    }
 
     @ManyToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id", nullable = false)
@@ -161,12 +122,25 @@ public class BookOrder {
         this.customerByCustomerId = customerByCustomerId;
     }
 
-    @OneToMany(mappedBy = "bookOrderByOrderId")
+    @OneToMany(mappedBy = "bookOrderByOrderId" , cascade = CascadeType.ALL, orphanRemoval = true)
     public Collection<OrderDetail> getOrderDetailsByOrderId() {
         return orderDetailsByOrderId;
     }
 
     public void setOrderDetailsByOrderId(Collection<OrderDetail> orderDetailsByOrderId) {
         this.orderDetailsByOrderId = orderDetailsByOrderId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BookOrder order = (BookOrder) o;
+        return orderId == order.orderId;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(orderId);
     }
 }
