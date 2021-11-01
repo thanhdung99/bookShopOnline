@@ -1,9 +1,11 @@
 /Users/dungmacbook/Desktop/bookShopOnline/src/main/java/com/bookstore/controller/frontend/book/SearchBookServlet.java
 /Users/dungmacbook/Desktop/bookShopOnline/src/main/java/com/bookstore/controller/frontend/CustomerLoginFilter.java
 /Users/dungmacbook/Desktop/bookShopOnline/src/main/java/com/bookstore/controller/admin/book/NewBookServlet.java
+/Users/dungmacbook/Desktop/bookShopOnline/src/main/java/com/bookstore/controller/frontend/shoppingcart/ShoppingCart.java
 /Users/dungmacbook/Desktop/bookShopOnline/src/main/java/com/bookstore/entity/Category.java
 /Users/dungmacbook/Desktop/bookShopOnline/src/main/java/com/bookstore/entity/Users.java
 /Users/dungmacbook/Desktop/bookShopOnline/src/main/java/com/bookstore/entity/OrderDetailPK.java
+/Users/dungmacbook/Desktop/bookShopOnline/src/main/java/com/bookstore/controller/frontend/shoppingcart/AddBookToCartServlet.java
 /Users/dungmacbook/Desktop/bookShopOnline/src/main/java/com/bookstore/service/CategoryServices.java
 /Users/dungmacbook/Desktop/bookShopOnline/src/main/java/com/bookstore/controller/admin/review/ListReviewsServlet.java
 /Users/dungmacbook/Desktop/bookShopOnline/src/main/java/com/bookstore/service/BookServices.java
@@ -18,8 +20,10 @@
 /Users/dungmacbook/Desktop/bookShopOnline/src/main/java/com/bookstore/controller/admin/user/ListUsersServlet.java
 /Users/dungmacbook/Desktop/bookShopOnline/src/main/java/com/bookstore/dao/HashGenerator.java
 /Users/dungmacbook/Desktop/bookShopOnline/src/main/java/com/bookstore/controller/frontend/book/ViewBooksByCategoryServlet.java
+/Users/dungmacbook/Desktop/bookShopOnline/src/main/java/com/bookstore/controller/frontend/customer/ShowCustomerProfileServlet.java
 /Users/dungmacbook/Desktop/bookShopOnline/src/main/java/com/bookstore/controller/admin/user/EditUserServlet.java
 /Users/dungmacbook/Desktop/bookShopOnline/src/main/java/com/bookstore/controller/frontend/review/SubmitReviewServlet.java
+/Users/dungmacbook/Desktop/bookShopOnline/src/main/java/com/bookstore/controller/frontend/shoppingcart/ViewCartServlet.java
 /Users/dungmacbook/Desktop/bookShopOnline/src/main/java/com/bookstore/controller/admin/book/CreateBookServlet.java
 /Users/dungmacbook/Desktop/bookShopOnline/src/main/java/com/bookstore/controller/admin/customer/ListCustomersServlet.java
 /Users/dungmacbook/Desktop/bookShopOnline/src/main/java/com/bookstore/entity/Customer.java
@@ -28,7 +32,9 @@
 /Users/dungmacbook/Desktop/bookShopOnline/src/main/java/com/bookstore/controller/admin/category/CreateCategoryServlet.java
 /Users/dungmacbook/Desktop/bookShopOnline/src/main/java/com/bookstore/controller/frontend/HomeServlet.java
 /Users/dungmacbook/Desktop/bookShopOnline/src/main/java/com/bookstore/dao/BookDAO.java
+/Users/dungmacbook/Desktop/bookShopOnline/src/main/java/com/bookstore/controller/frontend/shoppingcart/RemoveBookFromCartServlet.java
 /Users/dungmacbook/Desktop/bookShopOnline/src/main/java/com/bookstore/dao/ReviewDAO.java
+/Users/dungmacbook/Desktop/bookShopOnline/src/main/java/com/bookstore/controller/frontend/customer/ChangeCustomerPasswordServlet.java
 /Users/dungmacbook/Desktop/bookShopOnline/src/main/java/com/bookstore/entity/BookOrder.java
 /Users/dungmacbook/Desktop/bookShopOnline/src/main/java/com/bookstore/controller/frontend/CommonFilter.java
 /Users/dungmacbook/Desktop/bookShopOnline/src/main/java/com/bookstore/store/Message.java

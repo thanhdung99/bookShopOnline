@@ -84,25 +84,26 @@
 
 <%@include file="/components/Header.jsp"%>
 
-<div class="container">
+<div class="container" style="min-height: 360px">
   <div class="table-responsive-lg">
     <c:if test="${cart.totalItems == 0}">
       <h2>There's no item in your cart</h2>
     </c:if>
     <c:if test="${cart.totalItems > 0}">
       <h2>Your cart details</h2>
-      <table class="table table-bordered table-striped table-hover">
-        <thead class="thead-dark">
-        <tr>
-          <th>No.</th>
-          <th>Book</th>
-          <th>Quantity</th>
-          <th>Price</th>
-          <th>Subtotal</th>
-          <th>Action</th>
-        </tr>
-        </thead>
-        <tbody>
+      <form action="/update_cart" method="post">
+        <table class="table table-bordered table-striped table-hover">
+          <thead class="thead-dark">
+          <tr>
+            <th>No.</th>
+            <th>Book</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Subtotal</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+          <tbody>
           <c:forEach items="${cart.items}" var="item" varStatus="status">
             <tr>
               <td>${status.index + 1}</td> <!-- / .Product number - auto increase-->
@@ -123,7 +124,8 @@
                             d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z" />
                     </svg>
                   </div>
-                  <input type="number" name="quantity-custom" id="quantity-custom"
+                  <input type="hidden" name="bookId" value="${item.key.bookId}"/>
+                  <input type="number" name="quantity${status.index + 1}" id="quantity-custom"
                          class="number-custom font-weight-bold" min="1" max="999" value="${item.value}">
                   <!-- / .Change value attribute as your data (quantity)-->
                   <div class="inc">
@@ -140,41 +142,45 @@
               </td> <!-- / .Unit price-->
               <td><fmt:formatNumber value="${item.key.price * item.value}" type="currency"/></td> <!-- / .Subtotal price: quantity * unit price-->
               <td>
-                <a href="#" class="btn btn-danger btn-sm">Remove</a> <!-- / .Remove selected product-->
+                <a href="/remove_from_cart?book_id=${item.key.bookId}" class="btn btn-danger btn-sm">Remove</a> <!-- / .Remove selected product-->
               </td>
             </tr>
           </c:forEach>
 
-        </tbody>
-        <tfoot>
-        <tr>
-          <td colspan="2"></td>
-          <td class="text-center">${cart.totalQuantity} book(s)</td> <!-- / .Sum of quantities-->
-          <td class="text-uppercase"><b>Total:</b></td>
-          <td><fmt:formatNumber value="${cart.totalAmount}" type="currency"/></td> <!-- / .Sum of subtotal-->
-          <td class="btn btn-danger btn-block text-center">
-            <a href="#" class="text-light text-decoration-none">Remove All</a>
-            <!-- / .Remove all product in cart-->
-          </td>
-        </tr>
-        </tfoot>
-      </table>
+          </tbody>
+          <tfoot>
+          <tr>
+            <td colspan="2"></td>
+            <td class="text-center">${cart.totalQuantity} book(s)</td> <!-- / .Sum of quantities-->
+            <td class="text-uppercase"><b>Total:</b></td>
+            <td><fmt:formatNumber value="${cart.totalAmount}" type="currency"/></td> <!-- / .Sum of subtotal-->
+            <td class="btn btn-danger btn-block text-center">
+              <a href="/clear_cart" class="text-light text-decoration-none">Remove All</a>
+              <!-- / .Remove all product in cart-->
+            </td>
+          </tr>
+          </tfoot>
+        </table>
+        <div class="row">
+          <div class="btn-toolbar col-12" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group mr-auto ml-auto" role="group" aria-label="First group">
+              <button type="submit" class="btn btn-danger btn-block">Update</button>
+            </div>
+            <div class="btn-group mr-auto" role="group" aria-label="Second group">
+              <a href="${pageContext.request.contextPath}/">
+                <button type="button" class="btn btn-danger mr-2">Continue Shopping</button>
+              </a>
+              <a href="${pageContext.request.contextPath}/">
+                <button type="button" class="btn btn-outline-danger">Check Out</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </form>
     </c:if>
-  </div>
-  <div class="row">
-    <div class="btn-toolbar col-12" role="toolbar" aria-label="Toolbar with button groups">
-      <div class="btn-group mr-auto ml-auto" role="group" aria-label="First group">
-        <button type="button" class="btn btn-danger btn-block">Update</button>
-      </div>
-      <div class="btn-group mr-auto" role="group" aria-label="Second group">
-        <button type="button" class="btn btn-danger mr-2">Continue Shopping</button>
-        <button type="button" class="btn btn-outline-danger">Check Out</button>
-      </div>
-    </div>
   </div>
 </div>
 
-<script src="../../assets/library/jquery/dist/jquery.min.js"></script>
 <script>
   $(document).ready(function () {
     $(".dec").each(function () {
@@ -210,7 +216,7 @@
   <jsp:include page="/frontend/toast.jsp"/>
 </c:if>
 
-<c:import url="/components/Footer.jsp" />
+<%@include file="/components/Footer.jsp"%>
 <jsp:include page="/importLib.jsp" />
 
 </body>

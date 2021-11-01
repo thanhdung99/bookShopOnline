@@ -54,15 +54,21 @@ public class ShoppingCart {
     }
 
     public void removeItem(Book book){
-        items.remove(book);
+        items.keySet().removeIf(b -> b.getBookId() == book.getBookId());
     }
     public void updateCart(int[] bookIds, int[] quantities){
         for (int i = 0; i < bookIds.length; i++){
-            Book key = new Book(bookIds[i]);
-            Integer value = quantities[i];
-            items.put(key, value);
+            int bookId =  bookIds[i];
+            Book key =  items.keySet().stream()
+                    .filter(book -> book.getBookId() == bookId)
+                    .findFirst().orElse(null);
+            if (key != null){
+                Integer value = quantities[i];
+                items.put(key, value);
+            }
         }
     }
+
 
     public void clear(){
         items.clear();

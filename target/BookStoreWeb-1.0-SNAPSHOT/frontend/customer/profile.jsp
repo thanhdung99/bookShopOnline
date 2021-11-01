@@ -299,7 +299,7 @@
     <jsp:include page="/frontend/toast.jsp"/>
 </c:if>
 
-<c:import url="/components/Footer.jsp"/>
+<%@include file="/components/Footer.jsp"%>
 <script src="/js/profile.js"></script>
 <jsp:include page="/importLib.jsp"/>
 
