@@ -1,9 +1,6 @@
 package com.bookstore.dao;
 
-import com.bookstore.entity.BookOrder;
-import com.bookstore.entity.Book;
-import com.bookstore.entity.Customer;
-import com.bookstore.entity.OrderDetail;
+import com.bookstore.entity.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,9 +14,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class OrderDAOTest {
     private static OrderDAO orderDAO;
-
+    private static BookDAO bookDAO;
     @BeforeEach
     public void setUp() {
+        bookDAO = new BookDAO();
         orderDAO = new OrderDAO();
     }
 
@@ -36,11 +34,20 @@ class OrderDAOTest {
         order.setShippingAddress("123 Tran Phu");
 
         List<OrderDetail> orderDetails = new ArrayList<>();
-        OrderDetail orderDetail = new OrderDetail();
-        orderDetail.setBookByBookId(new Book(25));
+        OrderDetail orderDetail;
+        orderDetail = new OrderDetail();
         orderDetail.setQuantity(1);
         orderDetail.setSubtotal(1.4f);
+        Book book = bookDAO.get(25);
+        orderDetail.setBookByBookId(book);
         orderDetail.setBookOrderByOrderId(order);
+
+        OrderDetailPK orderDetailPK = new OrderDetailPK();
+        orderDetailPK.setBook(book);
+        orderDetailPK.setBookOrder(order);
+
+        orderDetail.setId(orderDetailPK);
+
         orderDetails.add(orderDetail);
 
         order.setOrderDetailsByOrderId(orderDetails);

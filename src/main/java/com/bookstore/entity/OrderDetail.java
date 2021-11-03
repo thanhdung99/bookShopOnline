@@ -1,36 +1,44 @@
 package com.bookstore.entity;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "order_detail", schema = "bookstoredb", catalog = "")
-@IdClass(OrderDetailPK.class)
+
 public class OrderDetail {
-    private int orderId;
-    private int bookId;
+    private OrderDetailPK id = new OrderDetailPK();
     private int quantity;
     private double subtotal;
     private Book bookByBookId;
     private BookOrder bookOrderByOrderId;
 
-    @Id
-    @Column(name = "order_id", nullable = false, updatable = false, insertable = false)
-    public int getOrderId() {
-        return orderId;
+    public OrderDetail() {
     }
 
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
+    public OrderDetail(OrderDetailPK id, int quantity, double subtotal, Book bookByBookId, BookOrder bookOrderByOrderId) {
+        this.id = id;
+        this.quantity = quantity;
+        this.subtotal = subtotal;
+        this.bookByBookId = bookByBookId;
+        this.bookOrderByOrderId = bookOrderByOrderId;
     }
 
-    @Id
-    @Column(name = "book_id", nullable = false)
-    public int getBookId() {
-        return bookId;
+    public OrderDetail(OrderDetailPK id) {
+        this.id = id;
     }
 
-    public void setBookId(int bookId) {
-        this.bookId = bookId;
+    @EmbeddedId
+        @AttributeOverrides({
+                @AttributeOverride(name = "book.bookId", column = @Column(name = "book_id", nullable = false)),
+                @AttributeOverride(name = "bookOrder.orderId", column = @Column(name = "order_id", nullable = false)),
+        })
+    public OrderDetailPK getId() {
+        return id;
+    }
+
+    public void setId(OrderDetailPK id) {
+        this.id = id;
     }
 
     @Basic
@@ -57,31 +65,17 @@ public class OrderDetail {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         OrderDetail that = (OrderDetail) o;
-
-        if (orderId != that.orderId) return false;
-        if (bookId != that.bookId) return false;
-        if (quantity != that.quantity) return false;
-        if (Double.compare(that.subtotal, subtotal) != 0) return false;
-
-        return true;
+        return quantity == that.quantity && Double.compare(that.subtotal, subtotal) == 0 && id.equals(that.id) && bookByBookId.equals(that.bookByBookId) && bookOrderByOrderId.equals(that.bookOrderByOrderId);
     }
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        result = orderId;
-        result = 31 * result + bookId;
-        result = 31 * result + quantity;
-        temp = Double.doubleToLongBits(subtotal);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        return result;
+        return Objects.hash(id, quantity, subtotal, bookByBookId, bookOrderByOrderId);
     }
 
     @ManyToOne
-    @JoinColumn(name = "book_id", referencedColumnName = "book_id", nullable = false)
+    @JoinColumn(name = "book_id", referencedColumnName = "book_id", nullable = false, updatable = false, insertable = false)
     public Book getBookByBookId() {
         return bookByBookId;
     }
@@ -91,7 +85,7 @@ public class OrderDetail {
     }
 
     @ManyToOne
-    @JoinColumn(name = "order_id", referencedColumnName = "order_id", nullable = false)
+    @JoinColumn(name = "order_id", referencedColumnName = "order_id", nullable = false, updatable = false, insertable = false)
     public BookOrder getBookOrderByOrderId() {
         return bookOrderByOrderId;
     }

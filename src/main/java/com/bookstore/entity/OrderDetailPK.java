@@ -1,50 +1,47 @@
 package com.bookstore.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
+@Embeddable
 public class OrderDetailPK implements Serializable {
-    private int orderId;
-    private int bookId;
 
-    @Column(name = "order_id", nullable = false, updatable = false, insertable = false)
-    @Id
-    public int getOrderId() {
-        return orderId;
+    private Book book;
+    private BookOrder bookOrder;
+
+    public OrderDetailPK() {
+    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "book_id", referencedColumnName = "book_id", nullable = false, updatable = false, insertable = false)
+    public Book getBook() {
+        return book;
     }
 
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
+    public void setBook(Book book) {
+        this.book = book;
     }
 
-    @Column(name = "book_id", nullable = false, updatable = false, insertable = false)
-    @Id
-    public int getBookId() {
-        return bookId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id", referencedColumnName = "order_id", nullable = false, updatable = false, insertable = false)
+    public BookOrder getBookOrder() {
+        return bookOrder;
     }
 
-    public void setBookId(int bookId) {
-        this.bookId = bookId;
+    public void setBookOrder(BookOrder bookOrder) {
+        this.bookOrder = bookOrder;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         OrderDetailPK that = (OrderDetailPK) o;
-
-        if (orderId != that.orderId) return false;
-        if (bookId != that.bookId) return false;
-
-        return true;
+        return book.equals(that.book) && bookOrder.equals(that.bookOrder);
     }
 
     @Override
     public int hashCode() {
-        int result = orderId;
-        result = 31 * result + bookId;
-        return result;
+        return Objects.hash(book, bookOrder);
     }
 }

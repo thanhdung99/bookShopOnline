@@ -2,6 +2,7 @@ package com.bookstore.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -18,7 +19,7 @@ public class BookOrder {
     private double total;
     private String status;
     private Customer customerByCustomerId;
-    private Collection<OrderDetail> orderDetailsByOrderId;
+    private Collection<OrderDetail> orderDetailsByOrderId = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -122,7 +123,7 @@ public class BookOrder {
         this.customerByCustomerId = customerByCustomerId;
     }
 
-    @OneToMany(mappedBy = "bookOrderByOrderId" , cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "bookOrderByOrderId" , cascade = CascadeType.PERSIST, orphanRemoval = true)
     public Collection<OrderDetail> getOrderDetailsByOrderId() {
         return orderDetailsByOrderId;
     }
