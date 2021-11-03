@@ -138,7 +138,7 @@
                 </div>
               </td>
               <td>
-                <fmt:formatNumber value = "${item.key.price}" type = "currency"/>
+                <fmt:formatNumber value="${item.key.price * item.value}" type="currency"/>
               </td> <!-- / .Unit price-->
               <td><fmt:formatNumber value="${item.key.price * item.value}" type="currency"/></td> <!-- / .Subtotal price: quantity * unit price-->
               <td>
@@ -170,7 +170,7 @@
               <a href="${pageContext.request.contextPath}/">
                 <button type="button" class="btn btn-danger mr-2">Continue Shopping</button>
               </a>
-              <a href="${pageContext.request.contextPath}/">
+              <a href="${pageContext.request.contextPath}/checkout">
                 <button type="button" class="btn btn-outline-danger">Check Out</button>
               </a>
             </div>

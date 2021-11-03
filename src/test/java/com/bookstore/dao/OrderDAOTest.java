@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -55,12 +56,7 @@ class OrderDAOTest {
     @Test
     public void testListAllOrder(){
         Collection<BookOrder> bookOrders = orderDAO.listAll();
-        BookOrder bookOrder = bookOrders.stream().filter( x-> x.getOrderId() == 795).findFirst().orElse(null);
-        System.out.println(bookOrder.getOrderId());
-        bookOrder.getOrderDetailsByOrderId();
-//        assertTrue(bookOrders.size() > 0);
-        assertTrue(bookOrder.getOrderDetailsByOrderId().size()>0);
-//        assertNotNull(bookOrder);
+        assertEquals(bookOrders, 5);
     }
     @Test
     public void testFindOrder(){

@@ -23,10 +23,10 @@
     </div>
 </div>
 <script type="text/javascript">
-    setTimeout(function () {
+    $(document).ready(function (){
         $('#toast-close').click(function () {
             $(".toast-custom").removeClass("toast-custom-show");
         });
-    }, 1000);
+    })
     setTimeout(function () { $('.toast-close-custom').click(); }, 3000);
 </script>

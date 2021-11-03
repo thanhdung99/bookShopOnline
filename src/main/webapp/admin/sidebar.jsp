@@ -25,7 +25,7 @@
             <i class="far fa-comment-dots"></i>
             &nbsp;Reviews
         </a>
-        <a class="nav-link">
+        <a class="nav-link" href="/admin/list_orders">
             <i class="fas fa-file-invoice-dollar"></i>
             &nbsp;Order
         </a>

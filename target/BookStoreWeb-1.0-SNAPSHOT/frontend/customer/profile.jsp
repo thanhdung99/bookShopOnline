@@ -294,14 +294,14 @@
         </div>
     </div>
 </div>
-
+<script src="/js/profile.js"></script>
+<jsp:include page="/importLib.jsp"/>
 <c:if test="${message != null}">
     <jsp:include page="/frontend/toast.jsp"/>
 </c:if>
 
 <%@include file="/components/Footer.jsp"%>
-<script src="/js/profile.js"></script>
-<jsp:include page="/importLib.jsp"/>
+
 
 </body>
 </html>
