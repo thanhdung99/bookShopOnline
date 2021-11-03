@@ -8,6 +8,11 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "book_order", schema = "bookstoredb", catalog = "")
+@NamedQueries({
+        @NamedQuery(name="BookOrder.findAll",
+                query="SELECT bo FROM BookOrder bo ORDER BY bo.orderDate DESC "),
+
+})
 public class BookOrder {
     private int orderId;
     private int customerId;
@@ -123,7 +128,7 @@ public class BookOrder {
         this.customerByCustomerId = customerByCustomerId;
     }
 
-    @OneToMany(mappedBy = "bookOrderByOrderId" , cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany(mappedBy = "bookOrderByOrderId",fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, orphanRemoval = true)
     public Collection<OrderDetail> getOrderDetailsByOrderId() {
         return orderDetailsByOrderId;
     }

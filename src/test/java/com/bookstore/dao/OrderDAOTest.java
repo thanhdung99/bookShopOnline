@@ -5,10 +5,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -54,6 +51,36 @@ class OrderDAOTest {
         BookOrder savedOrder = orderDAO.create(order);
         System.out.println(savedOrder.getOrderId());
         assertNotNull(savedOrder);
+    }
+    @Test
+    public void testListAllOrder(){
+        Collection<BookOrder> bookOrders = orderDAO.listAll();
+        BookOrder bookOrder = bookOrders.stream().filter( x-> x.getOrderId() == 795).findFirst().orElse(null);
+        System.out.println(bookOrder.getOrderId());
+        bookOrder.getOrderDetailsByOrderId();
+//        assertTrue(bookOrders.size() > 0);
+        assertTrue(bookOrder.getOrderDetailsByOrderId().size()>0);
+//        assertNotNull(bookOrder);
+    }
+    @Test
+    public void testFindOrder(){
+        BookOrder order = orderDAO.get(725);
+        System.out.println(order.getCustomerByCustomerId().getFullName());
+        assertNotNull(order);
+    }
+    @Test
+    public void testUpdateOrder(){
+        BookOrder order = orderDAO.get(725);
+        String status = "Shipped";
+        order.setStatus(status);
+        BookOrder updatedOrder = orderDAO.update(order);
+        assertEquals(updatedOrder.getStatus(), status);
+    }
+    @Test
+    public void testDeleteOrder(){
+        orderDAO.delete(715);
+        BookOrder order = orderDAO.get(715);
+        assertNull(order);
     }
 
     @AfterEach

@@ -16,18 +16,20 @@ public class OrderDAO extends JpaDAO<BookOrder> implements GenericDAO<BookOrder>
         return super.create(order);
     }
     @Override
+    public BookOrder update(BookOrder bookOrder){return super.update(bookOrder);}
+    @Override
     public BookOrder get(Object orderId) {
-        return null;
+        return super.find(BookOrder.class, orderId);
     }
 
     @Override
     public void delete(Object orderId) {
-
+        super.delete(BookOrder.class, orderId);
     }
 
     @Override
     public List<BookOrder> listAll() {
-        return null;
+        return super.findWithNamedQuery("BookOrder.findAll");
     }
 
     @Override
