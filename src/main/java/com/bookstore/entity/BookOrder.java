@@ -11,6 +11,11 @@ import java.util.Objects;
 @NamedQueries({
         @NamedQuery(name="BookOrder.findAll",
                 query="SELECT bo FROM BookOrder bo ORDER BY bo.orderDate DESC "),
+        @NamedQuery(name="BookOrder.countAll",
+                query="SELECT COUNT (bo) FROM BookOrder bo "),
+        @NamedQuery(name="BookOrder.findByCustomer",
+                query="SELECT bo FROM BookOrder bo WHERE bo.customerByCustomerId.customerId = :customerId " +
+                        "ORDER BY bo.orderDate DESC "),
 
 })
 public class BookOrder {

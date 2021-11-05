@@ -54,6 +54,7 @@
                                     <th>${order.orderDate}</th>
 
                                     <th>
+
                                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
                                                 onclick="deleteReview(${order.orderId}, '')" data-target="#exampleModal">
                                             Delete

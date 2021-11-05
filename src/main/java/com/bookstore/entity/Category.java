@@ -71,7 +71,7 @@ public class Category {
         return result;
     }
 
-    @OneToMany(mappedBy = "categoryByCategoryId")
+    @OneToMany(mappedBy = "categoryByCategoryId", fetch = FetchType.LAZY)
     public Collection<Book> getBooksByCategoryId() {
         return booksByCategoryId;
     }

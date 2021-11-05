@@ -11,7 +11,7 @@ public class ShoppingCart {
     private Map<Book, Integer> items = new HashMap<>();
     private int totalItems;
     private int totalQuantity;
-    private double totalAmount;
+    private float totalAmount;
 
     public int getTotalItems() {
         return items.size();
@@ -28,8 +28,8 @@ public class ShoppingCart {
         return total;
     }
 
-    public double getTotalAmount() {
-        double total = 0.0f;
+    public float getTotalAmount() {
+        float total = 0.0f;
         Iterator<Book> iterator = items.keySet().iterator();
         while (iterator.hasNext()){
             Book book = iterator.next();

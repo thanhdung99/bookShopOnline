@@ -215,7 +215,7 @@ public class Book {
         this.categoryByCategoryId = categoryByCategoryId;
     }
 
-    @OneToMany(mappedBy = "bookByBookId")
+    @OneToMany(mappedBy = "bookByBookId", fetch = FetchType.LAZY)
     public Collection<OrderDetail> getOrderDetailsByBookId() {
         return orderDetailsByBookId;
     }

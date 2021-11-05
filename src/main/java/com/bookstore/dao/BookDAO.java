@@ -3,10 +3,7 @@ package com.bookstore.dao;
 import com.bookstore.entity.Book;
 
 import java.sql.Timestamp;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 public class BookDAO extends JpaDAO<Book> implements GenericDAO<Book>{
@@ -91,5 +88,18 @@ public class BookDAO extends JpaDAO<Book> implements GenericDAO<Book>{
     public List<Book> listBooksByCategory(int categoryId, int page, int limit) {
         return super.findWithNamedQuery("Book.findByCategory", "categoryId", categoryId, page, limit);
     }
-
+    public List<Book> listBestSellingBooks(){
+        return super.findWithNamedQuery("OrderDetail.bestSelling",1,4);
+    }
+    public List<Book> listMostFavoredBooks(){
+        List<Book> mostFavoredBooks = new ArrayList<>();
+        List<Object[]> results = super.findWithNamedQueryObjects("",1,4);
+        if (!results.isEmpty()){
+            for (Object[] elements: results){
+                Book book = (Book) elements[0];
+                mostFavoredBooks.add(book);
+            }
+        }
+        return mostFavoredBooks;
+    }
 }

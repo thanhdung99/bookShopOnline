@@ -5,7 +5,10 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "order_detail", schema = "bookstoredb", catalog = "")
-
+@NamedQueries({
+        @NamedQuery(name = "OrderDetail.bestSelling", query = "SELECT od.bookByBookId FROM OrderDetail od " +
+                "GROUP BY od.bookByBookId.bookId ORDER BY SUM(od.quantity) DESC")
+})
 public class OrderDetail {
     private OrderDetailPK id = new OrderDetailPK();
     private int quantity;

@@ -92,3 +92,17 @@ td {
     align-items: center;
     justify-content: center;
 }
+/* Invoice css */
+.store-user {
+    padding-bottom: 25px;
+}
+.store-user p {
+    margin: 0;
+    font-weight: 600;
+}
+.store-user .address {
+    font-weight: 400;
+}
+.extra-info p span {
+    font-weight: 400;
+}

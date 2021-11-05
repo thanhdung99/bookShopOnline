@@ -1,5 +1,6 @@
 package com.bookstore.dao;
 
+import com.bookstore.entity.Book;
 import com.bookstore.entity.BookOrder;
 
 import java.sql.Timestamp;
@@ -34,6 +35,11 @@ public class OrderDAO extends JpaDAO<BookOrder> implements GenericDAO<BookOrder>
 
     @Override
     public long count() {
-        return 0;
+        return super.countWithNamedQuery("BookOrder.countAll");
     }
+    public List<BookOrder> listByCustomer(int customerId){
+        return super.findWithNamedQuery("BookOrder.findByCustomer",
+                "customerId",customerId);
+    }
+
 }
