@@ -45,7 +45,7 @@
                                     <tbody>
                                     <c:forEach var="category" varStatus="status" items="${categoriesList}">
                                         <tr>
-                                            <th scope="row">${status.index}</th>
+                                            <th scope="row">${status.index + 1}</th>
                                             <th>${category.categoryId}</th>
                                             <th>${category.name}</th>
                                             <th>

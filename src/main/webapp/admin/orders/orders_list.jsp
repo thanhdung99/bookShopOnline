@@ -44,7 +44,7 @@
                             <tbody>
                             <c:forEach var="order" varStatus="status" items="${ordersList}">
                                 <tr>
-                                    <th scope="row">${status.index}</th>
+                                    <th scope="row">${status.index + 1}</th>
                                     <th>${order.orderId}</th>
                                     <th>${order.customerByCustomerId.fullName}</th>
                                     <th>${order.bookCopies}</th>

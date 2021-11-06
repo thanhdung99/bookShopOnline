@@ -41,7 +41,7 @@
                             <tbody>
                             <c:forEach var="review" varStatus="status" items="${reviewsList}">
                                 <tr>
-                                    <th scope="row">${status.index}</th>
+                                    <th scope="row">${status.index + 1}</th>
                                     <th>${review.reviewId}</th>
                                     <th>${review.headline}</th>
                                     <th>${review.bookByBookId.title}</th>

@@ -34,15 +34,7 @@ public class BookOrderServices {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher(listPage);
         requestDispatcher.forward(request,response);
     }
-    public void viewOrderDetailForAdmin() throws ServletException, IOException {
-        int orderId = Integer.parseInt(request.getParameter(""));
-        BookOrder order = new BookOrder();
-        request.setAttribute("order",order);
 
-        String detailPage = "/admin/orders/order_detail.jsp";
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher(detailPage);
-        requestDispatcher.forward(request,response);
-    }
 
     public void showCheckOutForm() throws ServletException, IOException {
         String checkoutPage ="/frontend/order/checkout.jsp";
@@ -108,9 +100,31 @@ public class BookOrderServices {
         List<BookOrder> listOrders = orderDAO.listByCustomer(customer.getCustomerId());
         request.setAttribute("listOrders", listOrders);
 
-        String historyPage ="/frontend/order/order_list.jsp";
+        String historyPage ="/frontend/order/orders_list.jsp";
         RequestDispatcher requestDispatcher = request.getRequestDispatcher(historyPage);
         requestDispatcher.forward(request,response);
 
+    }
+    public void viewOrderDetailForAdmin() throws ServletException, IOException {
+        int orderId = Integer.parseInt(request.getParameter("id"));
+        BookOrder order = orderDAO.get(orderId);
+        request.setAttribute("order",order);
+
+        String detailPage = "/admin/orders/order_detail.jsp";
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher(detailPage);
+        requestDispatcher.forward(request,response);
+    }
+
+    public void showOrderDetailForCustomer() throws ServletException, IOException {
+        int orderId = Integer.parseInt(request.getParameter("id"));
+        HttpSession session = request.getSession();
+        Customer customer = (Customer) session.getAttribute("loggedCustomer");
+
+        BookOrder order = orderDAO.get(orderId, customer.getCustomerId());
+        request.setAttribute("order",order);
+
+        String detailPage = "/frontend/order/order_details.jsp";
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher(detailPage);
+        requestDispatcher.forward(request,response);
     }
 }

@@ -48,7 +48,7 @@
                                     <tbody>
                                         <c:forEach var="user" varStatus="status" items="${usersList}">
                                             <tr>
-                                                <th scope="row">${status.index}</th>
+                                                <th scope="row">${status.index + 1}</th>
                                                 <th>${user.userId}</th>
                                                 <th>${user.fullName}</th>
                                                 <th>${user.email}</th>

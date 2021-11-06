@@ -9,7 +9,8 @@ import java.io.IOException;
 @WebFilter(filterName = "CustomerLoginFilter", urlPatterns = "/*")
 public class CustomerLoginFilter implements Filter {
     private static final String[] loginRequiredURLs = {
-            "/profile","/edit_profile", "/update_profile", "/write_review", "/checkout", "/place_order"
+            "/profile","/edit_profile", "/update_profile", "/write_review",
+            "/checkout", "/place_order","/view_orders", "/show_order_detail"
     };
     public void init(FilterConfig config) throws ServletException {
 

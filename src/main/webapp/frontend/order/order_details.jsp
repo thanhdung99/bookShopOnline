@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="en">
 
 <head>
@@ -18,112 +20,123 @@
 
 <div class="container pb-3 d-flex justify-content-center flex-wrap">
     <div class="pb-5 pt-3 col-10">
-        <h2 class="text-center">Invoice</h2>
-        <section class="row mt-5 store-user">
-            <div class="col-1"></div>
-            <div class="col-10">
-                <div class="row bb pb-3 d-flex justify-content-center">
-                    <div class="col-7">
-                        <p>Supplier,</p>
-                        <h3 class="text-info">Group 06</h3>
-                        <p class="address">01 - Vo Van Ngan,
-                            <br>Thu Duc, HCM City,
-                            <br>Vietnamese
-                        </p>
-                        <div class="phone mt-2">+84 361323695</div>
+        <c:if test="${order == null}">
+            <h2 class="text-center" style="min-height: 300px">Sorry, you can not authorized to view this order.</h2>
+        </c:if>
+        <c:if test="${order != null}">
+            <h2 class="text-center">Invoice</h2>
+            <section class="row mt-5 store-user">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    <div class="row bb pb-3 d-flex justify-content-center">
+                        <div class="col-7">
+                            <p>Supplier,</p>
+                            <h3 class="text-info">Group 06</h3>
+                            <p class="address">01 - Vo Van Ngan,
+                                <br>Thu Duc, HCM City,
+                                <br>Vietnamese
+                            </p>
+                            <div class="phone mt-2">+84 361323695</div>
+                        </div>
+                        <div class="col-5">
+                            <p>Recipient,</p>
+                            <h3 class="text-info">${order.recipientName}</h3>
+                            <p class="address">
+                                <c:forTokens items="${order.shippingAddress}" delims="," var="address" varStatus="status">
+                                    ${address}<c:if test="${!status.last}">,<br></c:if>
+                                </c:forTokens>
+                            </p>
+                            <div class="phone mt-2">${order.recipientPhone}</div>
+                        </div>
                     </div>
-                    <div class="col-5">
-                        <p>Recipient,</p>
-                        <h3 class="text-info">Customer name</h3>
-                        <p class="address">999 Bridgeton,
-                            <br>St. Louis, Missouri,
-                            <br>United States
-                        </p>
-                        <div class="phone mt-2">+84 123456789</div>
+                    <hr>
+                    <div class="row extra-info pt-3">
+                        <div class="col-7">
+                            <p>Order ID:
+                                <span>${order.orderId}</span>
+                            </p>
+                            <p>Order Date:
+                                <span>${order.orderDate}</span>
+                            </p>
+                            <p>Order Status:
+                                <span>${order.status}</span>
+                            </p>
+                        </div>
+                        <div class="col-5">
+                            <p>Payment Method:
+                                <span>${order.recipientMethod}</span>
+                            </p>
+                            <p>Quantity:
+                                <span>${order.bookCopies}</span>
+                            </p>
+                            <p>Total Price:
+                                <span><fmt:formatNumber value="${order.total}" type="currency" /></span>
+                            </p>
+                        </div>
                     </div>
                 </div>
-                <hr>
-                <div class="row extra-info pt-3">
-                    <div class="col-7">
-                        <p>Order ID:
-                            <span>82</span>
-                        </p>
-                        <p>Order Date:
-                            <span>12/12/2020</span>
-                        </p>
-                        <p>Order Status:
-                            <span>Completed</span>
-                        </p>
-                    </div>
-                    <div class="col-5">
-                        <p>Payment Method:
-                            <span>PayPal</span>
-                        </p>
-                        <p>Quantity:
-                            <span>1</span>
-                        </p>
-                        <p>Total Price:
-                            <span>$99.99</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
+            </section>
+        </c:if>
     </div>
-
-    <div class="table-responsive-lg col-10">
-        <table class="table table-bordered table-striped table-hover text-center">
-            <thead class="thead-dark">
-            <tr>
-                <th>No.</th>
-                <th>Book</th>
-                <th>Author</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Subtotal</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>1</td> <!-- / .Product number - auto increase-->
-                <td>
-                    <div class="cart-info">
-                        <img src="../../assets/img/150x169/img1.png" alt="Effective Java">
-                        <!-- / .Book image-->
-                        <p class="m-0 p-2 col-12 text-truncate" style="max-width: 10rem;">Effective
-                            Java
-                        </p>
-                        <!-- / .Book name-->
-                    </div>
-                </td>
-                <td>
-                    Author's name
-                </td>
-                <td>
-                    $99.99
-                </td> <!-- / .Unit price-->
-                <td>
-                    1
-                </td> <!-- / .Quantity-->
-                <td>
-                    $99.99
-                    <!-- / .Subtotal-->
-                </td>
-            </tr>
-            </tbody>
-            <tfoot>
-            <tr>
-                <td colspan="3"></td>
-                <td class="text-uppercase"><b>Total:</b></td>
-                <td>1 book(s)</td> <!-- / .Sum of quantities-->
-                <td>
-                    <fmt:formatNumber value="${cart.totalAmount}" type="currency" />
-                    <span>$99.99</span>
-                </td> <!-- / .Sum of subtotal-->
-            </tr>
-            </tfoot>
-        </table>
-    </div>
+    <c:if test="${order != null}">
+        <div class="table-responsive-lg col-10">
+            <table class="table table-bordered table-striped table-hover text-center">
+                <thead class="thead-dark">
+                <tr>
+                    <th>No.</th>
+                    <th>Book</th>
+                    <th>Author</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:set var="subtotal" value="${0}" scope="page"/>
+                <c:forEach items="${order.orderDetailsByOrderId}" var="orderDetail" varStatus="status">
+                    <tr>
+                        <td>${status.index + 1}</td> <!-- / .Product number - auto increase-->
+                        <td>
+                            <div class="cart-info">
+                                <img src="data:image/jpg;base64,${orderDetail.bookByBookId.base64Image}"
+                                     alt="${orderDetail.bookByBookId.title}" style="max-height: 100px">
+                                <!-- / .Book image-->
+                                <p class="m-0 p-2 col-12 text-truncate" style="max-width: 10rem;">
+                                        ${orderDetail.bookByBookId.title}
+                                </p>
+                                <!-- / .Book name-->
+                            </div>
+                        </td>
+                        <td>
+                                ${orderDetail.bookByBookId.author}
+                        </td>
+                        <td>
+                            <fmt:formatNumber value="${orderDetail.bookByBookId.price}" type="currency" />
+                        </td> <!-- / .Unit price-->
+                        <td>
+                                ${orderDetail.quantity}
+                        </td> <!-- / .Quantity-->
+                        <td>
+                            <fmt:formatNumber value="${orderDetail.subtotal}" type="currency" />
+                            <!-- / .Subtotal-->
+                        </td>
+                        <c:set var="subtotal" value="${subtotal + orderDetail.subtotal}" scope="page"/>
+                    </tr>
+                </c:forEach>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="3"></td>
+                    <td class="text-uppercase"><b>Total:</b></td>
+                    <td>${order.bookCopies} book(s)</td> <!-- / .Sum of quantities-->
+                    <td>
+                        <span><fmt:formatNumber value="${subtotal}" type="currency" /></span>
+                    </td> <!-- / .Sum of subtotal-->
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </c:if>
 </div>
 
 <%@include file="/components/Footer.jsp"%>

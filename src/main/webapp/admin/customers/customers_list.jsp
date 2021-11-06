@@ -43,7 +43,7 @@
                             <tbody>
                             <c:forEach var="customer" varStatus="status" items="${customersList}">
                                 <tr>
-                                    <th scope="row">${status.index}</th>
+                                    <th scope="row">${status.index + 1}</th>
                                     <th>${customer.customerId}</th>
                                     <th>${customer.fullName}</th>
                                     <th>${customer.email}</th>

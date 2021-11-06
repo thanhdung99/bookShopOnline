@@ -16,11 +16,14 @@ import java.util.Objects;
         @NamedQuery(name="BookOrder.findByCustomer",
                 query="SELECT bo FROM BookOrder bo WHERE bo.customerByCustomerId.customerId = :customerId " +
                         "ORDER BY bo.orderDate DESC "),
-
+        @NamedQuery(name="BookOrder.findByCustomerAndId",
+                query="SELECT bo FROM BookOrder bo WHERE bo.customerByCustomerId.customerId = :customerId " +
+                        "AND bo.orderId = :orderId"),
 })
 public class BookOrder {
     private int orderId;
     private int customerId;
+    private int bookCopies;
     private Timestamp orderDate;
     private String shippingAddress;
     private String recipientName;
@@ -140,6 +143,14 @@ public class BookOrder {
 
     public void setOrderDetailsByOrderId(Collection<OrderDetail> orderDetailsByOrderId) {
         this.orderDetailsByOrderId = orderDetailsByOrderId;
+    }
+    @Transient
+    public int getBookCopies() {
+        int total = 0;
+        for (OrderDetail orderDetail : orderDetailsByOrderId){
+            total+= orderDetail.getQuantity() ;
+        }
+        return total;
     }
 
     @Override

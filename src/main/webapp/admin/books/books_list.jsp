@@ -52,7 +52,7 @@
                             <tbody>
                             <c:forEach var="book" varStatus="status" items="${booksList}">
                                 <tr>
-                                    <th class="align-middle" scope="row">${status.index}</th>
+                                    <th class="align-middle" scope="row">${status.index + 1}</th>
                                     <th class="align-middle">${book.bookId}</th>
                                     <th class="align-middle">
                                         <img src="data:image/jpg;base64,${book.base64Image}" style="height: 84px;width: auto;"/>
