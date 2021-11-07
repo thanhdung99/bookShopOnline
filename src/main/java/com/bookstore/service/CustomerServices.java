@@ -28,10 +28,7 @@ public class CustomerServices {
     public void listCustomers() throws ServletException, IOException {
         List<Customer> customersList = customerDAO.listAll();
         request.setAttribute("customersList", customersList);
-        String listPage ="/admin/customers/customers_list.jsp";
-
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher(listPage);
-        requestDispatcher.forward(request,response);
+        CommonUtitlity.forwardToPage("/admin/customers/customers_list.jsp", request, response);
     }
     public void readCustomerFields(Customer customer){
         String fullName = request.getParameter("fullName");
@@ -69,10 +66,7 @@ public class CustomerServices {
 
             request.setAttribute("message", message);
             request.setAttribute("customer", customer);
-
-            String createUserPage ="/admin/customers/customer_form.jsp";
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher(createUserPage);
-            requestDispatcher.forward(request,response);
+            CommonUtitlity.forwardToPage("/admin/customers/customer_form.jsp", message, request, response);
         }else {
             customer.setEmail(email);
             customer.setFullName(fullName);
@@ -100,10 +94,7 @@ public class CustomerServices {
             customer.setPassword(password);
             customerDAO.create(customer);
             Message message = new Message("Register successful", "Register new account successful", "success");
-            request.setAttribute("message", message);
-            String loginPage = "/frontend/index.jsp";
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher(loginPage);
-            requestDispatcher.forward(request,response);
+            CommonUtitlity.forwardToPage("/frontend/index.jsp", message, request, response);
         }
     }
 
@@ -112,16 +103,12 @@ public class CustomerServices {
         Customer customer = customerDAO.get(customerId);
         if(customer == null){
             Message message = new Message("Customer not found", "Could not find customer with ID " + customerId,"error");
-            request.setAttribute("message", message);
             List<Customer> customersList = customerDAO.listAll();
             request.setAttribute("customersList", customersList);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/customers/customersList_list.jsp");
-            dispatcher.forward(request, response);
+            CommonUtitlity.forwardToPage("/admin/customers/customers_list.jsp", message, request, response);
         }else {
             request.setAttribute("customer", customer);
-            String editCategoryPage ="/admin/customers/customer_form.jsp";
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher(editCategoryPage);
-            requestDispatcher.forward(request,response);
+            CommonUtitlity.forwardToPage("/admin/customers/customer_form.jsp", request, response);
         }
     }
 
@@ -134,13 +121,8 @@ public class CustomerServices {
         if(existCustomer != null && existCustomer.getCustomerId() != customerId){
             Message message = new Message("Could not update customer", "A customer with email " +email +" already exist","error");
             customer.setEmail("");
-            request.setAttribute("message", message);
             request.setAttribute("customer", customer);
-
-            String createUserPage ="/admin/customers/customer_form.jsp";
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher(createUserPage);
-            requestDispatcher.forward(request,response);
-
+            CommonUtitlity.forwardToPage("/admin/customers/customer_form.jsp", message, request, response);
         }else {
             customerDAO.update(customer);
             Message message = new Message("Update successful", "Update customer successful", "success");
@@ -176,9 +158,7 @@ public class CustomerServices {
     }
 
     public void showLogin() throws ServletException, IOException {
-        String loginPage = "/frontend/customer/register_form.jsp";
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher(loginPage);
-        requestDispatcher.forward(request,response);
+        CommonUtitlity.forwardToPage("/frontend/customer/register_form.jsp", request, response);
     }
 
     public void doLogin() throws ServletException, IOException {
@@ -212,9 +192,7 @@ public class CustomerServices {
     }
 
     public void showCustomerProfile() throws ServletException, IOException {
-        String profilePage = "/frontend/customer/profile.jsp";
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher(profilePage);
-        requestDispatcher.forward(request,response);
+        CommonUtitlity.forwardToPage("/frontend/customer/profile.jsp", request, response);
     }
 
     public void  updateCustomerProfile() {

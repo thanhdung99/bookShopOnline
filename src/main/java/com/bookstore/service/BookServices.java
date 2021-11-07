@@ -40,17 +40,10 @@ public class BookServices {
         List<Book> booksList = bookDAO.listAll();
 
         request.setAttribute("booksList", booksList);
-        String listPage ="/admin/books/books_list.jsp";
-
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher(listPage);
-        requestDispatcher.forward(request,response);
+        CommonUtitlity.forwardToPage("/admin/books/books_list.jsp", request, response);
     }
     public void showBookNewForm() throws ServletException, IOException {
-
-        String newBookPage = "/admin/books/book_form.jsp";
-        RequestDispatcher dispatcher = request.getRequestDispatcher(newBookPage);
-        dispatcher.forward(request, response);
-
+        CommonUtitlity.forwardToPage("/admin/books/book_form.jsp", request, response);
     }
     public void createBook() throws ServletException, IOException {
         Book book = new Book();
@@ -107,16 +100,13 @@ public class BookServices {
         Book book = bookDAO.get(bookId);
         if (book != null){
             request.setAttribute("book", book);
-            String editBookPage = "/admin/books/book_form.jsp";
-            RequestDispatcher dispatcher = request.getRequestDispatcher(editBookPage);
-            dispatcher.forward(request, response);
+            CommonUtitlity.forwardToPage("/admin/books/book_form.jsp", request, response);
         } else {
             Message message = new Message("Book not found", "Could not find book with ID " + bookId,"error");
-            request.setAttribute("message", message);
             List<Book> booksList = bookDAO.listAll();
             request.setAttribute("booksList", booksList);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/books/books_list.jsp");
-            dispatcher.forward(request, response);
+
+            CommonUtitlity.forwardToPage("/admin/books/books_list.jsp", message, request, response);
         }
     }
 

@@ -1,6 +1,7 @@
 package com.bookstore.controller.admin.category;
 
 import com.bookstore.service.CategoryServices;
+import com.bookstore.service.CommonUtitlity;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -11,9 +12,7 @@ import java.io.IOException;
 public class CreateCategoryServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String createCategoryPage ="/admin/categories/category_form.jsp";
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher(createCategoryPage);
-        requestDispatcher.forward(request,response);
+        CommonUtitlity.forwardToPage("/admin/categories/category_form.jsp", request, response);
     }
 
     @Override

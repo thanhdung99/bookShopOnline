@@ -2,6 +2,7 @@ package com.bookstore.controller.admin.order;
 
 import com.bookstore.dao.BookDAO;
 import com.bookstore.entity.Book;
+import com.bookstore.service.CommonUtitlity;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -16,9 +17,6 @@ public class ShowAddBookFormServlet extends HttpServlet {
         BookDAO bookDAO = new BookDAO();
         List<Book> booksList = bookDAO.listAll();
         request.setAttribute("booksList", booksList);
-
-        String addBookPage = "/orders/add_book_form.jsp";
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher(addBookPage);
-        requestDispatcher.forward(request,response);
+        CommonUtitlity.forwardToPage("/orders/add_book_form.jsp", request, response);
     }
 }

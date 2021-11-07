@@ -28,11 +28,7 @@ public class UserServices {
         List<Users> usersList = userDAO.listAll();
 
         request.setAttribute("usersList", usersList);
-        String listPage ="/admin/users/users_list.jsp";
-
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher(listPage);
-        requestDispatcher.forward(request,response);
-
+        CommonUtitlity.forwardToPage("/admin/users/users_list.jsp", request, response);
     }
     public void createUser() throws ServletException, IOException {
         String email = request.getParameter("email");
@@ -45,12 +41,8 @@ public class UserServices {
             Users user = new Users();
             user.setFullName(fullName);
 
-            request.setAttribute("message", message);
             request.setAttribute("user", user);
-
-            String createUserPage ="/admin/users/user_form.jsp";
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher(createUserPage);
-            requestDispatcher.forward(request,response);
+            CommonUtitlity.forwardToPage("/admin/users/user_form.jsp", message, request, response);
         }else {
             Users newUser = new Users(email, password, fullName);
             userDAO.create(newUser);
@@ -65,18 +57,13 @@ public class UserServices {
 
         if (user == null) {
             Message message = new Message("User not found", "Could not find user with ID " + userId,"error");
-            request.setAttribute("message", message);
             List<Users> usersList = userDAO.listAll();
             request.setAttribute("usersList", usersList);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/users/users_list.jsp");
-            dispatcher.forward(request, response);
-
+            CommonUtitlity.forwardToPage("/admin/users/users_list.jsp", message, request, response);
         }
         else {
             request.setAttribute("user", user);
-            String editUserPage ="/admin/users/user_form.jsp";
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher(editUserPage);
-            requestDispatcher.forward(request,response);
+            CommonUtitlity.forwardToPage("/admin/users/user_form.jsp", request, response);
         }
 
     }
@@ -92,13 +79,8 @@ public class UserServices {
             Message message = new Message("Could not update user", "A user with email " +email +" already exist","error");
             Users user = new Users(userId, "", password, fullName );
 
-            request.setAttribute("message", message);
             request.setAttribute("user", user);
-
-            String createUserPage ="/admin/users/user_form.jsp";
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher(createUserPage);
-            requestDispatcher.forward(request,response);
-
+            CommonUtitlity.forwardToPage("/admin/users/user_form.jsp", message, request, response);
 
         }else {
             Users user = new Users(userId, email, password, fullName );
@@ -140,9 +122,7 @@ public class UserServices {
             listUsers();
         }else {
             Message message = new Message("Login fail", "Please enter email and password is registered", "error");
-            request.setAttribute("message", message);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/login.jsp");
-            dispatcher.forward(request, response);
+            CommonUtitlity.forwardToPage("/admin/login.jsp", message, request, response);
         }
     }
 }

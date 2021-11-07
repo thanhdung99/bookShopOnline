@@ -1,5 +1,6 @@
 package com.bookstore.controller.admin;
 
+import com.bookstore.service.CommonUtitlity;
 import com.bookstore.store.Message;
 
 import javax.servlet.*;
@@ -15,9 +16,7 @@ public class AdminLogoutServlet extends HttpServlet {
         session.removeAttribute("userEmail");
 
         Message message = new Message("Logout successful", "Account already logout", "success");
-        request.setAttribute("message", message);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/frontend/index.jsp");
-        dispatcher.forward(request, response);
+        CommonUtitlity.forwardToPage("/frontend/index.jsp", message, request, response);
     }
 
     @Override

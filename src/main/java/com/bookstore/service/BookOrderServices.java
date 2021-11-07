@@ -29,18 +29,11 @@ public class BookOrderServices {
     public void listOrders() throws ServletException, IOException {
         List<BookOrder> ordersList = orderDAO.listAll();
         request.setAttribute("ordersList",ordersList);
-        String listPage ="/admin/orders/orders_list.jsp";
-
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher(listPage);
-        requestDispatcher.forward(request,response);
+        CommonUtitlity.forwardToPage("/admin/orders/orders_list.jsp", request, response);
     }
 
-
     public void showCheckOutForm() throws ServletException, IOException {
-        String checkoutPage ="/frontend/order/checkout.jsp";
-
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher(checkoutPage);
-        requestDispatcher.forward(request,response);
+        CommonUtitlity.forwardToPage("/frontend/order/checkout.jsp", request, response);
     }
 
     public void placeOrder() {
@@ -100,9 +93,7 @@ public class BookOrderServices {
         List<BookOrder> listOrders = orderDAO.listByCustomer(customer.getCustomerId());
         request.setAttribute("listOrders", listOrders);
 
-        String historyPage ="/frontend/order/orders_list.jsp";
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher(historyPage);
-        requestDispatcher.forward(request,response);
+        CommonUtitlity.forwardToPage("/frontend/order/orders_list.jsp", request, response);
 
     }
     public void viewOrderDetailForAdmin() throws ServletException, IOException {
@@ -110,20 +101,22 @@ public class BookOrderServices {
         BookOrder order = orderDAO.get(orderId);
         request.setAttribute("order",order);
 
-        String detailPage = "/admin/orders/order_detail.jsp";
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher(detailPage);
-        requestDispatcher.forward(request,response);
+        CommonUtitlity.forwardToPage("/admin/orders/order_detail.jsp", request, response);
     }
     public void showEditOrderForm() throws ServletException, IOException {
         int orderId = Integer.parseInt(request.getParameter("id"));
         BookOrder order = orderDAO.get(orderId);
 
         HttpSession session = request.getSession();
-        session.setAttribute("order",order);
+        Object isPendingBook = session.getAttribute("NewBookPendingToAddToOrder");
 
-        String editPage = "/admin/orders/order_form.jsp";
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher(editPage);
-        requestDispatcher.forward(request,response);
+        if (isPendingBook == null) {
+            session.setAttribute("order", order);
+        } else {
+            session.removeAttribute("NewBookPendingToAddToOrder");
+        }
+
+        CommonUtitlity.forwardToPage("/admin/orders/order_form.jsp", request, response);
     }
 
     public void showOrderDetailForCustomer() throws ServletException, IOException {
@@ -134,9 +127,7 @@ public class BookOrderServices {
         BookOrder order = orderDAO.get(orderId, customer.getCustomerId());
         request.setAttribute("order",order);
 
-        String detailPage = "/frontend/order/order_details.jsp";
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher(detailPage);
-        requestDispatcher.forward(request,response);
+        CommonUtitlity.forwardToPage("/frontend/order/order_details.jsp", request, response);
     }
 
     public void deleteOrder() throws ServletException, IOException {

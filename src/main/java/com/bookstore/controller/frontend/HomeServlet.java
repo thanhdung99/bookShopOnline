@@ -2,6 +2,7 @@ package com.bookstore.controller.frontend;
 
 import com.bookstore.dao.BookDAO;
 import com.bookstore.entity.Book;
+import com.bookstore.service.CommonUtitlity;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -23,9 +24,7 @@ public class HomeServlet extends HttpServlet {
         request.setAttribute("listBestSellingBooks", listBestSellingBooks);
         request.setAttribute("listMostFavoredBooks", listMostFavoredBooks);
 
-        String homePage = "/frontend/index.jsp";
-        RequestDispatcher dispatcher = request.getRequestDispatcher(homePage);
-        dispatcher.forward(request,response);
+        CommonUtitlity.forwardToPage("/frontend/index.jsp", request, response);
     }
 
 }

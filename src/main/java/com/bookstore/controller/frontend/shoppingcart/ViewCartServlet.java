@@ -2,6 +2,7 @@ package com.bookstore.controller.frontend.shoppingcart;
 
 import com.bookstore.dao.BookDAO;
 import com.bookstore.entity.Book;
+import com.bookstore.service.CommonUtitlity;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -18,13 +19,7 @@ public class ViewCartServlet extends HttpServlet {
             ShoppingCart shoppingCart = new ShoppingCart();
             request.getSession().setAttribute("cart", shoppingCart);
         }
-
-
-        String destPage = "/frontend/cart/shopping_cart.jsp";
-        RequestDispatcher dispatcher = request.getRequestDispatcher(destPage);
-        dispatcher.forward(request, response);
-
-
+        CommonUtitlity.forwardToPage("/frontend/cart/shopping_cart.jsp", request, response);
     }
 
 }

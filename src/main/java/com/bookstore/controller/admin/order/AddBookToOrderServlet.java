@@ -4,6 +4,7 @@ import com.bookstore.dao.BookDAO;
 import com.bookstore.entity.Book;
 import com.bookstore.entity.BookOrder;
 import com.bookstore.entity.OrderDetail;
+import com.bookstore.service.CommonUtitlity;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -33,9 +34,6 @@ public class AddBookToOrderServlet extends HttpServlet {
         order.setTotal(newTotal);
 
         order.getOrderDetailsByOrderId().add(orderDetail);
-
-        String resultPage = "/orders/add_book_result.jsp";
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher(resultPage);
-        requestDispatcher.forward(request,response);
+        CommonUtitlity.forwardToPage("/orders/add_book_result.jsp", request, response);
     }
 }

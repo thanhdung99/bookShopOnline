@@ -30,10 +30,7 @@ public class ReviewServices {
     public void listReviews() throws ServletException, IOException {
         List<Review> reviewsList = reviewDAO.listAll();
         request.setAttribute("reviewsList", reviewsList);
-        String listPage ="/admin/reviews/reviews_list.jsp";
-
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher(listPage);
-        requestDispatcher.forward(request,response);
+        CommonUtitlity.forwardToPage("/admin/reviews/reviews_list.jsp", request, response);
     }
 
     public void submitReview() throws ServletException, IOException {

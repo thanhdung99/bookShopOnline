@@ -31,11 +31,7 @@ public class CategoryServices {
         List<Category> categoriesList = categoryDAO.listAll();
 
         request.setAttribute("categoriesList", categoriesList);
-        String listPage ="/admin/categories/categories_list.jsp";
-
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher(listPage);
-        requestDispatcher.forward(request,response);
-
+        CommonUtitlity.forwardToPage("/admin/categories/categories_list.jsp", request, response);
     }
 
     public void editCategory() throws ServletException, IOException {
@@ -44,16 +40,12 @@ public class CategoryServices {
 
         if(category == null){
             Message message = new Message("Category not found", "Could not find category with ID " + categoryId,"error");
-            request.setAttribute("message", message);
             List<Category> categoriesList = categoryDAO.listAll();
             request.setAttribute("categoriesList", categoriesList);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/categories/categories_list.jsp");
-            dispatcher.forward(request, response);
+            CommonUtitlity.forwardToPage("/admin/categories/categories_list.jsp", message, request, response);
         }else {
             request.setAttribute("category", category);
-            String editCategoryPage ="/admin/categories/category_form.jsp";
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher(editCategoryPage);
-            requestDispatcher.forward(request,response);
+            CommonUtitlity.forwardToPage("/admin/categories/category_form.jsp", request, response);
         }
     }
 
@@ -63,13 +55,9 @@ public class CategoryServices {
         if(existCategory != null){
             Message message = new Message("Could not create category", "A name with name " +name +" already exist","error");
             Category category = new Category(name);
-
-            request.setAttribute("message", message);
             request.setAttribute("category", category);
 
-            String createCategoryPage ="/admin/categories/category_form.jsp";
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher(createCategoryPage);
-            requestDispatcher.forward(request,response);
+            CommonUtitlity.forwardToPage("/admin/categories/category_form.jsp", message, request, response);
         }else {
             Category newCategory = new Category(name);
             categoryDAO.create(newCategory);
@@ -87,15 +75,9 @@ public class CategoryServices {
             Message message = new Message("Could not update category", "A category with email " +name +" already exist","error");
 
             Category category = new Category();
-
-            request.setAttribute("message", message);
             request.setAttribute("category", category);
 
-            String createCategoryPage ="/admin/categories/category_form.jsp";
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher(createCategoryPage);
-            requestDispatcher.forward(request,response);
-
-
+            CommonUtitlity.forwardToPage("/admin/categories/category_form.jsp", message, request, response);
         }else {
             Category category = new Category(categoryId, name);
             categoryDAO.update(category);
