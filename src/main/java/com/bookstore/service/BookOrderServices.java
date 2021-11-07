@@ -114,6 +114,17 @@ public class BookOrderServices {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher(detailPage);
         requestDispatcher.forward(request,response);
     }
+    public void showEditOrderForm() throws ServletException, IOException {
+        int orderId = Integer.parseInt(request.getParameter("id"));
+        BookOrder order = orderDAO.get(orderId);
+
+        HttpSession session = request.getSession();
+        session.setAttribute("order",order);
+
+        String editPage = "/admin/orders/order_form.jsp";
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher(editPage);
+        requestDispatcher.forward(request,response);
+    }
 
     public void showOrderDetailForCustomer() throws ServletException, IOException {
         int orderId = Integer.parseInt(request.getParameter("id"));
@@ -126,5 +137,25 @@ public class BookOrderServices {
         String detailPage = "/frontend/order/order_details.jsp";
         RequestDispatcher requestDispatcher = request.getRequestDispatcher(detailPage);
         requestDispatcher.forward(request,response);
+    }
+
+    public void deleteOrder() throws ServletException, IOException {
+        Integer orderId = Integer.parseInt(request.getParameter("id"));
+        BookOrder order = orderDAO.get(orderId);
+
+        if (order != null) {
+            orderDAO.delete(orderId);
+
+            Message message = new Message("Delete successful",
+                    "The order ID " + orderId + " has been deleted.",
+                    "success");
+            request.setAttribute("message", message);
+        } else {
+            Message message = new Message("Could not delete order",
+                    "Could not find order with ID " + orderId +
+                            ", or it might have been deleted by another admin.",
+                    "error");
+            request.setAttribute("message", message);
+        }
     }
 }

@@ -17,11 +17,11 @@ public class HomeServlet extends HttpServlet {
         BookDAO bookDAO = new BookDAO();
         List<Book> listNewBooks = bookDAO.listNewBooks();
         List<Book> listBestSellingBooks = bookDAO.listBestSellingBooks();
-//        List<Book> listMostFavoredBooks = bookDAO.listMostFavoredBooks();
+        List<Book> listMostFavoredBooks = bookDAO.listMostFavoredBooks();
 
         request.setAttribute("listNewBooks",listNewBooks);
         request.setAttribute("listBestSellingBooks", listBestSellingBooks);
-//        request.setAttribute("listMostFavoredBooks", listMostFavoredBooks);
+        request.setAttribute("listMostFavoredBooks", listMostFavoredBooks);
 
         String homePage = "/frontend/index.jsp";
         RequestDispatcher dispatcher = request.getRequestDispatcher(homePage);

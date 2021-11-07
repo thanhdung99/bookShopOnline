@@ -93,7 +93,7 @@ public class BookDAO extends JpaDAO<Book> implements GenericDAO<Book>{
     }
     public List<Book> listMostFavoredBooks(){
         List<Book> mostFavoredBooks = new ArrayList<>();
-        List<Object[]> results = super.findWithNamedQueryObjects("",1,4);
+        List<Object[]> results = super.findWithNamedQueryObjects("Review.mostFavoredBook",1,4);
         if (!results.isEmpty()){
             for (Object[] elements: results){
                 Book book = (Book) elements[0];
