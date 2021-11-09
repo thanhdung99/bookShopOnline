@@ -49,12 +49,14 @@
                                     <th>${order.customerByCustomerId.fullName}</th>
                                     <th>${order.bookCopies}</th>
                                     <th>${order.total}</th>
-                                    <th>${order.recipientMethod}</th>
+                                    <th>${order.paymentMethod}</th>
                                     <th>${order.status}</th>
                                     <th>${order.orderDate}</th>
 
                                     <th>
-
+                                        <a href="/admin/view_order?id=${order.orderId}">
+                                            <button type="button"  class="btn btn-primary btn-sm">View <i class="fas fa-search"></i></button>
+                                        </a>
                                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
                                                 onclick="deleteReview(${order.orderId}, '')" data-target="#exampleModal">
                                             Delete

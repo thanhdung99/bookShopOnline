@@ -17,9 +17,10 @@ class CustomerDAOTest {
     @Test
     public void testCreateCustomer(){
         Customer customer = new Customer();
-        customer.setEmail("phichh16fdsf@gmail.com");
-        customer.setFullName("dunghuynh2");
-        customer.setPassword("thanhdung99");
+        customer.setEmail("thanhdung1999@gmail.com");
+        customer.setFirstname("Thanh");
+        customer.setLastname("Dung");
+        customer.setPassword("root");
         Customer savedCustomer = customerDAO.create(customer);
         assertTrue(savedCustomer.getCustomerId() > 0);
     }

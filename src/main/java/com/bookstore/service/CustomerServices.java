@@ -31,11 +31,14 @@ public class CustomerServices {
         CommonUtitlity.forwardToPage("/admin/customers/customers_list.jsp", request, response);
     }
     public void readCustomerFields(Customer customer){
-        String fullName = request.getParameter("fullName");
+        String firstname = request.getParameter("firstname");
+        String lastname = request.getParameter("lastname");
         String password = request.getParameter("password");
         String phone = request.getParameter("phone");
-        String address = request.getParameter("address");
+        String addressLine1 = request.getParameter("addressLine1");
+        String addressLine2 = request.getParameter("addressLine2");
         String city = request.getParameter("city");
+        String state = request.getParameter("state");
         String zipcode = request.getParameter("zipcode");
         String country = request.getParameter("country");
         String email = request.getParameter("email");
@@ -48,17 +51,21 @@ public class CustomerServices {
             customer.setPassword(encryptedPassword);
         }
 
-        customer.setFullName(fullName);
+        customer.setFirstname(firstname);
+        customer.setLastname(lastname);
         customer.setPhone(phone);
-        customer.setAddress(address);
+        customer.setAddressLine1(addressLine1);
+        customer.setAddressLine2(addressLine2);
         customer.setCity(city);
+        customer.setState(state);
         customer.setZipcode(zipcode);
         customer.setCountry(country);
     }
     public void createCustomer() throws ServletException, IOException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        String fullName = request.getParameter("fullName");
+        String firstname = request.getParameter("firstname");
+        String lastname = request.getParameter("lastname");
         Customer existCustomer = customerDAO.findByEmail(email);
         Customer customer = new Customer();
         if(existCustomer != null){
@@ -69,8 +76,9 @@ public class CustomerServices {
             CommonUtitlity.forwardToPage("/admin/customers/customer_form.jsp", message, request, response);
         }else {
             customer.setEmail(email);
-            customer.setFullName(fullName);
             customer.setPassword(password);
+            customer.setFirstname(firstname);
+            customer.setLastname(lastname);
             customerDAO.create(customer);
             Message message = new Message("Create successful", "Create customer successful", "success");
             request.setAttribute("message", message);
@@ -79,7 +87,8 @@ public class CustomerServices {
     public void registerCustomer() throws ServletException, IOException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        String fullName = request.getParameter("fullName");
+        String firstname = request.getParameter("firstname");
+        String lastname = request.getParameter("lastname");
         Customer existCustomer = customerDAO.findByEmail(email);
         Customer customer = new Customer();
         readCustomerFields(customer);
@@ -90,7 +99,8 @@ public class CustomerServices {
             showLogin();
         }else {
             customer.setEmail(email);
-            customer.setFullName(fullName);
+            customer.setFirstname(firstname);
+            customer.setLastname(lastname);
             customer.setPassword(password);
             customerDAO.create(customer);
             Message message = new Message("Register successful", "Register new account successful", "success");
@@ -192,6 +202,7 @@ public class CustomerServices {
     }
 
     public void showCustomerProfile() throws ServletException, IOException {
+        request.setAttribute("mapCountries",CommonUtitlity.mapCountries());
         CommonUtitlity.forwardToPage("/frontend/customer/profile.jsp", request, response);
     }
 

@@ -18,9 +18,13 @@ import java.util.Collection;
 public class Customer {
     private int customerId;
     private String email;
+    private String firstname;
+    private String lastname;
     private String fullName;
-    private String address;
+    private String addressLine1;
+    private String addressLine2;
     private String city;
+    private String state;
     private String country;
     private String phone;
     private String zipcode;
@@ -51,23 +55,48 @@ public class Customer {
     }
 
     @Basic
-    @Column(name = "full_name", nullable = false, length = 30)
-    public String getFullName() {
-        return fullName;
+    @Column(name = "firstname", nullable = false, length = 30)
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
     @Basic
-    @Column(name = "address", nullable = true, length = 128)
-    public String getAddress() {
-        return address;
+    @Column(name = "lastname", nullable = true, length = 30)
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    @Transient
+    public String getFullName() {
+        return this.firstname + " " + this.lastname;
+    }
+
+    @Basic
+    @Column(name = "address_line1", nullable = true, length = 128)
+    public String getAddressLine1() {
+        return addressLine1;
+    }
+
+    public void setAddressLine1(String addressLine1) {
+        this.addressLine1 = addressLine1;
+    }
+
+    @Basic
+    @Column(name = "address_line2", nullable = true, length = 128)
+    public String getAddressLine2() {
+        return addressLine2;
+    }
+
+    public void setAddressLine2(String addressLine2) {
+        this.addressLine2 = addressLine2;
     }
 
     @Basic
@@ -78,6 +107,16 @@ public class Customer {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    @Basic
+    @Column(name = "state", nullable = true, length = 45)
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     @Basic
@@ -139,9 +178,14 @@ public class Customer {
 
         if (customerId != customer.customerId) return false;
         if (email != null ? !email.equals(customer.email) : customer.email != null) return false;
-        if (fullName != null ? !fullName.equals(customer.fullName) : customer.fullName != null) return false;
-        if (address != null ? !address.equals(customer.address) : customer.address != null) return false;
+        if (firstname != null ? !firstname.equals(customer.firstname) : customer.firstname != null) return false;
+        if (lastname != null ? !lastname.equals(customer.lastname) : customer.lastname != null) return false;
+        if (addressLine1 != null ? !addressLine1.equals(customer.addressLine1) : customer.addressLine1 != null)
+            return false;
+        if (addressLine2 != null ? !addressLine2.equals(customer.addressLine2) : customer.addressLine2 != null)
+            return false;
         if (city != null ? !city.equals(customer.city) : customer.city != null) return false;
+        if (state != null ? !state.equals(customer.state) : customer.state != null) return false;
         if (country != null ? !country.equals(customer.country) : customer.country != null) return false;
         if (phone != null ? !phone.equals(customer.phone) : customer.phone != null) return false;
         if (zipcode != null ? !zipcode.equals(customer.zipcode) : customer.zipcode != null) return false;
@@ -156,9 +200,12 @@ public class Customer {
     public int hashCode() {
         int result = customerId;
         result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (fullName != null ? fullName.hashCode() : 0);
-        result = 31 * result + (address != null ? address.hashCode() : 0);
+        result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
+        result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
+        result = 31 * result + (addressLine1 != null ? addressLine1.hashCode() : 0);
+        result = 31 * result + (addressLine2 != null ? addressLine2.hashCode() : 0);
         result = 31 * result + (city != null ? city.hashCode() : 0);
+        result = 31 * result + (state != null ? state.hashCode() : 0);
         result = 31 * result + (country != null ? country.hashCode() : 0);
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
         result = 31 * result + (zipcode != null ? zipcode.hashCode() : 0);

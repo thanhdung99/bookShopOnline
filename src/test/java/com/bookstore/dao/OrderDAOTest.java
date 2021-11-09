@@ -23,20 +23,22 @@ class OrderDAOTest {
     void testCreateOrder() {
         BookOrder order = new BookOrder();
         Customer customer = new Customer();
-        customer.setCustomerId(9);
+        customer.setCustomerId(10);
         order.setCustomerByCustomerId(customer);
-        order.setRecipientName("Huynh Thanh Dung");
-        order.setRecipientPhone("1234567890");
+        order.setrFirstname("Dung");
+        order.setrLastname("Huynh");
+        order.setrPhone("1234567890");
         order.setStatus("Processing");
         order.setTotal(1.4f);
-        order.setShippingAddress("123 Tran Phu");
+        order.setrAddressLine1("123 Tran Phu");
+        order.setPaymentMethod("Paypal");
 
         List<OrderDetail> orderDetails = new ArrayList<>();
         OrderDetail orderDetail;
         orderDetail = new OrderDetail();
         orderDetail.setQuantity(1);
         orderDetail.setSubtotal(1.4f);
-        Book book = bookDAO.get(25);
+        Book book = bookDAO.get(21);
         orderDetail.setBookByBookId(book);
         orderDetail.setBookOrderByOrderId(order);
 
@@ -61,7 +63,8 @@ class OrderDAOTest {
     @Test
     public void testFindOrder(){
         BookOrder order = orderDAO.get(725);
-        System.out.println(order.getCustomerByCustomerId().getFullName());
+        Customer customer = order.getCustomerByCustomerId();
+        System.out.println(customer.getFirstname()+" "+customer.getLastname());
         assertNotNull(order);
     }
     @Test

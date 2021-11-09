@@ -35,7 +35,7 @@
             <div class="card shadow p-0 mb-5 bg-white rounded">
                 <div class="full-height">
                     <div class="full-height-scroll">
-                        <table class="table table-sm" style="position: relative; width: 1200px">
+                        <table class="table table-sm" style="position: relative; width: 1500px">
                             <thead>
                             <tr>
                                 <th scope="col" class="sticky-header">#</th>

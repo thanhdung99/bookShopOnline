@@ -32,7 +32,8 @@
                             <tr>
                                 <th scope="col" class="sticky-header">#</th>
                                 <th scope="col" class="sticky-header">Id</th>
-                                <th scope="col" class="sticky-header">Full Name</th>
+                                <th scope="col" class="sticky-header">First Name</th>
+                                <th scope="col" class="sticky-header">Last Name</th>
                                 <th scope="col" class="sticky-header">Email</th>
                                 <th scope="col" class="sticky-header">City</th>
                                 <th scope="col" class="sticky-header">Country</th>
@@ -45,7 +46,8 @@
                                 <tr>
                                     <th scope="row">${status.index + 1}</th>
                                     <th>${customer.customerId}</th>
-                                    <th>${customer.fullName}</th>
+                                    <th>${customer.firstname}</th>
+                                    <th>${customer.lastname}</th>
                                     <th>${customer.email}</th>
                                     <th>${customer.city}</th>
                                     <th>${customer.country}</th>

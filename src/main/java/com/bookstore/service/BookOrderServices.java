@@ -33,25 +33,45 @@ public class BookOrderServices {
     }
 
     public void showCheckOutForm() throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("cart");
+
+        float tax = shoppingCart.getTotalAmount() * 0.1f;
+        float shippingFee = shoppingCart.getTotalQuantity() * 0.1f;
+        float total = shoppingCart.getTotalAmount() + tax + shippingFee;
+
+        request.setAttribute("tax", tax);
+        request.setAttribute("shippingFee", shippingFee);
+        request.setAttribute("total", total);
+        request.setAttribute("mapCountries",CommonUtitlity.mapCountries());
+
         CommonUtitlity.forwardToPage("/frontend/order/checkout.jsp", request, response);
     }
 
     public void placeOrder() {
 
-        String recipientName = request.getParameter("recipientName");
-        String recipientPhone =  request.getParameter("recipientPhone");
-        String address = request.getParameter("address");
-        String city = request.getParameter("city");
-        String zipcode = request.getParameter("zipcode");
-        String country = request.getParameter("country");
+        String rFirstname = request.getParameter("rFirstname");
+        String rLastname = request.getParameter("rLastname");
+        String rPhone =  request.getParameter("rPhone");
+        String rAddressLine1 = request.getParameter("rAddressLine1");
+        String rAddressLine2 = request.getParameter("rAddressLine2");
+        String rState = request.getParameter("rState");
+        String rCity = request.getParameter("rCity");
+        String rZipcode = request.getParameter("rZipcode");
+        String rCountry = request.getParameter("rCountry");
         String paymentMethod = request.getParameter("paymentMethod");
-        String  shippingAddress = address + "," + city + "," + zipcode + "," + country;
 
         BookOrder order = new BookOrder();
-        order.setRecipientName(recipientName);
-        order.setRecipientPhone(recipientPhone);
-        order.setShippingAddress(shippingAddress);
-        order.setRecipientMethod(paymentMethod);
+        order.setrFirstname(rFirstname);
+        order.setrLastname(rLastname);
+        order.setrPhone(rPhone);
+        order.setrAddressLine1(rAddressLine1);
+        order.setrAddressLine2(rAddressLine2);
+        order.setrState(rState);
+        order.setrCity(rCity);
+        order.setrZipcode(rZipcode);
+        order.setrCountry(rCountry);
+        order.setPaymentMethod(paymentMethod);
 
         HttpSession session = request.getSession();
         Customer customer = (Customer) session.getAttribute("");
@@ -78,7 +98,14 @@ public class BookOrderServices {
             orderDetails.add(orderDetail);
         }
         order.setOrderDetailsByOrderId(orderDetails);
-        order.setTotal(shoppingCart.getTotalAmount());
+        double tax = (Double) session.getAttribute("tax");
+        double shippingFee = (Double) session.getAttribute("shippingFee");
+        double total = (Double) session.getAttribute("total");
+
+        order.setSubtotal((double) shoppingCart.getTotalAmount());
+        order.setTax(tax);
+        order.setShippingFee(shippingFee);
+        order.setTotal(total);
 
         orderDAO.create(order);
         shoppingCart.clear();
