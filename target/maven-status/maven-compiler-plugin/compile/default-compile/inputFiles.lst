@@ -17,6 +17,7 @@
 /Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/entity/BookOrder.java
 /Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/controller/admin/user/CreateUserServlet.java
 /Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/service/CategoryServices.java
+/Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/controller/admin/order/RemoveBookFromOrderServlet.java
 /Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/controller/admin/category/ListCategoriesServlet.java
 /Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/controller/admin/book/ListBooksServlet.java
 /Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/controller/admin/category/DeleteCategoryServlet.java

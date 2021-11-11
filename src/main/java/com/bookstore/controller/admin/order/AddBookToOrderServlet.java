@@ -11,7 +11,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "AddBookToOrderServlet", value = "/AddBookToOrderServlet")
+@WebServlet(name = "AddBookToOrderServlet", value = "/admin/add_book_to_order")
 public class AddBookToOrderServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -34,6 +34,8 @@ public class AddBookToOrderServlet extends HttpServlet {
         order.setTotal(newTotal);
 
         order.getOrderDetailsByOrderId().add(orderDetail);
-        CommonUtitlity.forwardToPage("/orders/add_book_result.jsp", request, response);
+        request.setAttribute("book", book);
+        session.setAttribute("NewBookPendingToAddToOrder", true);
+        CommonUtitlity.forwardToPage("/admin/orders/add_book_result.jsp", request, response);
     }
 }

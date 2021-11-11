@@ -29,75 +29,75 @@
             <div class="row m-1">
                 <div class="col-3 px-0">
                     <div class="card shadow bg-white rounded">
-                        <h4>Order Overview:</h4>
+                        <h4 class="px-2">Order Overview:</h4>
                         <table class="table table-borderless w-100">
                             <tr>
-                                <td class=text-secondary"><b>Ordered by</b></td>
+                                <td class=text-secondary" style="width: 180px"><b>Ordered by</b></td>
                                 <td>${order.customerByCustomerId.fullName}</td>
                             </tr>
                             <tr>
-                                <td class="text-secondary"><b>Order Status</b></td>
+                                <td class="text-secondary" style="width: 180px"><b>Order Status</b></td>
                                 <td>${order.status}</td>
                             </tr>
                             <tr>
-                                <td class="text-secondary"><b>Order Date</b></td>
+                                <td class="text-secondary" style="width: 180px"><b>Order Date</b></td>
                                 <td>${order.orderDate}</td>
                             </tr>
                             <tr>
-                                <td class="text-secondary"><b>Payment Method</b></td>
+                                <td class="text-secondary" style="width: 180px"><b>Payment Method</b></td>
                                 <td>${order.paymentMethod}</td>
                             </tr>
                             <tr>
-                                <td class="text-secondary"><b>Book Copies</b></td>
+                                <td class="text-secondary" style="width: 180px"><b>Book Copies</b></td>
                                 <td>${order.bookCopies}</td>
                             </tr>
                             <tr>
-                                <td class="text-secondary"><b>Total Amount</b></td>
+                                <td class="text-secondary" style="width: 180px"><b>Total Amount</b></td>
                                 <td><fmt:formatNumber value="${order.total}" type="currency"/></td>
                             </tr>
                         </table>
-                        <h4>Recipient Information:</h4>
+                        <h4 class="px-2">Recipient Information:</h4>
                         <table class="table table-borderless w-100">
                             <tr>
-                                <td class=text-secondary"><b>First Name</b></td>
+                                <td class=text-secondary" style="width: 180px"><b>First Name</b></td>
                                 <td>${order.rFirstname}</td>
                             </tr>
                             <tr>
-                                <td class="text-secondary"><b>Last Name</b></td>
+                                <td class="text-secondary" style="width: 180px"><b>Last Name</b></td>
                                 <td>${order.rLastname}</td>
                             </tr>
                             <tr>
-                                <td class="text-secondary"><b>Phone</b></td>
+                                <td class="text-secondary" style="width: 180px"><b>Phone</b></td>
                                 <td>${order.rPhone}</td>
                             </tr>
                             <tr>
-                                <td class="text-secondary"><b>Address Line 1</b></td>
+                                <td class="text-secondary" style="width: 180px"><b>Address Line 1</b></td>
                                 <td>${order.rAddressLine1}</td>
                             </tr>
                             <tr>
-                                <td class="text-secondary"><b>Address Line 2</b></td>
+                                <td class="text-secondary" style="width: 180px"><b>Address Line 2</b></td>
                                 <td>${order.rAddressLine2}</td>
                             </tr>
                             <tr>
-                                <td class="text-secondary"><b>City</b></td>
+                                <td class="text-secondary" style="width: 180px"><b>City</b></td>
                                 <td>${order.rCity}</td>
                             </tr>
                             <tr>
-                                <td class="text-secondary"><b>State</b></td>
+                                <td class="text-secondary" style="width: 180px"><b>State</b></td>
                                 <td>${order.rState}</td>
                             </tr>
                             <tr>
-                                <td class="text-secondary"><b>Country</b></td>
-                                <td>${order.rCountry}</td>
+                                <td class="text-secondary" style="width: 180px"><b>Zipcode</b></td>
+                                <td>${order.rZipcode}</td>
                             </tr>
                             <tr>
-                                <td class="text-secondary"><b>Zipcode</b></td>
-                                <td>${order.rZipcode}</td>
+                                <td class="text-secondary" style="width: 180px"><b>Country</b></td>
+                                <td>${order.rCountry}</td>
                             </tr>
                         </table>
                     </div>
                     <div class="my-4 d-flex justify-content-around">
-                        <a href="/admin/create_category">
+                        <a href="/admin/edit_order?id=${order.orderId}">
                             <button type="submit" class="btn btn-primary"><i class="far fa-edit"></i> Edit this order</button>
                         </a>
                         <a href="/admin/create_category">
@@ -124,7 +124,15 @@
                                     <c:forEach var="orderDetail" varStatus="status" items="${order.orderDetailsByOrderId}">
                                         <tr>
                                             <th scope="row">${status.index + 1}</th>
-                                            <th>${orderDetail.bookByBookId.title}</th>
+                                            <th class="d-flex">
+                                                <div>
+                                                    <img src="data:image/jpg;base64,${orderDetail.bookByBookId.base64Image}"
+                                                         style="height: 84px;width: auto;"/>
+                                                </div>
+                                                <div class="mx-2">
+                                                        ${orderDetail.bookByBookId.title}
+                                                </div>
+                                            </th>
                                             <th>${orderDetail.bookByBookId.author}</th>
                                             <th><fmt:formatNumber value="${orderDetail.bookByBookId.price}" type="currency"/></th>
                                             <th>${orderDetail.quantity}</th>

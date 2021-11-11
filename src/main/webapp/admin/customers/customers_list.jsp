@@ -50,7 +50,7 @@
                                     <th>${customer.lastname}</th>
                                     <th>${customer.email}</th>
                                     <th>${customer.city}</th>
-                                    <th>${customer.country}</th>
+                                    <th>${customer.countryName}</th>
                                     <th>${customer.registerDate}</th>
                                     <th>
                                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"

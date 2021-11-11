@@ -17,6 +17,6 @@ public class ShowAddBookFormServlet extends HttpServlet {
         BookDAO bookDAO = new BookDAO();
         List<Book> booksList = bookDAO.listAll();
         request.setAttribute("booksList", booksList);
-        CommonUtitlity.forwardToPage("/orders/add_book_form.jsp", request, response);
+        CommonUtitlity.forwardToPage("/admin/orders/add_book_form.jsp", request, response);
     }
 }

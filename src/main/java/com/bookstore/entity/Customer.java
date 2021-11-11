@@ -3,6 +3,7 @@ package com.bookstore.entity;
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Collection;
+import java.util.Locale;
 
 @Entity
 @NamedQueries({
@@ -26,6 +27,7 @@ public class Customer {
     private String city;
     private String state;
     private String country;
+    private String countryName;
     private String phone;
     private String zipcode;
     private String password;
@@ -127,6 +129,11 @@ public class Customer {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    @Transient
+    public String getCountryName() {
+        return new Locale("", this.country).getDisplayCountry();
     }
 
     @Basic

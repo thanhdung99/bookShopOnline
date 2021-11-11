@@ -134,8 +134,14 @@ public class BookOrderServices {
         int orderId = Integer.parseInt(request.getParameter("id"));
         BookOrder order = orderDAO.get(orderId);
 
+        if (order == null) {
+            Message message = new Message("Edit order fail", "Could not find order with ID " + orderId,"error");
+            CommonUtitlity.forwardToPage("/admin/list_orders", message, request, response);
+        }
+
         HttpSession session = request.getSession();
         Object isPendingBook = session.getAttribute("NewBookPendingToAddToOrder");
+        request.setAttribute("mapCountries",CommonUtitlity.mapCountries());
 
         if (isPendingBook == null) {
             session.setAttribute("order", order);
@@ -155,6 +161,77 @@ public class BookOrderServices {
         request.setAttribute("order",order);
 
         CommonUtitlity.forwardToPage("/frontend/order/order_details.jsp", request, response);
+    }
+    public void updateOrder(){
+        HttpSession session = request.getSession();
+        BookOrder order = (BookOrder) session.getAttribute("order");
+
+        String rFirstname = request.getParameter("rFirstname");
+        String rLastname = request.getParameter("rLastname");
+        String rAddressLine1 = request.getParameter("rAddressLine1");
+        String rAddressLine2 = request.getParameter("rAddressLine2");
+        String rPhone = request.getParameter("rPhone");
+        String rCity = request.getParameter("rCity");
+        String rState = request.getParameter("rState");
+        String rZipcode = request.getParameter("rZipcode");
+        String rCountry = request.getParameter("rCountry");
+
+        Double shippingFee = Double.parseDouble(request.getParameter("shippingFee"));
+        Double tax = Double.parseDouble(request.getParameter("tax"));
+
+        String paymentMethod = request.getParameter("paymentMethod");
+        String status = request.getParameter("status");
+
+        order.setrFirstname(rFirstname);
+        order.setrLastname(rLastname);
+        order.setrPhone(rPhone);
+        order.setrAddressLine1(rAddressLine1);
+        order.setrAddressLine2(rAddressLine2);
+        order.setrCity(rCity);
+        order.setrState(rState);
+        order.setrZipcode(rZipcode);
+        order.setShippingFee(shippingFee);
+        order.setTax(tax);
+        order.setrCountry(rCountry);
+
+        order.setPaymentMethod(paymentMethod);
+        order.setStatus(status);
+
+        String[] arrayBookId = request.getParameterValues("bookId");
+        String[] arrayPrice = request.getParameterValues("price");
+        String[] arrayQuantity = new String[arrayBookId.length];
+
+        for (int i = 1; i <= arrayQuantity.length; i++){
+            arrayQuantity[i-1] = request.getParameter("quantity"+i);
+        }
+        Collection<OrderDetail> orderDetails = order.getOrderDetailsByOrderId();
+        orderDetails.clear();
+
+        Double totalAmount = 0.0;
+        for (int i = 0; i < arrayBookId.length; i++){
+            int bookId = Integer.parseInt(arrayBookId[i]);
+            int quantity = Integer.parseInt(arrayQuantity[i]);
+            Double subtotal = Double.parseDouble(arrayPrice[i]);
+
+            OrderDetail orderDetail = new OrderDetail();
+            orderDetail.setBookByBookId(new Book(bookId));
+            orderDetail.setQuantity(quantity);
+            orderDetail.setSubtotal(subtotal);
+
+            orderDetail.setBookOrderByOrderId(order);
+
+            orderDetails.add(orderDetail);
+            totalAmount += subtotal;
+        }
+        order.setSubtotal(totalAmount);
+        totalAmount += shippingFee;
+        totalAmount += tax;
+        order.setTotal(totalAmount);
+        orderDAO.update(order);
+
+        Message message = new Message("Update order", "", "");
+
+
     }
 
     public void deleteOrder() throws ServletException, IOException {
