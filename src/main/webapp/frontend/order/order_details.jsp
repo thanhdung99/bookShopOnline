@@ -34,19 +34,20 @@
                             <h3 class="text-info">Group 06</h3>
                             <p class="address">01 - Vo Van Ngan,
                                 <br>Thu Duc, HCM City,
-                                <br>Vietnamese
+                                <br>Vietnam
                             </p>
                             <div class="phone mt-2">+84 361323695</div>
                         </div>
                         <div class="col-5">
                             <p>Recipient,</p>
-                            <h3 class="text-info">${order.recipientName}</h3>
+                            <h3 class="text-info">${order.rFirstname} ${order.rLastname}</h3>
                             <p class="address">
-                                <c:forTokens items="${order.shippingAddress}" delims="," var="address" varStatus="status">
-                                    ${address}<c:if test="${!status.last}">,<br></c:if>
-                                </c:forTokens>
+                                ${order.rAddressLine1}<br>
+                                ${order.rAddressLine2},<br>
+                                ${order.rState}, ${order.rCity}, ${order.rZipcode},<br>
+                                ${order.countryName}
                             </p>
-                            <div class="phone mt-2">${order.recipientPhone}</div>
+                            <div class="phone mt-2">${order.rPhone}</div>
                         </div>
                     </div>
                     <hr>
@@ -64,7 +65,7 @@
                         </div>
                         <div class="col-5">
                             <p>Payment Method:
-                                <span>${order.recipientMethod}</span>
+                                <span>${order.paymentMethod}</span>
                             </p>
                             <p>Quantity:
                                 <span>${order.bookCopies}</span>
@@ -126,12 +127,12 @@
                 </tbody>
                 <tfoot>
                 <tr>
-                    <td colspan="3"></td>
-                    <td class="text-uppercase"><b>Total:</b></td>
-                    <td>${order.bookCopies} book(s)</td> <!-- / .Sum of quantities-->
-                    <td>
-                        <span><fmt:formatNumber value="${subtotal}" type="currency" /></span>
-                    </td> <!-- / .Sum of subtotal-->
+                    <td class="text-right" colspan="6">
+                        Subtotal: <fmt:formatNumber value="${subtotal}" type="currency" /><br>
+                        Tax: <fmt:formatNumber value="${order.tax}" type="currency" /><br>
+                        Shipping Fee: <fmt:formatNumber value="${order.shippingFee}" type="currency" /><br>
+                        TOTAL: <fmt:formatNumber value="${order.total}" type="currency" /><br>
+                    </td>
                 </tr>
                 </tfoot>
             </table>

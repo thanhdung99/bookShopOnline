@@ -2,6 +2,7 @@ package com.bookstore.service;
 
 import com.bookstore.dao.CustomerDAO;
 import com.bookstore.dao.HashGenerator;
+import com.bookstore.dao.OrderDAO;
 import com.bookstore.dao.ReviewDAO;
 import com.bookstore.entity.Customer;
 import com.bookstore.store.Message;
@@ -19,9 +20,11 @@ public class CustomerServices {
     private HttpServletResponse response;
     private CustomerDAO customerDAO;
     private ReviewDAO reviewDAO;
+    private OrderDAO orderDAO;
     public CustomerServices(HttpServletRequest request, HttpServletResponse response) {
         customerDAO = new CustomerDAO();
         reviewDAO = new ReviewDAO();
+        orderDAO = new OrderDAO();
         this.request = request;
         this.response = response;
     }
@@ -153,11 +156,11 @@ public class CustomerServices {
                         + " ) because it currently contains some reviews", "error");
                 request.setAttribute("message", message);
             }
-//            else if (customer.getBookOrdersByCustomerId().size() > 0){
-//                Message message = new Message("Delete failure", "Could not delete customer (ID: " + customerId
-//                        + " ) because it currently contains some orders", "error");
-//                request.setAttribute("message", message);
-//            }
+            else if (orderDAO.countByCustomer(customerId) > 0){
+                Message message = new Message("Delete failure", "Could not delete customer (ID: " + customerId
+                        + " ) because it currently contains some orders", "error");
+                request.setAttribute("message", message);
+            }
             else {
                 customerDAO.delete(customerId);
                 Message message = new Message("Delete successful", "Delete customer successful", "success");

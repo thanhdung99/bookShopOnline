@@ -30,7 +30,14 @@ public class AddBookToOrderServlet extends HttpServlet {
         orderDetail.setQuantity(quantity);
         orderDetail.setSubtotal(subtotal);
 
-        float newTotal = (float) (order.getTotal() + subtotal);
+        Double newSubtotal = order.getSubtotal() + subtotal;
+        Double newTax = order.getTax() + subtotal * 0.1;
+        Double newShippingFee = order.getShippingFee() + quantity * 0.1;
+        Double newTotal = newSubtotal + newShippingFee + newTax;
+
+        order.setSubtotal(newSubtotal);
+        order.setTax(newTax);
+        order.setShippingFee(newShippingFee);
         order.setTotal(newTotal);
 
         order.getOrderDetailsByOrderId().add(orderDetail);

@@ -92,7 +92,7 @@
                             </tr>
                             <tr>
                                 <td class="text-secondary" style="width: 180px"><b>Country</b></td>
-                                <td>${order.rCountry}</td>
+                                <td>${order.countryName}</td>
                             </tr>
                         </table>
                     </div>

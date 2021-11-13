@@ -6,9 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class CommonUtitlity {
     public static void forwardToPage(String page, Message message, HttpServletRequest request, HttpServletResponse response)
@@ -31,7 +30,10 @@ public class CommonUtitlity {
 
             mapCountries.put(name, code);
         }
-        return mapCountries;
+        Map<String, String> sortedMapCountries = mapCountries.entrySet().stream()
+                .sorted(Map.Entry.comparingByKey())
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+        return sortedMapCountries;
     }
 
 }

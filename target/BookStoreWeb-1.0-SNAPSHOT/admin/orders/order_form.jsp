@@ -26,7 +26,7 @@
             <div class="row m-1">
                 <h2 class="text-center">Order #${order.orderId}</h2>
             </div>
-            <form method="post" action="/update_order">
+            <form method="post" action="/admin/update_order">
                 <div class="row mx-1">
                     <div class="col-3 px-0">
                         <div class="card shadow bg-white rounded">
@@ -177,8 +177,16 @@
                                                     </div>
                                                 </th>
                                                 <th class="align-middle">${orderDetail.bookByBookId.author}</th>
-                                                <th class="align-middle"><fmt:formatNumber value="${orderDetail.bookByBookId.price}" type="currency"/></th>
-                                                <th class="align-middle">${orderDetail.quantity}</th>
+                                                <th class="align-middle">
+                                                    <input type="hidden" name="price" value="${orderDetail.bookByBookId.price}"/>
+                                                    <fmt:formatNumber value="${orderDetail.bookByBookId.price}" type="currency"/>
+                                                </th>
+                                                <th class="align-middle">
+                                                    <input type="hidden" name="bookId" value="${orderDetail.bookByBookId.bookId}"/>
+                                                    <input type="hidden" name="quantity${status.index + 1}" class="form-control form-control-sm"
+                                                           placeholder="Quantity" value="${orderDetail.quantity}"/>
+                                                    ${orderDetail.quantity}
+                                                </th>
                                                 <th class="text-right align-middle"><fmt:formatNumber value="${orderDetail.subtotal}" type="currency"/></th>
                                                 <th class="text-right align-middle">
                                                     <a href="/admin/remove_book_from_order?id=${orderDetail.bookByBookId.bookId}">
@@ -201,7 +209,8 @@
                                                             <label for="tax" >Tax:&nbsp;</label>
                                                             <input class="form-control form-control-sm border-info text-right"
                                                                    type="text" name="tax" placeholder="Tax"
-                                                                   style="width: 40px"  id="tax" value="${order.tax}"/>
+                                                                   style="width: 40px"  id="tax"
+                                                                   value="<fmt:formatNumber value="${order.tax}" type="number" maxFractionDigits="2"/>" />
                                                         </div>
                                                     </div>
                                                 </div>

@@ -7,7 +7,11 @@ import java.util.Objects;
 @Table(name = "order_detail", schema = "bookstoredb", catalog = "")
 @NamedQueries({
         @NamedQuery(name = "OrderDetail.bestSelling", query = "SELECT od.bookByBookId FROM OrderDetail od " +
-                "GROUP BY od.bookByBookId.bookId ORDER BY SUM(od.quantity) DESC")
+                "GROUP BY od.bookByBookId.bookId ORDER BY SUM(od.quantity) DESC"),
+        @NamedQuery(name = "OrderDetail.countByBook",
+                query = "SELECT COUNT(od) FROM OrderDetail od WHERE od.bookByBookId.bookId =:bookId"),
+        @NamedQuery(name = "BookOrder.countByCustomer",
+                query = "SELECT COUNT(bo.orderId) FROM BookOrder bo WHERE bo.customerByCustomerId.customerId =:customerId")
 })
 public class OrderDetail {
     private OrderDetailPK id = new OrderDetailPK();

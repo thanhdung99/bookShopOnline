@@ -52,6 +52,7 @@
 /Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/controller/admin/user/ListUsersServlet.java
 /Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/controller/admin/customer/DeleteCustomerServlet.java
 /Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/controller/frontend/HomeServlet.java
+/Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/controller/admin/order/UpdateOrderServlet.java
 /Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/controller/admin/order/ShowAddBookFormServlet.java
 /Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/controller/admin/customer/ListCustomersServlet.java
 /Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/dao/GenericDAO.java

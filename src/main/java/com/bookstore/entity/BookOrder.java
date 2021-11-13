@@ -1,9 +1,12 @@
 package com.bookstore.entity;
 
+import org.hibernate.annotations.NotFound;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Locale;
 import java.util.Objects;
 
 @Entity
@@ -31,6 +34,7 @@ public class BookOrder {
     private String rLastname;
     private String rPhone;
     private String rCountry;
+    private String countryName;
     private String rCity;
     private String rState;
     private String rZipcode;
@@ -134,6 +138,11 @@ public class BookOrder {
         this.rCountry = rCountry;
     }
 
+    @Transient
+    public String getCountryName() {
+        return new Locale("", this.rCountry).getDisplayCountry();
+    }
+
     @Basic
     @Column(name = "r_city", nullable = true, length = 32)
     public String getrCity() {
@@ -235,7 +244,7 @@ public class BookOrder {
         this.customerByCustomerId = customerByCustomerId;
     }
 
-    @OneToMany(mappedBy = "bookOrderByOrderId",fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany(mappedBy = "bookOrderByOrderId",fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     public Collection<OrderDetail> getOrderDetailsByOrderId() {
         return orderDetailsByOrderId;
     }

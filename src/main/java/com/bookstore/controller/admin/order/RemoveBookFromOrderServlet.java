@@ -18,16 +18,23 @@ public class RemoveBookFromOrderServlet extends HttpServlet {
         int bookId = Integer.parseInt(request.getParameter("id"));
         HttpSession session = request.getSession();
         BookOrder order = (BookOrder) session.getAttribute("order");
+
         request.setAttribute("mapCountries",CommonUtitlity.mapCountries());
+
         Collection<OrderDetail> orderDetails = order.getOrderDetailsByOrderId();
         Iterator<OrderDetail> iterator = orderDetails.iterator();
         while (iterator.hasNext()){
             OrderDetail orderDetail = iterator.next();
             if (orderDetail.getBookByBookId().getBookId() == bookId){
-                double newTotal = order.getTotal() - orderDetail.getSubtotal();
-                double newSubtotal = order.getSubtotal() - orderDetail.getSubtotal();
-                order.setTotal(newTotal);
+                Double newTax = order.getTax() - orderDetail.getSubtotal() * 0.1;
+                Double newShippingFee = order.getShippingFee() - orderDetail.getQuantity() * 0.1;
+                Double newSubtotal = order.getSubtotal() - orderDetail.getSubtotal();
+                Double newTotal = newSubtotal + newShippingFee + newTax;
+
                 order.setSubtotal(newSubtotal);
+                order.setTax(newTax);
+                order.setShippingFee(newShippingFee);
+                order.setTotal(newTotal);
                 iterator.remove();
             }
         }

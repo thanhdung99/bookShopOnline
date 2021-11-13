@@ -31,7 +31,9 @@
                         </div> -->
                         <div class="mt-3 text-left">
                             <h3 class="text-center pb-2">${loggedCustomer.fullName}</h3>
-                            <i class="text-center">Manage your information for more security</i>
+                            <div class="d-flex text-center">
+                                <i >Manage your information for more security</i>
+                            </div>
                             <hr>
                             <a href="#basic-info" class="p-2 rounded btn text-left">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -114,10 +116,19 @@
                             <hr>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <h5>Address</h5>
+                                    <h5>Address line 1</h5>
                                 </div>
                                 <div class="col-md-8 text-secondary">
-                                    ${loggedCustomer.address}
+                                    ${loggedCustomer.addressLine1}
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <h5>Address line 2</h5>
+                                </div>
+                                <div class="col-md-8 text-secondary">
+                                    ${loggedCustomer.addressLine2}
                                 </div>
                             </div>
                         </div>
@@ -125,6 +136,15 @@
                     <div id="payment-info" class="card mb-3 content">
                         <h3 class="m-3">Payment Info</h3>
                         <div class="card-body ml-2">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <h5>State</h5>
+                                </div>
+                                <div class="col-md-8 text-secondary">
+                                    ${loggedCustomer.state}
+                                </div>
+                            </div>
+                            <hr>
                             <div class="row">
                                 <div class="col-md-4">
                                     <h5>City</h5>
@@ -148,7 +168,7 @@
                                     <h5>Country</h5>
                                 </div>
                                 <div class="col-md-8 text-secondary">
-                                    ${loggedCustomer.country}
+                                    ${loggedCustomer.countryName}
                                 </div>
                             </div>
                         </div>
@@ -220,10 +240,18 @@
                         <div class="card-body ml-2">
                             <div class="row align-items-center">
                                 <div class="col-md-4">
-                                    <h5 class="mb-0">Full Name</h5>
+                                    <h5 class="mb-0">First Name</h5>
                                 </div>
                                 <input type="text" class="col-md-8 text-secondary form-control js__input-info"
-                                       name="fullName" value="${loggedCustomer.fullName}" placeholder="User Name">
+                                       name="firstname" value="${loggedCustomer.firstname}" placeholder="First Name">
+                            </div>
+                            <hr>
+                            <div class="row align-items-center">
+                                <div class="col-md-4">
+                                    <h5 class="mb-0">Last Name</h5>
+                                </div>
+                                <input type="text" class="col-md-8 text-secondary form-control js__input-info"
+                                       name="lastname" value="${loggedCustomer.lastname}" placeholder="Last Name">
                             </div>
                             <hr>
                             <div class="row align-items-center">
@@ -249,16 +277,32 @@
                             <hr>
                             <div class="row align-items-center">
                                 <div class="col-md-4">
-                                    <h5 class="mb-0">Address</h5>
+                                    <h5 class="mb-0">Address line 1</h5>
                                 </div>
                                 <input type="text" class="col-md-8 text-secondary form-control js__input-info"
-                                       name="address" value="${loggedCustomer.address}" placeholder="Address">
+                                       name="addressLine1" value="${loggedCustomer.addressLine1}" placeholder="Address Line 1">
+                            </div>
+                            <hr>
+                            <div class="row align-items-center">
+                                <div class="col-md-4">
+                                    <h5 class="mb-0">Address line 2</h5>
+                                </div>
+                                <input type="text" class="col-md-8 text-secondary form-control js__input-info"
+                                       name="addressLine2" value="${loggedCustomer.addressLine2}" placeholder="Address Line 2">
                             </div>
                         </div>
                     </div> <!-- / .Contact info-->
                     <div class="card mb-3 content">
                         <h3 class="m-3">Payment Info</h3>
                         <div class="card-body ml-2">
+                            <div class="row align-items-center">
+                                <div class="col-md-4">
+                                    <h5 class="mb-0">State</h5>
+                                </div>
+                                <input type="text" class="col-md-8 text-secondary form-control js__input-info"
+                                       name="state" value="${loggedCustomer.state}" placeholder="State">
+                            </div>
+                            <hr>
                             <div class="row align-items-center">
                                 <div class="col-md-4">
                                     <h5 class="mb-0">City</h5>
@@ -279,8 +323,14 @@
                                 <div class="col-md-4">
                                     <h5 class="mb-0">Country</h5>
                                 </div>
-                                <input type="text" class="col-md-8 text-secondary form-control js__input-info"
-                                       name="country" value="${loggedCustomer.country}" placeholder="Country">
+                                <select id="inputCountry" name="country"
+                                        class="col-md-8 text-secondary form-control form-control-custom font-weight-bold mb-3">
+                                    <c:forEach items="${mapCountries}" var="country">
+                                        <option value="${country.value}" class="option-size-custom"
+                                                <c:if test="${loggedCustomer.country eq country.value}">selected="selected"</c:if>>
+                                                ${country.key}</option>
+                                    </c:forEach>
+                                </select>
                             </div>
                         </div>
                     </div> <!-- / .Delivery info-->

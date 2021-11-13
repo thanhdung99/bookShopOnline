@@ -38,7 +38,7 @@ class OrderDAOTest {
         orderDetail = new OrderDetail();
         orderDetail.setQuantity(1);
         orderDetail.setSubtotal(1.4f);
-        Book book = bookDAO.get(21);
+        Book book = bookDAO.get(25);
         orderDetail.setBookByBookId(book);
         orderDetail.setBookOrderByOrderId(order);
 
@@ -74,6 +74,36 @@ class OrderDAOTest {
         order.setStatus(status);
         BookOrder updatedOrder = orderDAO.update(order);
         assertEquals(updatedOrder.getStatus(), status);
+    }
+    @Test
+    public void testUpdateBookOrderDetail(){
+        Integer orderId = 1065;
+        BookOrder order = orderDAO.get(orderId);
+
+        String status = "Shipped";
+        order.setStatus(status);
+
+        List<OrderDetail> orderDetails = new ArrayList<>();
+        OrderDetail orderDetail;
+        orderDetail = new OrderDetail();
+        orderDetail.setQuantity(3);
+        orderDetail.setSubtotal(5.4f);
+        Book book = bookDAO.get(25);
+
+        OrderDetailPK orderDetailPK = new OrderDetailPK();
+        orderDetailPK.setBook(book);
+        orderDetailPK.setBookOrder(order);
+
+        orderDetail.setId(orderDetailPK);
+
+        orderDetails.add(orderDetail);
+
+        order.setOrderDetailsByOrderId(orderDetails);
+
+        orderDAO.update(order);
+        BookOrder updatedOrder = orderDAO.get(orderId);
+        System.out.println("quantity: " + updatedOrder.getOrderDetailsByOrderId().stream().findFirst().orElse(null).getQuantity());
+        assertTrue(order.getOrderDetailsByOrderId().size() >0);
     }
     @Test
     public void testDeleteOrder(){

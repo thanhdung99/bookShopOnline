@@ -221,7 +221,7 @@ public class Customer {
         return result;
     }
 
-    @OneToMany(mappedBy = "customerByCustomerId")
+    @OneToMany(mappedBy = "customerByCustomerId", fetch = FetchType.LAZY)
     public Collection<BookOrder> getBookOrdersByCustomerId() {
         return bookOrdersByCustomerId;
     }

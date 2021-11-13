@@ -40,6 +40,7 @@
                     </tr>
                     </thead>
                     <tbody class="text-center">
+                    <c:set var="subtotal" value="${0}" scope="page"/>
                     <c:forEach items="${cart.items}" var="item" varStatus="status">
                         <tr>
                             <td>${status.index + 1}</td> <!-- / .Product number - auto increase-->
@@ -57,16 +58,19 @@
                             <td><fmt:formatNumber value="${item.key.price * item.value}" type="currency"/></td> <!-- / .Unit price-->
                             <td>${item.value}</td> <!-- / .Quantity-->
                             <td><fmt:formatNumber value="${item.key.price * item.value}" type="currency"/></td> <!-- / .Subtotal price-->
+                            <c:set var="subtotal" value="${subtotal + item.key.price * item.value}" scope="page"/>
                         </tr>
                     </c:forEach>
                     <!-- / .Render cart data -->
                     </tbody>
                     <tfoot class="text-center">
                     <tr>
-                        <td colspan="3"></td>
-                        <td class="text-uppercase"><b>Total:</b></td>
-                        <td>${cart.totalQuantity}</td> <!-- / .Sum of quantities-->
-                        <td><fmt:formatNumber value="${cart.totalAmount}" type="currency"/></td> <!-- / .Sum of subtotal-->
+                        <td class="text-right" colspan="6">
+                            Subtotal: <fmt:formatNumber value="${subtotal}" type="currency" /><br>
+                            Tax: <fmt:formatNumber value="${tax}" type="currency" /><br>
+                            Shipping Fee: <fmt:formatNumber value="${shippingFee}" type="currency" /><br>
+                            TOTAL: <fmt:formatNumber value="${total}" type="currency" /><br>
+                        </td>
                     </tr>
                     </tfoot>
                 </table>
@@ -79,38 +83,61 @@
             <div class="col-md-4 text-center py-2 check-out border">
                 <h3>Shopping Information</h3>
                 <hr>
-                <form>
-                    <div class="form-group">
-                        <label for="inputName" class="font-italic">Full Name</label>
-                        <input type="text" class="form-control form-control-custom" id="inputName"
-                               placeholder="Full name...">
+                <form method="post" action="/place_order">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputFirstname" class="font-italic">First Name</label>
+                            <input type="text" class="form-control form-control-custom" id="inputFirstname"
+                                   name="rFirstname" value="${loggedCustomer.firstname}" placeholder="First Name...">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputLastname" class="font-italic">Last Name</label>
+                            <input type="text" class="form-control form-control-custom" id="inputLastname"
+                                   name="rLastname" value="${loggedCustomer.lastname}" placeholder="Last Name...">
+                        </div>
                     </div>
+
                     <div class="form-group">
                         <label for="inputPhone" class="font-italic">Contact Number</label>
                         <input type="text" class="form-control form-control-custom" id="inputPhone"
-                               placeholder="Phone...">
+                               name="rPhone" value="${loggedCustomer.phone}" placeholder="Phone...">
                     </div>
                     <div class="form-group">
-                        <label for="inputAddress" class="font-italic">Address</label>
-                        <input type="text" class="form-control form-control-custom" id="inputAddress"
-                               placeholder="Apartment, studio, or floor...">
+                        <label for="inputAddress1" class="font-italic">Address Line 1</label>
+                        <input type="text" class="form-control form-control-custom" id="inputAddress1"
+                               name="rAddressLine1" value="${loggedCustomer.addressLine1}" placeholder="Apartment, studio, or floor...">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddress2" class="font-italic">Address Line 2</label>
+                        <input type="text" class="form-control form-control-custom" id="inputAddress2"
+                               name="rAddressLine2" value="${loggedCustomer.addressLine2}" placeholder="Apartment, studio, or floor...">
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputCity" class="font-italic">City</label>
                             <input type="text" class="form-control form-control-custom" id="inputCity"
-                                   placeholder="City...">
+                                   name="rCity" value="${loggedCustomer.city}" placeholder="City...">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="inputZip" class="font-italic">Zip</label>
-                            <input type="text" class="form-control form-control-custom" id="inputZip"
-                                   placeholder="Zip code...">
+                            <label for="inputState" class="font-italic">State</label>
+                            <input type="text" class="form-control form-control-custom" id="inputState"
+                                   name="rState" value="${loggedCustomer.state}" placeholder="State...">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputCountry" class="font-italic">Country</label>
-                        <input type="text" class="form-control form-control-custom" id="inputCountry"
-                               placeholder="Country...">
+                        <label for="inputZip" class="font-italic">Zip</label>
+                        <input type="text" class="form-control form-control-custom" id="inputZip"
+                               name="rZipcode" value="${loggedCustomer.zipcode}" placeholder="Zip code...">
+                    </div>
+                    <div class="form-group">
+                        <select name="rCountry" id="inputCountry"
+                                class="form-control form-control-custom font-weight-bold mb-3">
+                            <c:forEach items="${mapCountries}" var="country">
+                                <option value="${country.value}" class="option-size-custom"
+                                        <c:if test="${loggedCustomer.country eq country.value}">selected="selected"</c:if>>
+                                        ${country.key}</option>
+                            </c:forEach>
+                        </select>
                     </div>
                     <hr>
                     <div class="form-group">
@@ -121,80 +148,30 @@
                             <i class="fab fa-cc-paypal" style="color: darkturquoise"></i>
                             <i class="fab fa-cc-mastercard" style="color: red"></i>
                         </div>
-                        <select id="inputPayment"
+                        <select id="inputPayment" name="paymentMethod"
                                 class="form-control form-control-custom font-weight-bold mb-3">
-                            <option value="default" class="option-size-custom" selected>Cash on delivery
-                            </option>
-                            <option value="visa" class="option-size-custom">Visa</option>
+                            <option value="Cash on delivery" class="option-size-custom" selected>Cash on delivery</option>
                             <option value="paypal" class="option-size-custom">PayPal</option>
-                            <option value="mastercard" class="option-size-custom">MasterCard</option>
                         </select>
-                        <div class="js__credit-card d-none">
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="datetimepicker" class="font-italic">Exp Day</label>
-                                    <div class="input-group date" data-provide="datepicker"
-                                         id="datetimepicker">
-                                        <input type="text" class="form-control form-control-custom">
-                                        <div class="input-group-addon text-center">
-                                                            <span class="input-group-text bg-white calendar-custom">
-                                                                <i class="far fa-calendar-alt"></i>
-                                                            </span>
-                                        </div>
-                                    </div>
-                                    <!-- <input type="text" class="form-control form-control-custom" id="inputExpDay"
-                                    placeholder="dd/mm/yyyy..."> -->
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="inputCVV" class="font-italic">CVV</label>
-                                    <input type="text" class="form-control form-control-custom"
-                                           id="inputCVV" placeholder="CVV...">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputCardNumber" class="font-italic">Credit Card
-                                    Number</label>
-                                <input type="text" class="form-control form-control-custom"
-                                       id="inputCardNumber" placeholder="1111-2222-3333-4444...">
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-lg-5 pb-2">
+                            <button type="submit" class="btn btn-danger btn-block">Order</button>
+                        </div>
+                        <div class="col-md-6 col-lg-7 pb-2">
+                            <a href="${pageContext.request.contextPath}/">
+                                <button type="button" class="btn btn-outline-danger btn-block">Continue Shopping</button>
+                            </a>
+
                         </div>
                     </div>
                 </form> <!-- / .Render user info to this form-->
-                <div class="row">
-                    <div class="col-md-6 col-lg-5 pb-2">
-                        <button type="button" class="btn btn-danger btn-block">Order</button>
-                    </div>
-                    <div class="col-md-6 col-lg-7 pb-2">
-                        <a href="${pageContext.request.contextPath}/">
-                            <button type="button" class="btn btn-outline-danger btn-block">Continue Shopping</button>
-                        </a>
 
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 </div>
 <%@ include file="/importLib.jsp"%>
-<script
-        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-<script type="text/javascript">
-    $(function () {
-        $("#datetimepicker").datepicker();
-    });
-</script> <!-- / .Date time picker-->
-<script>
-    $(document).ready(function () {
-        $("#inputPayment").on("change", () => {
-            const selectedValue = document.querySelector("#inputPayment").value;
-            if (selectedValue !== "default") {
-                $(".js__credit-card").removeClass("d-none");
-            } else {
-                $(".js__credit-card").addClass("d-none");
-            }
-        })
-    });
-</script> <!-- / .Toggle credit card-info form-->
 
 <c:if test="${message != null}">
     <jsp:include page="/frontend/toast.jsp"/>

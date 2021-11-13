@@ -2,6 +2,7 @@ package com.bookstore.service;
 
 import com.bookstore.dao.BookDAO;
 import com.bookstore.dao.CategoryDAO;
+import com.bookstore.dao.OrderDAO;
 import com.bookstore.dao.ReviewDAO;
 import com.bookstore.entity.Book;
 import com.bookstore.entity.Category;
@@ -25,6 +26,7 @@ public class BookServices {
     private BookDAO bookDAO;
     private CategoryDAO categoryDAO;
     private ReviewDAO reviewDAO;
+    private OrderDAO orderDAO;
     private HttpServletRequest request;
     private HttpServletResponse response;
 
@@ -32,7 +34,8 @@ public class BookServices {
 
         bookDAO = new BookDAO();
         reviewDAO = new ReviewDAO();
-        this.categoryDAO= new CategoryDAO();
+        categoryDAO = new CategoryDAO();
+        orderDAO = new OrderDAO();
         this.request = request;
         this.response = response;
     }
@@ -143,11 +146,11 @@ public class BookServices {
                         + " ) because it currently contains some reviews", "error");
                 request.setAttribute("message", message);
             }
-//            else if (book.getOrderDetailsByBookId().size() > 0){
-//                Message message = new Message("Delete failure", "Could not delete book (ID: " + bookId
-//                        + " ) because it currently contains some orders", "error");
-//                request.setAttribute("message", message);
-//            }
+            else if (orderDAO.countOrderDetailByBook(bookId) > 0){
+                Message message = new Message("Delete failure", "Could not delete book (ID: " + bookId
+                        + " ) because it currently contains some orders", "error");
+                request.setAttribute("message", message);
+            }
             else {
                 bookDAO.delete(bookId);
                 Message message = new Message("Delete successful", "Delete book successful", "success");

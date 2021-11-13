@@ -59,7 +59,7 @@
                             <span>${order.status}</span>
                         </td>
                         <td>
-                            <a href="#" class="btn btn-danger btn-sm">View Details</a>
+                            <a href="/show_order_detail?id=${order.orderId}" class="btn btn-danger btn-sm">View Details</a>
                         </td>
                     </tr>
                 </c:forEach>
