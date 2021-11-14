@@ -7,7 +7,9 @@ import com.bookstore.dao.ReviewDAO;
 import com.bookstore.entity.Customer;
 import com.bookstore.store.Message;
 
+import javax.mail.MessagingException;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -87,27 +89,59 @@ public class CustomerServices {
             request.setAttribute("message", message);
         }
     }
-    public void registerCustomer() throws ServletException, IOException {
+    public void registerCustomer(String host, String port, String username, String pass) throws ServletException, IOException {
         String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        String firstname = request.getParameter("firstname");
-        String lastname = request.getParameter("lastname");
         Customer existCustomer = customerDAO.findByEmail(email);
         Customer customer = new Customer();
-        readCustomerFields(customer);
+
+        String firstname = request.getParameter("firstname");
+        String lastname = request.getParameter("lastname");
+        String password = request.getParameter("password");
+
+        customer.setFirstname(firstname);
+        customer.setLastname(lastname);
+        customer.setPassword(password);
         if(existCustomer != null){
             Message message = new Message("Could not register", "A customer with email " +email +" already exist","error");
+            request.setAttribute("message", message);
+            customer.setEmail("");
+            request.setAttribute("customer", customer);
+            showLogin();
+        }else {
+            String code = EmailServices.getRandom();
+            customer.setCode(code);
+
+            boolean test;
+            try {
+                test = EmailServices.sendEmail(host, port, username, pass, email, "Email Verification",
+                        "Registered successfully.Please verify your account using this code: " + customer.getCode());
+            } catch (MessagingException e) {
+                e.printStackTrace();
+                test = false;
+            }
+            if(test){
+                HttpSession session  = request.getSession();
+                customer.setEmail(email);
+                session.setAttribute("customer", customer);
+            }
+            response.sendRedirect("/verify");
+        }
+
+    }
+    public void saveCustomer() throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Customer customer = (Customer) session.getAttribute("customer");
+        Customer existCustomer = customerDAO.findByEmail(customer.getEmail());
+
+        if(existCustomer != null){
+            Message message = new Message("Could not register", "A customer with email " +customer.getEmail() +" already exist","error");
             request.setAttribute("message", message);
             request.setAttribute("customer", customer);
             showLogin();
         }else {
-            customer.setEmail(email);
-            customer.setFirstname(firstname);
-            customer.setLastname(lastname);
-            customer.setPassword(password);
             customerDAO.create(customer);
-            Message message = new Message("Register successful", "Register new account successful", "success");
-            CommonUtitlity.forwardToPage("/frontend/index.jsp", message, request, response);
+            session.setAttribute("loggedCustomer", customer);
+            session.removeAttribute("customer");
         }
     }
 
@@ -206,6 +240,12 @@ public class CustomerServices {
 
     public void showCustomerProfile() throws ServletException, IOException {
         request.setAttribute("mapCountries",CommonUtitlity.mapCountries());
+        HttpSession session = request.getSession();
+        String msg = (String) session.getAttribute("msg");
+        if (msg != null){
+            request.setAttribute("msg", msg);
+            session.removeAttribute("msg");
+        }
         CommonUtitlity.forwardToPage("/frontend/customer/profile.jsp", request, response);
     }
 

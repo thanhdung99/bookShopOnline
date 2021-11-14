@@ -31,6 +31,7 @@ public class Customer {
     private String phone;
     private String zipcode;
     private String password;
+    private String code;
     private Date registerDate;
     private Collection<BookOrder> bookOrdersByCustomerId;
     private Collection<Review> reviewsByCustomerId;
@@ -164,6 +165,15 @@ public class Customer {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Transient
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     @Basic

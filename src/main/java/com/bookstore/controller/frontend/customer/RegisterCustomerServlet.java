@@ -13,6 +13,6 @@ public class RegisterCustomerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         CustomerServices customerServices = new CustomerServices(request, response);
-        customerServices.registerCustomer();
+        customerServices.registerCustomer("smtp.gmail.com", "587", "phichh16@gmail.com", "knkatubzsdmcrnps");
     }
 }

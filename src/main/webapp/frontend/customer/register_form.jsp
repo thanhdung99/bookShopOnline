@@ -13,7 +13,8 @@
                     <h3>Create Account</h3>
 
 
-                    <input type="text" name="fullName" placeholder="Name" />
+                    <input type="text" name="firstname" placeholder="Firstname" />
+                    <input type="text" name="lastname" placeholder="Lastname" />
                     <input type="email" name="email" placeholder="Email" />
                     <input type="password" name="password" placeholder="Password" />
                     <div class="mt-3 custom-control custom-checkbox" style="width: 100%;">

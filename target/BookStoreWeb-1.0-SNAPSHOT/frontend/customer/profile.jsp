@@ -32,7 +32,13 @@
                         <div class="mt-3 text-left">
                             <h3 class="text-center pb-2">${loggedCustomer.fullName}</h3>
                             <div class="d-flex text-center">
-                                <i >Manage your information for more security</i>
+                                <c:if test="${msg != null}">
+                                    <i>${msg}</i>
+                                </c:if>
+                                <c:if test="${msg == null}">
+                                    <i>Manage your information for more security</i>
+                                </c:if>
+
                             </div>
                             <hr>
                             <a href="#basic-info" class="p-2 rounded btn text-left">
@@ -168,7 +174,9 @@
                                     <h5>Country</h5>
                                 </div>
                                 <div class="col-md-8 text-secondary">
-                                    ${loggedCustomer.countryName}
+                                    <c:if test="${loggedCustomer.country != null}">
+                                        ${loggedCustomer.countryName}
+                                    </c:if>
                                 </div>
                             </div>
                         </div>
