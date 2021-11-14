@@ -303,7 +303,7 @@ public class BookOrderServices {
     }
 
     public void deleteOrder() throws ServletException, IOException {
-        Integer orderId = Integer.parseInt(request.getParameter("id"));
+        Integer orderId = Integer.parseInt(request.getParameter("orderId"));
         BookOrder order = orderDAO.get(orderId);
 
         if (order != null) {

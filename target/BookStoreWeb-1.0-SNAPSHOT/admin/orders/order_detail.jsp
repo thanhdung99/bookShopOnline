@@ -18,6 +18,7 @@
 <c:if test="${message != null}">
     <jsp:include page="/components/toast.jsp"/>
 </c:if>
+<jsp:include page="/components/modal.jsp"/>
 <jsp:include page="/admin/header.jsp"/>
 <div class="container-fluid p-0">
     <div class="row">
@@ -100,9 +101,11 @@
                         <a href="/admin/edit_order?id=${order.orderId}">
                             <button type="submit" class="btn btn-primary"><i class="far fa-edit"></i> Edit this order</button>
                         </a>
-                        <a href="/admin/create_category">
-                            <button type="submit" class="btn btn-danger"><i class="far fa-trash-alt"></i> Delete this order</button>
-                        </a>
+                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                onclick="deleteOrder(${order.orderId}, '')" data-target="#exampleModal">
+                            <i class="far fa-trash-alt"></i>
+                            Delete this order
+                        </button>
                     </div>
                 </div>
                 <div class="col-9">
@@ -160,5 +163,18 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function deleteOrder(id, name) {
+        document.getElementById("url").action = "/admin/delete_order"
+
+        const orderId = document.getElementById("id")
+        orderId.value = id
+        orderId.name= "orderId"
+        const title = document.getElementsByClassName("modal-title")[0]
+        title.innerText = "Delete order #" + id;
+        const body = document.getElementsByClassName("modal-body")[0]
+        body.innerText="Do you want to delete this order?";
+    }
+</script>
 </body>
 </html>

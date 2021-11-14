@@ -58,7 +58,7 @@
                                             <button type="button"  class="btn btn-primary btn-sm">View <i class="fas fa-search"></i></button>
                                         </a>
                                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                                onclick="deleteReview(${order.orderId}, '')" data-target="#exampleModal">
+                                                onclick="deleteOrder(${order.orderId}, '')" data-target="#exampleModal">
                                             Delete
                                             <i class="far fa-trash-alt"></i>
                                         </button>
@@ -74,16 +74,16 @@
     </div>
 </div>
 <script type="text/javascript">
-    function deleteReview(id, name) {
-        document.getElementById("url").action = "/admin/delete_review"
+    function deleteOrder(id, name) {
+        document.getElementById("url").action = "/admin/delete_order"
 
-        const reviewId = document.getElementById("id")
-        reviewId.value = id
-        reviewId.name= "reviewId"
+        const orderId = document.getElementById("id")
+        orderId.value = id
+        orderId.name= "orderId"
         const title = document.getElementsByClassName("modal-title")[0]
-        title.innerText = "Delete review " + name;
+        title.innerText = "Delete order #" + id;
         const body = document.getElementsByClassName("modal-body")[0]
-        body.innerText="Do you want to delete this review?";
+        body.innerText="Do you want to delete this order?";
     }
 </script>
 </body>
