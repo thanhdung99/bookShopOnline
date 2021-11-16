@@ -143,9 +143,9 @@
               </div>
               <div id="basicsCollapseOne"
                    class="z-index-2 bg-white collapse position-absolute right-0 left-0 border"
-                   aria-labelledby="basicsHeadingOne" data-parent="#basicsAccordion">
-                <div class="card-body p-0">
-                  <ul class="list-unstyled vertical-menu position-relative mb-0">
+                   aria-labelledby="basicsHeadingOne" data-parent="#basicsAccordion" style="z-index: 100">
+                <div class="card-body p-0" >
+                  <ul class="list-unstyled vertical-menu position-relative mb-0" >
                     <c:set var="count" value="0"/>
                     <c:forEach items="${categoriesList}" var="category">
                       <c:if test="${count < 7 }">

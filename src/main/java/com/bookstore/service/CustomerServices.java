@@ -205,6 +205,10 @@ public class CustomerServices {
     }
 
     public void showLogin() throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Message message = (Message) session.getAttribute("message");
+        request.setAttribute("message", message);
+        session.removeAttribute("message");
         CommonUtitlity.forwardToPage("/frontend/customer/register_form.jsp", request, response);
     }
 
@@ -215,7 +219,7 @@ public class CustomerServices {
 
         if(customer != null){
             Message message = new Message("Login successful", "User is authenticated", "success");
-            request.setAttribute("message", message);
+            request.getSession().setAttribute("message", message);
 
             HttpSession session = request.getSession();
             session.setAttribute("loggedCustomer", customer);
@@ -227,9 +231,7 @@ public class CustomerServices {
                 session.removeAttribute("redirectURL");
                 response.sendRedirect(redirectPage);
             } else {
-                String redirectPage = "/frontend/index.jsp";
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher(redirectPage);
-                requestDispatcher.forward(request,response);
+                response.sendRedirect("/");
             }
         }else {
             Message message = new Message("Login fail", "Please enter email and password is registered", "error");

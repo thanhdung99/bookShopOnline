@@ -1,5 +1,6 @@
 <html lang="en">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <head>
 
     <title>Categories Search</title>
@@ -10,14 +11,15 @@
 
     <link rel="shortcut icon" href="">
     <jsp:include page="/importCss.jsp" />
-    <link rel="stylesheet" href="/css/slider.css">
 </head>
 <body>
 <%@include file="/components/Header.jsp"%>
 
-<c:import url="/frontend/SectionHomePage/MostFavored.jsp"/>
+<%@include file="/frontend/SectionHomePage/MostRecent.jsp"%>
+<%@include file="/frontend/SectionHomePage/BestSelling.jsp"%>
+<%@include file="/frontend/SectionHomePage/MostFavored.jsp"%>
 
-<c:import url="/components/Footer.jsp"/>
+<%@include file="/components/Footer.jsp"%>
 
 
 </body>

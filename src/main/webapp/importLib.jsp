@@ -9,6 +9,9 @@
 <script src="/assets/library/slick-carousel/slick/slick.min.js"></script>
 
 <script src="/assets/js/hs.core.js"></script>
+<script src="/assets/js/lightslider.js"></script>
+<script src="/assets/js/slider.js"></script>
+
 <script src="/assets/js/components/hs.unfold.js"></script>
 <script src="/assets/js/components/hs.malihu-scrollbar.js"></script>
 <script src="/assets/js/components/hs.slick-carousel.js"></script>

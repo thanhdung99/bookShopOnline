@@ -40,29 +40,41 @@ public class BookOrderServices {
     public void showCheckOutForm() throws ServletException, IOException {
         HttpSession session = request.getSession();
         ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("cart");
+        if (shoppingCart != null){
+            Double tax = shoppingCart.getTotalAmount() * 0.1;
+            Double shippingFee = shoppingCart.getTotalQuantity() * 0.1;
+            Double total = shoppingCart.getTotalAmount() + tax + shippingFee;
 
-        Double tax = shoppingCart.getTotalAmount() * 0.1;
-        Double shippingFee = shoppingCart.getTotalQuantity() * 0.1;
-        Double total = shoppingCart.getTotalAmount() + tax + shippingFee;
+            session.setAttribute("tax", tax);
+            session.setAttribute("shippingFee", shippingFee);
+            session.setAttribute("total", total);
+            request.setAttribute("mapCountries",CommonUtitlity.mapCountries());
 
-        session.setAttribute("tax", tax);
-        session.setAttribute("shippingFee", shippingFee);
-        session.setAttribute("total", total);
-        request.setAttribute("mapCountries",CommonUtitlity.mapCountries());
-
-        CommonUtitlity.forwardToPage("/frontend/order/checkout.jsp", request, response);
+            CommonUtitlity.forwardToPage("/frontend/order/checkout.jsp", request, response);
+        }else {
+            response.sendRedirect("/view_cart");
+        }
     }
 
     public void placeOrder() throws ServletException, IOException {
-        String paymentMethod = request.getParameter("paymentMethod");
-        BookOrder order = readOrderInfo();
-        if (paymentMethod.equals("paypal")){
-            PaymentServices paymentServices = new PaymentServices(request, response);
-            request.getSession().setAttribute("order4Paypal", order);
-            paymentServices.authorizedPayment(order);
+        HttpSession session = request.getSession();
+        Customer customer = (Customer) session.getAttribute("loggedCustomer");
+        if(customer.getCountry() == null || customer.getAddressLine1() == null || customer.getZipcode() == null
+                || customer.getCountryName() == null || customer.getCity() == null || customer.getState() == null){
+            session.setAttribute("msg", "Please update your address.");
+            response.sendRedirect("/profile");
         } else {
-            placeOrderCOD(order);
+            String paymentMethod = request.getParameter("paymentMethod");
+            BookOrder order = readOrderInfo();
+            if (paymentMethod.equals("paypal")){
+                PaymentServices paymentServices = new PaymentServices(request, response);
+                session.setAttribute("order4Paypal", order);
+                paymentServices.authorizedPayment(order);
+            } else {
+                placeOrderCOD(order);
+            }
         }
+
     }
 
     private BookOrder readOrderInfo(){

@@ -252,7 +252,6 @@ public class Book {
     public void setBase64Image(String base64Image) {
         this.base64Image = base64Image;
     }
-    @Transient
     public void setAverageRating(){
         float averageRating = 0.0f;
         float sum = 0.0f;
