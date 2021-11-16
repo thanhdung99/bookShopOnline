@@ -5,6 +5,7 @@
 /Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/controller/frontend/shoppingcart/ShoppingCart.java
 /Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/controller/frontend/shoppingcart/ClearCartServlet.java
 /Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/controller/frontend/order/PlaceOrderServlet.java
+/Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/controller/frontend/customer/ResendCodeServlet.java
 /Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/controller/admin/AdminHomeServlet.java
 /Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/service/PaymentServices.java
 /Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/controller/admin/review/ListReviewsServlet.java
@@ -58,7 +59,10 @@
 /Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/controller/admin/customer/ListCustomersServlet.java
 /Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/dao/GenericDAO.java
 /Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/service/BookOrderServices.java
+/Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/service/EmailServices.java
+/Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/controller/frontend/vnpay/Config.java
 /Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/entity/OrderDetailPK.java
+/Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/controller/frontend/customer/VerifyCustomerServlet.java
 /Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/entity/Book.java
 /Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/controller/frontend/shoppingcart/ViewCartServlet.java
 /Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/controller/frontend/customer/CustomerLogoutServlet.java

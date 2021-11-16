@@ -114,7 +114,7 @@ public class CustomerServices {
             boolean test;
             try {
                 test = EmailServices.sendEmail(host, port, username, pass, email, "Email Verification",
-                        "Registered successfully.Please verify your account using this code: " + customer.getCode());
+                        "<p>Registered successfully.Please verify your account using this code: " + customer.getCode() + "</p>");
             } catch (MessagingException e) {
                 e.printStackTrace();
                 test = false;

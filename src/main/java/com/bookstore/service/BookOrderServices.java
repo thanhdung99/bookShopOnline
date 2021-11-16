@@ -154,6 +154,7 @@ public class BookOrderServices {
         BookOrder createdOrder = orderDAO.create(order);
 
         HttpSession session = request.getSession();
+        session.setAttribute("orderId", createdOrder.getOrderId());
         ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("cart");
         shoppingCart.clear();
         return  createdOrder.getOrderId();

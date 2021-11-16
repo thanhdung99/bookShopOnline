@@ -106,7 +106,7 @@
                 <groupId>com.heroku.sdk</groupId>
                 <artifactId>heroku-maven-plugin</artifactId>
                 <configuration>
-                    <appName>book-shop-online</appName>
+                    <appName>maple-store</appName>
                 </configuration>
                 <version>3.0.3</version>
             </plugin>

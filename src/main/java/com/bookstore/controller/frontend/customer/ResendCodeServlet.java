@@ -21,7 +21,7 @@ public class ResendCodeServlet extends HttpServlet {
         try {
             EmailServices.sendEmail("smtp.gmail.com", "587", "phichh16@gmail.com", "knkatubzsdmcrnps",
                     customer.getEmail(), "Email Verification",
-                    "Registered successfully.Please verify your account using this code: " + customer.getCode());
+                    "<p>Registered successfully.Please verify your account using this code: " + customer.getCode() + "</p>") ;
             session.setAttribute("customer", customer);
             response.sendRedirect("/verify");
         } catch (MessagingException e) {

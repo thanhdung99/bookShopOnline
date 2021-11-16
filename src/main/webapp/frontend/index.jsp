@@ -10,22 +10,16 @@
 
     <link rel="shortcut icon" href="">
     <jsp:include page="/importCss.jsp" />
-
+    <link rel="stylesheet" href="/css/slider.css">
 </head>
 <body>
 <%@include file="/components/Header.jsp"%>
 
-<c:import url="/frontend/SectionHomePage/SectionCarousel.jsp"/>
-<c:import url="/frontend/SectionHomePage/SectionMostPoupular.jsp"/>
-<c:import url="/frontend/SectionHomePage/SectionFeatureCategories.jsp"/>
-<c:import url="/frontend/SectionHomePage/SectionShowMainSellBook.jsp"/>
-<c:import url="/frontend/SectionHomePage/SectionSellBioBook.jsp"/>
-<c:import url="/frontend/SectionHomePage/SectionMoreBook.jsp"/>
-<c:import url="/frontend/SectionHomePage/SectionServices.jsp"/>
+<c:import url="/frontend/SectionHomePage/MostFavored.jsp"/>
 
 <c:import url="/components/Footer.jsp"/>
 
-<jsp:include page="/importLib.jsp"/>
 
 </body>
+    <jsp:include page="/importLib.jsp"/>
 </html>

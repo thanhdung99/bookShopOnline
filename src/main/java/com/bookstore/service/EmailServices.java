@@ -1,5 +1,7 @@
 package com.bookstore.service;
 
+
+
 import javax.mail.*;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
@@ -14,8 +16,6 @@ public class EmailServices {
                                     String subject, String message) throws AddressException,
             MessagingException {
 
-//        System.out.println(host);
-//        System.out.println(port);
         // sets SMTP server properties
         Properties properties = new Properties();
         properties.put("mail.smtp.host", host);
@@ -34,13 +34,12 @@ public class EmailServices {
 
         // creates a new e-mail message
         Message msg = new MimeMessage(session);
-
         msg.setFrom(new InternetAddress(email));
         InternetAddress[] toAddresses = { new InternetAddress(toAddress) };
         msg.setRecipients(Message.RecipientType.TO, toAddresses);
         msg.setSubject(subject);
         msg.setSentDate(new Date());
-        msg.setText(message);
+        msg.setContent(message, "text/html");
 
         try {
             // sends the e-mail

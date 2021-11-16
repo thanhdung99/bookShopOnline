@@ -1,8 +1,12 @@
 package com.bookstore.controller.frontend.order;
 
 import com.bookstore.service.BookOrderServices;
+import com.bookstore.service.CommonUtitlity;
 import com.bookstore.service.PaymentServices;
+import com.paypal.api.payments.PayerInfo;
 import com.paypal.api.payments.Payment;
+import com.paypal.api.payments.ShippingAddress;
+import com.paypal.api.payments.Transaction;
 import com.paypal.base.rest.PayPalRESTException;
 
 import javax.servlet.*;
@@ -21,7 +25,17 @@ public class ExecutePaymentServlet extends HttpServlet {
             BookOrderServices bookOrderServices = new BookOrderServices(request, response);
             Integer orderId = bookOrderServices.placeOrderPaypal(payment);
 
-            response.getWriter().println(orderId);
+            HttpSession session = request.getSession();
+            session.setAttribute("orderId ", orderId);
+
+            PayerInfo payerInfo = payment.getPayer().getPayerInfo();
+            Transaction transaction = payment.getTransactions().get(0);
+
+            request.setAttribute("payerInfo", payerInfo);
+            request.setAttribute("transaction", transaction);
+
+            String receiptPage = "/frontend/order/payment_receipt.jsp";
+            CommonUtitlity.forwardToPage(receiptPage, request, response);
         } catch (PayPalRESTException e) {
             e.printStackTrace();
             throw new ServletException("Error in executing payment.");
