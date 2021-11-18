@@ -152,6 +152,7 @@
                                 class="form-control form-control-custom font-weight-bold mb-3">
                             <option value="Cash on delivery" class="option-size-custom" selected>Cash on delivery</option>
                             <option value="paypal" class="option-size-custom">PayPal</option>
+                            <option value="vnpay" class="option-size-custom">VNPay</option>
                         </select>
                     </div>
                     <div class="row">

@@ -104,6 +104,7 @@
                                             <div class="ecommerce-loop-product__thumbnail">
                                                 <a href="/view_book?id=${book.bookId}" class="d-block">
                                                     <img src="data:image/jpg;base64,${book.base64Image}"
+                                                         style="max-width: 225px; max-height: 225px; width: auto; height: auto;"
                                                          class="img-fluid d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                          alt="image-description">
                                                 </a>

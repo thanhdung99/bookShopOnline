@@ -172,7 +172,7 @@ public class BookServices {
             request.getRequestDispatcher("/frontend/index.jsp").forward(request, response);
             return;
         }
-        int limit = 3;
+        int limit = 8;
         List<Book> booksList = bookDAO.listBooksByCategory(categoryId, page, limit);
         int numOfBook = (int) bookDAO.countByCategory(categoryId);
         int numOfPages = 0;
@@ -225,7 +225,7 @@ public class BookServices {
         int page = Integer.parseInt(request.getParameter("page"));
         String category = request.getParameter("category");
         List<Book> result = null;
-        int limit = 4;
+        int limit = 8;
         int numOfBook = 0;
 
         if(keyword.equals("")){

@@ -70,7 +70,12 @@ public class BookOrderServices {
                 PaymentServices paymentServices = new PaymentServices(request, response);
                 session.setAttribute("order4Paypal", order);
                 paymentServices.authorizedPayment(order);
-            } else {
+            }
+            else if(paymentMethod.equals("vnpay")){
+                session.setAttribute("order4VNPay", order);
+                response.sendRedirect("/review_vnpay_payment");
+            }
+            else {
                 placeOrderCOD(order);
             }
         }
@@ -121,6 +126,9 @@ public class BookOrderServices {
             orderDetail.setQuantity(quantity);
             orderDetail.setSubtotal(subtotal);
 
+            orderDetail.setBookByBookId(book);
+            orderDetail.setBookOrderByOrderId(order);
+
             OrderDetailPK orderDetailPK = new OrderDetailPK();
             orderDetailPK.setBook(book);
             orderDetailPK.setBookOrder(order);
@@ -143,12 +151,15 @@ public class BookOrderServices {
     public Integer placeOrderPaypal(Payment payment){
         BookOrder order = (BookOrder) request.getSession().getAttribute("order4Paypal");
         ItemList itemList = payment.getTransactions().get(0).getItemList();
+        String paymentTotal = payment.getTransactions().get(0).getAmount().getTotal();
+
+        String orderTotal = String.format("%.2f",order.getTotal());
+
         ShippingAddress shippingAddress = itemList.getShippingAddress();
         String shippingPhoneNumber = itemList.getShippingPhoneNumber();
-
+        boolean validPayment = paymentTotal.equals(orderTotal);
         String recipientName = shippingAddress.getRecipientName();
         String[] names = recipientName.split(" ");
-
         order.setrFirstname(names[0]);
         order.setrLastname(names[1]);
         order.setrAddressLine1(shippingAddress.getLine1());
@@ -158,9 +169,24 @@ public class BookOrderServices {
         order.setrState(shippingAddress.getState());
         order.setrCountry(shippingAddress.getCountryCode());
         order.setrZipcode(shippingAddress.getPostalCode());
+        if (!validPayment) {
+            List<OrderDetail> orderDetails = new ArrayList<>();
+            itemList.getItems().forEach( item -> {
+                Book book = bookDAO.findByTitle(item.getName());
+                OrderDetail orderDetail = new OrderDetail();
+                System.out.println(book.getTitle());
+                OrderDetailPK orderDetailPK = new OrderDetailPK();
+                orderDetailPK.setBook(book);
+                orderDetailPK.setBookOrder(order);
 
+                orderDetail.setId(orderDetailPK);
+                orderDetail.setQuantity(Integer.parseInt(item.getQuantity()));
+                orderDetail.setSubtotal(Double.parseDouble(item.getPrice()) * Integer.parseInt(item.getQuantity()));
+                orderDetails.add(orderDetail);
+            });
+            order.setOrderDetailsByOrderId(orderDetails);
+        }
         return saveOrder(order);
-
     }
     private Integer saveOrder(BookOrder order){
         BookOrder createdOrder = orderDAO.create(order);

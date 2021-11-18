@@ -81,6 +81,7 @@
 /Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/entity/Review.java
 /Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/service/CustomerServices.java
 /Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/store/Message.java
+/Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/controller/frontend/vnpay/ajaxServlet.java
 /Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/controller/frontend/customer/RegisterCustomerServlet.java
 /Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/controller/frontend/CustomerLoginFilter.java
 /Users/dungmacbook/OneDrive/ecom/bookShopOnline/src/main/java/com/bookstore/controller/frontend/customer/UpdateCustomerProfileServlet.java
