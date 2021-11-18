@@ -15,7 +15,7 @@
         <div class="d-flex align-items-center position-relative flex-wrap">
           <div class="site-branding pr-md-7 mx-auto mx-md-0">
             <a href="/" class="d-block mb-1">
-              <img src="/assets/img/icons/books.png" alt="logo" class="logo">
+              <img src="/assets/img/icons/books.png" alt="logo" class="logo" style="max-height: 100px">
             </a>
           </div>
           <div class="site-navigation mr-auto d-none d-xl-block">

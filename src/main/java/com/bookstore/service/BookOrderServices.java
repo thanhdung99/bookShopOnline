@@ -10,6 +10,7 @@ import com.paypal.api.payments.Payment;
 import com.paypal.api.payments.ShippingAddress;
 
 
+import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -210,6 +211,14 @@ public class BookOrderServices {
         session.setAttribute("orderId", createdOrder.getOrderId());
         ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("cart");
         shoppingCart.clear();
+        try {
+            EmailServices.sendEmail("smtp.gmail.com", "587", "phichh16@gmail.com",
+                    "knkatubzsdmcrnps", "kendokiken@gmail.com",
+                    "Invoice on Maple BookStore #"+ order.getCustomerByCustomerId().getEmail(),
+                    EmailServices.createInvoideMessage(createdOrder));
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
         return  createdOrder.getOrderId();
     }
 

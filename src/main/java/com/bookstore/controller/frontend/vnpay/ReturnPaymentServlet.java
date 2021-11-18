@@ -2,7 +2,9 @@ package com.bookstore.controller.frontend.vnpay;
 
 import com.bookstore.dao.OrderDAO;
 import com.bookstore.entity.BookOrder;
+import com.bookstore.service.EmailServices;
 
+import javax.mail.MessagingException;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -55,6 +57,15 @@ public class ReturnPaymentServlet extends HttpServlet {
         }
         else {
             name = uname.toString();
+        }
+
+        try {
+            EmailServices.sendEmail("smtp.gmail.com", "587", "phichh16@gmail.com",
+                    "knkatubzsdmcrnps", order.getCustomerByCustomerId().getEmail(),
+                    "Invoice on Maple BookStore #"+savedOrder.getOrderId() ,
+                    EmailServices.createInvoideMessage(savedOrder));
+        } catch (MessagingException e) {
+            e.printStackTrace();
         }
 
         vnp_TransactionStatus = "Success";
