@@ -5,6 +5,7 @@
 <head>
     <title>Login</title>
     <jsp:include page="/import.jsp"/>
+    <link rel="shortcut icon" href="/assets/img/icons/books.ico">
     <link href="/css/verify.css" rel="stylesheet" type="text/css">
 </head>
 <body>

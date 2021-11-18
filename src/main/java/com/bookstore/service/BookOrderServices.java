@@ -8,7 +8,7 @@ import com.bookstore.store.Message;
 import com.paypal.api.payments.ItemList;
 import com.paypal.api.payments.Payment;
 import com.paypal.api.payments.ShippingAddress;
-import com.paypal.base.rest.APIContext;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -30,9 +30,24 @@ public class BookOrderServices {
         this.response = response;
     }
     public void listOrders() throws ServletException, IOException {
-        List<BookOrder> ordersList = orderDAO.listAll();
+        int page = Integer.parseInt(request.getParameter("page"));
+        int limit = 10;
+
+        int numOfOrder = (int) orderDAO.count();
+        List<BookOrder> ordersList = orderDAO.listAll(page, limit);
+
+        int numOfPages = 0;
+        if(numOfOrder != 0){
+            numOfPages = numOfOrder/limit;
+        }
+        if(numOfOrder % limit != 0){
+            numOfPages ++;
+        }
         HttpSession session = request.getSession();
         session.removeAttribute("order");
+
+        request.setAttribute("numOfPages", numOfPages);
+        request.setAttribute("page", page);
         request.setAttribute("ordersList",ordersList);
         CommonUtitlity.forwardToPage("/admin/orders/orders_list.jsp", request, response);
     }

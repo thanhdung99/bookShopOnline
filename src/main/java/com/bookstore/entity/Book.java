@@ -8,7 +8,7 @@ import java.util.*;
 @Entity
 @NamedQueries({
         @NamedQuery(name="Book.findAll",
-                query="SELECT b FROM Book b"),
+                query="SELECT b FROM Book b ORDER BY b.title"),
         @NamedQuery(name="Book.countAll",
                 query="SELECT COUNT(b) FROM Book b "),
         @NamedQuery(name="Book.findByTitle",

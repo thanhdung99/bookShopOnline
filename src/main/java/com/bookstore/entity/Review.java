@@ -21,7 +21,7 @@ import java.sql.Timestamp;
                         "WHERE r.customerByCustomerId.customerId = :customerId"),
         @NamedQuery(name = "Review.mostFavoredBook",
                 query = "SELECT r.bookByBookId, COUNT(r.bookByBookId.bookId) AS ReviewCount, AVG(r.rating) AS AvgRating " +
-                        "FROM Review r GROUP BY r.bookByBookId.bookId HAVING AVG(r.rating) >= 4.0 " +
+                        "FROM Review r GROUP BY r.bookByBookId.bookId HAVING AVG(r.rating) >= 4.0 AND COUNT(r.bookByBookId.bookId) > 2 " +
                         "ORDER BY ReviewCount DESC, AvgRating DESC ")
 })
 public class Review {

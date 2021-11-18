@@ -15,35 +15,20 @@
         <div class="d-flex align-items-center position-relative flex-wrap">
           <div class="site-branding pr-md-7 mx-auto mx-md-0">
             <a href="/" class="d-block mb-1">
-              Logo
+              <img src="/assets/img/icons/books.png" alt="logo" class="logo">
             </a>
           </div>
           <div class="site-navigation mr-auto d-none d-xl-block">
             <ul class="nav">
               <li class="nav-item dropdown">
-                <a id="homeDropdownInvoker" href="#"
+                <a id="homeDropdownInvoker" href="/"
                    class=" nav-link link-black-100 mx-3 px-0 py-3 font-weight-medium d-flex align-items-center"
                    aria-haspopup="true" aria-expanded="false" data-unfold-event="hover"
                    data-unfold-target="#homeDropdownMenu" data-unfold-type="css-animation"
                    data-unfold-duration="200" data-unfold-delay="50"
                    data-unfold-hide-on-scroll="true" data-unfold-animation-in="slideInUp"
                    data-unfold-animation-out="fadeOut">
-                  Home
-                </a>
 
-              </li>
-              <li class="nav-item"><a href="#"
-                                      class="nav-link link-black-100 mx-3 px-0 py-3 font-weight-medium">Categories</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a id="shopDropdownInvoker" href="#"
-                   class=" nav-link link-black-100 mx-3 px-0 py-3 font-weight-medium d-flex align-items-center"
-                   aria-haspopup="true" aria-expanded="false" data-unfold-event="hover"
-                   data-unfold-target="#shopDropdownMenu" data-unfold-type="css-animation"
-                   data-unfold-duration="200" data-unfold-delay="50"
-                   data-unfold-hide-on-scroll="true" data-unfold-animation-in="slideInUp"
-                   data-unfold-animation-out="fadeOut">
-                  Shop
                 </a>
 
               </li>
@@ -194,7 +179,7 @@
           </div>
           <ul class="d-none d-md-flex nav align-self-center">
 
-            <a id="sidebarNavToggler" href="javascript:;" role="button" class="nav-link text-dark"
+            <a id="sidebarNavToggler" href="/profile" role="button" class="nav-link text-dark"
                aria-controls="sidebarContent" aria-haspopup="true" aria-expanded="false"
                data-unfold-event="click" data-unfold-hide-on-scroll="false"
                data-unfold-target="#sidebarContent" data-unfold-type="css-animation"
@@ -210,7 +195,7 @@
             </li>
             <li class="nav-item">
 
-              <a id="sidebarNavToggler1" href="javascript:;" role="button"
+              <a id="sidebarNavToggler1" href="/view_cart" role="button"
                  class="nav-link pr-0 text-dark position-relative" aria-controls="sidebarContent1"
                  aria-haspopup="true" aria-expanded="false" data-unfold-event="click"
                  data-unfold-hide-on-scroll="false" data-unfold-target="#sidebarContent1"
@@ -231,7 +216,7 @@
                                         ${cart.totalItems}
                                       </c:if>
                                     </span>
-                <i class="text-gray-400 fas fa-shopping-bag font-size-10"></i>
+                <i class="text-gray-400 fad fa-shopping-cart font-size-10"></i>
                 <span class="d-none d-xl-inline h6 mb-0 ml-1">
                   <c:if test="${cart != null and cart.totalItems > 0}">
                     <fmt:formatNumber value="${cart.totalAmount}" type="currency"/>
@@ -239,9 +224,11 @@
                 </span>
               </a>
             </li>
+            <c:if test="${loggedCustomer != null}">
             <li class="nav-item"><a href="#" class="nav-link text-dark"><i
-                    class="fas fa-sign-out-alt font-size-10"></i></a></li>
+                    class="fad fa-sign-out-alt font-size-10"></i></a></li>
             <li class="nav-item">
+            </c:if>
           </ul>
         </div>
       </div>

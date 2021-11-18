@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <link rel="shortcut icon" href="">
+  <link rel="shortcut icon" href="/assets/img/icons/books.ico">
   <jsp:include page="/importCss.jsp" />
   <style>
     body {

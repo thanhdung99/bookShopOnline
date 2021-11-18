@@ -44,6 +44,9 @@ public class OrderDAO extends JpaDAO<BookOrder> implements GenericDAO<BookOrder>
         return super.findWithNamedQuery("BookOrder.findAll");
     }
 
+    public List<BookOrder> listAll(int page, int limit) {
+        return super.findWithNamedQuery("BookOrder.findAll", page, limit);
+    }
     @Override
     public long count() {
         return super.countWithNamedQuery("BookOrder.countAll");

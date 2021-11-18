@@ -40,7 +40,21 @@ public class BookServices {
         this.response = response;
     }
     public void listBooks() throws ServletException, IOException {
-        List<Book> booksList = bookDAO.listAll();
+        int page = Integer.parseInt(request.getParameter("page"));
+        int limit = 5;
+
+        int numOfBook = (int) bookDAO.count();
+        List<Book> booksList = bookDAO.listAll(page, limit);
+
+        int numOfPages = 0;
+        if(numOfBook != 0){
+            numOfPages = numOfBook/limit;
+        }
+        if(numOfBook % limit != 0){
+            numOfPages ++;
+        }
+        request.setAttribute("numOfPages", numOfPages);
+        request.setAttribute("page", page);
 
         request.setAttribute("booksList", booksList);
         CommonUtitlity.forwardToPage("/admin/books/books_list.jsp", request, response);
@@ -187,10 +201,7 @@ public class BookServices {
         request.setAttribute("numOfPages", numOfPages);
         request.setAttribute("page", page);
 
-        String listPage = "/frontend/book/book_list_by_category.jsp";
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher(listPage);
-        dispatcher.forward(request, response);
+        CommonUtitlity.forwardToPage("/frontend/book/book_list_by_category.jsp", request, response);
     }
 
     public void viewBookDetail() throws ServletException, IOException {
@@ -216,8 +227,7 @@ public class BookServices {
             request.setAttribute("message", message);
         }
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher(destPage);
-        dispatcher.forward(request, response);
+        CommonUtitlity.forwardToPage(destPage, request, response);
     }
 
     public void search() throws ServletException, IOException {
@@ -266,9 +276,8 @@ public class BookServices {
         request.setAttribute("page", page);
         request.setAttribute("result", result);
 
-        String destPage = "/frontend/book/search_result.jsp";
-        RequestDispatcher dispatcher = request.getRequestDispatcher(destPage);
-        dispatcher.forward(request, response);
+        CommonUtitlity.forwardToPage("/frontend/book/search_result.jsp", request, response);
+
     }
 }
 

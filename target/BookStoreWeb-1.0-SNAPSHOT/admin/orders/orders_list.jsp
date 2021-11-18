@@ -71,6 +71,32 @@
                 </div>
             </div>
         </div>
+        <div class="row px-4">
+            <ul class="pagination">
+                <c:if test="${page != 1}">
+                    <li class="page-item">
+                        <a class="page-link" href="/admin/list_orders?page=${page - 1}">Previous</a>
+                    </li>
+                </c:if>
+                <c:forEach var="i" begin="1" end="${numOfPages}">
+                    <c:if test="${page == i}">
+                        <li class="page-item active">
+                            <a class="page-link" href="/admin/list_orders?page=${i}">${i}</a>
+                        </li>
+                    </c:if>
+                    <c:if test="${page != i}">
+                        <li class="page-item">
+                            <a class="page-link" href="/admin/list_orders?page=${i}">${i}</a>
+                        </li>
+                    </c:if>
+                </c:forEach>
+                <c:if test="${page != numOfPages && numOfPages != 0}">
+                    <li class="page-item">
+                        <a class="page-link" href="/admin/list_orders?page=${page + 1}">Next</a>
+                    </li>
+                </c:if>
+            </ul>
+        </div>
     </div>
 </div>
 <script type="text/javascript">

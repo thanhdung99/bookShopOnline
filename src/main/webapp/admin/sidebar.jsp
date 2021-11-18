@@ -13,7 +13,7 @@
             <i class="far fa-folder-open"></i>
             &nbsp;Categories
         </a>
-        <a class="nav-link" href="/admin/list_books">
+        <a class="nav-link" href="/admin/list_books?page=1">
             <i class="fas fa-book"></i>
             &nbsp;Books
         </a>
@@ -25,7 +25,7 @@
             <i class="far fa-comment-dots"></i>
             &nbsp;Reviews
         </a>
-        <a class="nav-link" href="/admin/list_orders">
+        <a class="nav-link" href="/admin/list_orders?page=1">
             <i class="fas fa-file-invoice-dollar"></i>
             &nbsp;Order
         </a>

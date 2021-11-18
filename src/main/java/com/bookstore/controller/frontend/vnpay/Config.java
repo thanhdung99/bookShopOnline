@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public class Config {
     public static String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-    public static String vnp_Returnurl = "http://localhost:8080/return_payment";
+    public static String vnp_Returnurl = "https://maple-store.herokuapp.com/return_payment";
     public static String vnp_TmnCode = "C3XYP5I0";
     public static String vnp_HashSecret = "ACKQPUNPZCGDBEOXDHFVZSJLTMFKHRFF";
     public static String vnp_apiUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
