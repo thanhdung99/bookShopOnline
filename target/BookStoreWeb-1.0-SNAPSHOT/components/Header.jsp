@@ -225,7 +225,7 @@
               </a>
             </li>
             <c:if test="${loggedCustomer != null}">
-            <li class="nav-item"><a href="#" class="nav-link text-dark"><i
+            <li class="nav-item"><a href="/logout" class="nav-link text-dark"><i
                     class="fad fa-sign-out-alt font-size-10"></i></a></li>
             <li class="nav-item">
             </c:if>

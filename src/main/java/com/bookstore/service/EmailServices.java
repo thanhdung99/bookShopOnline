@@ -97,7 +97,7 @@ public class EmailServices {
                 "\n" +
                 "                        <td style=\"padding: 5px;vertical-align: top;text-align: right;padding-bottom: 40px;\">\n" +
                 "                            "+ order.getrFirstname() + " " + order.getrLastname() +"<br>\n" +
-                "                            "+ order.getrPhone() + ",<br>\n" +
+                "                            "+ order.getrPhone() + "<br>\n" +
                 "                            "+ order.getrAddressLine1() + ",<br>\n" +
                 "                            "+ order.getrState() + ", "+ order.getrCity() + ", "+ order.getrZipcode() + ", "+ order.getCountryName() + ",<br>\n" +
                 "                        </td>\n" +

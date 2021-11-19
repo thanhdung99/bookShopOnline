@@ -71,6 +71,7 @@ public class ReturnPaymentServlet extends HttpServlet {
         vnp_TransactionStatus = "Success";
         request.setAttribute("status", vnp_TransactionStatus);
         request.setAttribute("order", savedOrder);
+        request.setAttribute("orderId", order.getOrderId());
 
         session.removeAttribute("savingOrder");
         session.removeAttribute("order4VNPay");

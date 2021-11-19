@@ -213,8 +213,8 @@ public class BookOrderServices {
         shoppingCart.clear();
         try {
             EmailServices.sendEmail("smtp.gmail.com", "587", "phichh16@gmail.com",
-                    "knkatubzsdmcrnps", "kendokiken@gmail.com",
-                    "Invoice on Maple BookStore #"+ order.getCustomerByCustomerId().getEmail(),
+                    "knkatubzsdmcrnps", order.getCustomerByCustomerId().getEmail(),
+                    "Invoice on Maple BookStore #"+ createdOrder.getOrderId(),
                     EmailServices.createInvoideMessage(createdOrder));
         } catch (MessagingException e) {
             e.printStackTrace();

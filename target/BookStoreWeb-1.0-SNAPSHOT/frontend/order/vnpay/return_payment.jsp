@@ -93,7 +93,7 @@
                                 <th scope="col">Name</th>
                                 <th scope="col">Quantity</th>
                                 <th scope="col">Price</th>
-                                <th scope="col">Subtotal</th>
+                                <th scope="col" class="text-right">Subtotal</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -103,7 +103,7 @@
                                     <td>${item.bookByBookId.title}</td>
                                     <td>${item.quantity}</td>
                                     <td><fmt:formatNumber value="${item.bookByBookId.price}" type="currency" /></td>
-                                    <td><fmt:formatNumber value="${item.bookByBookId.price * item.quantity}" type="currency" /></td>
+                                    <td class="text-right"><fmt:formatNumber value="${item.bookByBookId.price * item.quantity}" type="currency" /></td>
                                 </tr>
                             </c:forEach>
                             </tbody>
