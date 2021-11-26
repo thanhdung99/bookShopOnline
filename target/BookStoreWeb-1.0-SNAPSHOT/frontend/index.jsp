@@ -11,9 +11,19 @@
 
     <link rel="shortcut icon" href="/assets/img/icons/books.ico">
     <jsp:include page="/importCss.jsp" />
+    <link rel="stylesheet" href="/css/owl-carousel.css"/>
 </head>
 <body>
 <%@include file="/components/Header.jsp"%>
+<section class="content">
+    <div class="container-fluid">
+        <div class="owl-carousel owl-1">
+            <div><img src="/assets/img/image1.png" alt="Image" class="img-fluid"></div>
+            <div><img src="/assets/img/image2.jpeg" alt="Image" class="img-fluid"></div>
+            <div><img src="/assets/img/image3.png" alt="Image" class="img-fluid"></div>
+        </div>
+    </div>
+</section>
 
 <%@include file="/frontend/SectionHomePage/MostRecent.jsp"%>
 <%@include file="/frontend/SectionHomePage/BestSelling.jsp"%>

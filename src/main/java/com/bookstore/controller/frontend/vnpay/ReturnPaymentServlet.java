@@ -1,5 +1,6 @@
 package com.bookstore.controller.frontend.vnpay;
 
+import com.bookstore.controller.frontend.shoppingcart.ShoppingCart;
 import com.bookstore.dao.OrderDAO;
 import com.bookstore.entity.BookOrder;
 import com.bookstore.service.EmailServices;
@@ -24,6 +25,7 @@ public class ReturnPaymentServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         BookOrder order = (BookOrder) session.getAttribute("savingOrder");
+
         OrderDAO orderDAO = new OrderDAO();
         BookOrder savedOrder = orderDAO.create(order);
 
@@ -73,8 +75,10 @@ public class ReturnPaymentServlet extends HttpServlet {
         request.setAttribute("order", savedOrder);
         request.setAttribute("orderId", order.getOrderId());
 
+        session.removeAttribute("order");
         session.removeAttribute("savingOrder");
         session.removeAttribute("order4VNPay");
+        session.setAttribute("cart", new ShoppingCart());
         request.getRequestDispatcher(nextUrl).forward(request, response);
     }
 

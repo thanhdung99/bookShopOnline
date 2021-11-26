@@ -73,7 +73,7 @@ public class EmailServices {
                 "                <table style=\"width: 100%;line-height: inherit;text-align: left;\">\n" +
                 "                    <tr>\n" +
                 "                        <td class=\"title\" style=\"padding: 5px;vertical-align: top;padding-bottom: 20px;font-size: 45px;line-height: 45px;color: #333;\">\n" +
-                "                            <img src=\"https://i.ibb.co/1sWmfR1/books.png\" style=\"height: 100px; width: auto;\">\n" +
+                "                            <img src=\"https://res.cloudinary.com/deq5twgl5/image/upload/v1637562542/books_ofadwm.png\" style=\"height: 100px; width: auto;\">\n" +
                 "                        </td>\n" +
                 "\n" +
                 "                        <td style=\"padding: 5px;vertical-align: top;text-align: right;padding-bottom: 20px;\">\n" +

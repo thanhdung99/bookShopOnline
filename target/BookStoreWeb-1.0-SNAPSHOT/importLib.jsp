@@ -7,6 +7,7 @@
 <script src="/assets/library/multilevel-sliding-mobile-menu/dist/jquery.zeynep.js"></script>
 <script src="/assets/library/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="/assets/library/slick-carousel/slick/slick.min.js"></script>
+<script src="/assets/library/owl-carousel/owl.carousel.min.js"></script>
 
 <script src="/assets/js/hs.core.js"></script>
 <script src="/assets/js/lightslider.js"></script>
@@ -79,5 +80,20 @@
                 zeynep.open();
             }
         });
+        $(function() {
+            $('.owl-1').owlCarousel({
+
+                loop:true,
+                margin:0,
+                nav:true,
+                items: 1,
+                smartSpeed: 1000,
+                autoplay: true,
+                autoplayHoverPause: true,
+                navText: ['<span class="icon-keyboard_arrow_left">', '<span class="icon-keyboard_arrow_right">']
+            })
+
+
+        })
     });
 </script>

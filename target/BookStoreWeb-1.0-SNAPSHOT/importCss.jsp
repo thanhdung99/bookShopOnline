@@ -8,10 +8,13 @@
       crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
+<link rel="stylesheet" href="/assets/fonts/icomoon/style.css">
+
 <link rel="stylesheet" href="/assets/library/animate.css/animate.css">
 <link rel="stylesheet" href="/assets/library/bootstrap-select/dist/css/bootstrap-select.min.css">
 <link rel="stylesheet" href="/assets/library/slick-carousel/slick/slick.css" />
 <link rel="stylesheet" href="/assets/library/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
+<link rel="stylesheet" href="/assets/library/owl-carousel/owl.carousel.min.css">
 
 <link rel="stylesheet" href="/assets/css/theme.css">
 <link rel="stylesheet" href="/assets/css/style.css">
@@ -19,3 +22,7 @@
 
 <link rel="stylesheet" href="/assets/css/slider.css">
 <link rel="stylesheet" href="/assets/css/lightslider.css">
+
+
+
+
