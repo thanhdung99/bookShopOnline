@@ -40,7 +40,9 @@ public class BookServices {
         this.response = response;
     }
     public void listBooks() throws ServletException, IOException {
-        int page = Integer.parseInt(request.getParameter("page"));
+        String pageNum = request.getParameter("page");
+        int page = 1;
+        if(pageNum != null) page = Integer.parseInt(pageNum);
         int limit = 5;
 
         int numOfBook = (int) bookDAO.count();
@@ -79,6 +81,7 @@ public class BookServices {
             Message message = new Message("Create successful", "Create book successful", "success");
             request.setAttribute("message", message);
         }
+
 
     }
     public void readBookFields(Book book) throws ServletException, IOException {
@@ -144,6 +147,7 @@ public class BookServices {
                     "success");
             request.setAttribute("message", message);
         }
+
     }
 
     public void deleteBook() {
@@ -170,8 +174,8 @@ public class BookServices {
                 Message message = new Message("Delete successful", "Delete book successful", "success");
                 request.setAttribute("message", message);
             }
-
         }
+
     }
 
     public void listBooksByCategory() throws ServletException, IOException {

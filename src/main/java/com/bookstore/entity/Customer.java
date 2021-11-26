@@ -8,7 +8,7 @@ import java.util.Locale;
 @Entity
 @NamedQueries({
         @NamedQuery(name="Customer.findAll",
-                query="SELECT c FROM Customer c ORDER BY c.registerDate DESC "),
+                query="SELECT c FROM Customer c ORDER BY c.lastname DESC "),
         @NamedQuery(name="Customer.countAll",
                 query="SELECT COUNT(c) FROM Customer c "),
         @NamedQuery(name="Customer.findByEmail",

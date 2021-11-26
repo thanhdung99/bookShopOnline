@@ -35,7 +35,7 @@
                                 <th scope="col" class="sticky-header">Headline</th>
                                 <th scope="col" class="sticky-header">Book</th>
                                 <th scope="col" class="sticky-header">Customer</th>
-                                <th scope="col" class="sticky-header" style="align-content: end">Actions</th>
+                                <th scope="col" class="sticky-header" style="align-content: end; width: 200px;">Actions</th>
                             </tr>
                             </thead>
                             <tbody>

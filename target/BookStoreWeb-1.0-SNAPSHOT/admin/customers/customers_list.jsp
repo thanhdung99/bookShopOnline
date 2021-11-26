@@ -27,14 +27,15 @@
             <div class="card shadow p-0 mb-5 bg-white rounded">
                 <div class="full-height">
                     <div class="full-height-scroll">
-                        <table class="table table-sm" style="position: relative; width: 1200px">
+                        <table class="table table-sm" style="position: relative; width: 1500px">
                             <thead>
                             <tr>
                                 <th scope="col" class="sticky-header">#</th>
                                 <th scope="col" class="sticky-header">Id</th>
-                                <th scope="col" class="sticky-header">First Name</th>
-                                <th scope="col" class="sticky-header">Last Name</th>
+                                <th scope="col" class="sticky-header">Full Name</th>
                                 <th scope="col" class="sticky-header">Email</th>
+                                <th scope="col" class="sticky-header">Address</th>
+                                <th scope="col" class="sticky-header">State</th>
                                 <th scope="col" class="sticky-header">City</th>
                                 <th scope="col" class="sticky-header">Country</th>
                                 <th scope="col" class="sticky-header">Registered Date</th>
@@ -43,23 +44,27 @@
                             </thead>
                             <tbody>
                             <c:forEach var="customer" varStatus="status" items="${customersList}">
-                                <tr>
-                                    <th scope="row">${status.index + 1}</th>
-                                    <th>${customer.customerId}</th>
-                                    <th>${customer.firstname}</th>
-                                    <th>${customer.lastname}</th>
-                                    <th>${customer.email}</th>
-                                    <th>${customer.city}</th>
-                                    <th>${customer.countryName}</th>
-                                    <th>${customer.registerDate}</th>
-                                    <th>
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                                onclick="deleteCustomer(${customer.customerId}, '${customer.email}')" data-target="#exampleModal">
-                                            Delete
-                                            <i class="fas fa-customer-times"></i>
-                                        </button>
-                                    </th>
-                                </tr>
+                                <c:if test="${customer.addressLine1 != null && customer.city != null &&
+                                customer.state != null && customer.country != null}">
+                                    <tr>
+                                        <th scope="row">${status.index + 1}</th>
+                                        <th>${customer.customerId}</th>
+                                        <th>${customer.fullName}</th>
+                                        <th>${customer.email}</th>
+                                        <th>${customer.addressLine1}</th>
+                                        <th>${customer.state}</th>
+                                        <th>${customer.city}</th>
+                                        <th>${customer.countryName}</th>
+                                        <th>${customer.registerDate}</th>
+                                        <th>
+                                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                                    onclick="deleteCustomer(${customer.customerId}, '${customer.email}')" data-target="#exampleModal">
+                                                Delete
+                                                <i class="fas fa-customer-times"></i>
+                                            </button>
+                                        </th>
+                                    </tr>
+                                </c:if>
                             </c:forEach>
                             </tbody>
                         </table>

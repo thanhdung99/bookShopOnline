@@ -31,7 +31,9 @@ public class BookOrderServices {
         this.response = response;
     }
     public void listOrders() throws ServletException, IOException {
-        int page = Integer.parseInt(request.getParameter("page"));
+        String pageNum = request.getParameter("page");
+        int page = 1;
+        if(pageNum != null) page = Integer.parseInt(pageNum);
         int limit = 10;
 
         int numOfOrder = (int) orderDAO.count();
