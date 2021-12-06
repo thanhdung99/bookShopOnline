@@ -35,7 +35,7 @@
             <div class="card shadow p-0 mb-5 bg-white rounded">
                 <div class="full-height">
                     <div class="full-height-scroll">
-                        <table class="table table-sm" style="position: relative; width: 1500px">
+                        <table class="table table-sm" style="position: relative; width: 1350px">
                             <thead>
                             <tr>
                                 <th scope="col" class="sticky-header">#</th>
@@ -57,11 +57,11 @@
                                     <th class="align-middle">
                                         <img src="data:image/jpg;base64,${book.base64Image}" style="height: 84px;width: auto;"/>
                                     </th>
-                                    <th class="align-middle line-limit" style="width: 450px">${book.title}</th>
+                                    <th class="align-middle line-limit" style="width: 225px">${book.title}</th>
                                     <th class="align-middle">${book.author}</th>
-                                    <th class="align-middle">${book.categoryByCategoryId.name }</th>
+                                    <th class="align-middle" style="width: 120px">${book.categoryByCategoryId.name }</th>
                                     <th class="align-middle">${book.price}</th>
-                                    <th class="align-middle">${book.lastUpdateTime}</th>
+                                    <th class="align-middle" style="width: 180px">${book.lastUpdateTime}</th>
 
                                     <th class="align-middle">
                                         <a href="/admin/edit_book?id=${book.bookId}">

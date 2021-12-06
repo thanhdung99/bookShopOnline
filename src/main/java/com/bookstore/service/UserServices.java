@@ -1,5 +1,6 @@
 package com.bookstore.service;
 
+import com.bookstore.dao.HashGenerator;
 import com.bookstore.dao.UserDAO;
 import com.bookstore.entity.Users;
 import com.bookstore.store.Message;
@@ -83,7 +84,11 @@ public class UserServices {
             CommonUtitlity.forwardToPage("/admin/users/user_form.jsp", message, request, response);
 
         }else {
-            Users user = new Users(userId, email, password, fullName );
+            Users user = new Users(userId, email, existUser.getPassword(), fullName );
+            if(password != "" && password != null){
+                String encryptedPassword = HashGenerator.generateMD5(password);
+                user.setPassword(encryptedPassword);
+            }
             userDAO.update(user);
             Message message = new Message("Update successful", "Update user successful", "success");
             request.setAttribute("message", message);

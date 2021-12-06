@@ -41,9 +41,9 @@
                                    aria-describedby="emailHelp" value="${user.email}" placeholder="Enter email"/>
                         </div>
                         <div class="form-group">
-                            <label for="password">Password</label>
+                            <label for="password">New password</label>
                             <input type="password" class="form-control" id="password" name="password"
-                                   value="${user.password}" placeholder="Password" >
+                                   value="" placeholder="Password" >
                         </div>
                         <button type="submit" class="btn btn-primary" onclick="this.form.submit();this.disabled = true;">
                             <c:if test="${user.userId != null}">Edit</c:if>

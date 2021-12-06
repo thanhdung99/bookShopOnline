@@ -15,7 +15,7 @@
 </head>
 <body>
 <%@include file="/components/Header.jsp"%>
-<section class="content">
+<section class="banner">
     <div class="container-fluid">
         <div class="owl-carousel owl-1">
             <div><img src="/assets/img/image1.png" alt="Image" class="img-fluid"></div>
